@@ -1,0 +1,23 @@
+{
+  "name": "projectwork",
+  "version": "1.0.0",
+  "description": "RESTful server for harjoitustyo",
+  "main": "index.js",
+  "scripts": {
+    "test": "git repository"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timoparv65/ProjectWork.git"
+  },
+  "author": "Timo Parviainen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timoparv65/ProjectWork/issues"
+  },
+  "homepage": "https://github.com/timoparv65/ProjectWork#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3"
+  }
+}
