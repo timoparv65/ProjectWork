@@ -1,0 +1,36 @@
+.fancy{
+    
+    color: black;
+    border: 2px;
+    background-color: red;
+    border-radius: 8px;
+}
+
+/*Use id selector to define style*/
+#joku_tyyli{
+    
+    margin: 100px;
+}
+
+.loginForm{
+    
+    width: 500px;
+    margin: 8px auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: darksalmon;
+    padding: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
