@@ -1,12 +1,14 @@
-﻿var express = require("express");
+var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var database = require('./modules/database');
 var queries = require('./modules/queries');
+var employee = require('./modules/employee');
+var customer = require('./modules/customer');
 
 
-// This is used for creating a secret key value
-var uuid = require('uuid'); // salausavainta varten
+// This is used for creating a secret key value for our session cookie
+var uuid = require('uuid');
 // This is used to create a session object for client
 var session = require('express-session');
 
@@ -31,7 +33,6 @@ app.use(function(req,res,next){
     console.log(__dirname);
     console.log(req.body);
     console.log(req.session);
-    //console.log(database.Person);
     //Send request forward in stack
     next();
 });
@@ -47,10 +48,15 @@ app.use('/FrontEnd/factories',express.static(path.join(__dirname, '../FrontEnd/f
 
 
 //=====================OUR REST API MIDDLEWARES============================
-
+app.use('/employees',employee);
+app.use('/customers',customer);
 
 //=====================ROUTERS============================
 
-
+app.get('/logout',function(req,res){
+    
+    req.session.destroy();
+    res.redirect('/');
+});
 
 app.listen(3000);

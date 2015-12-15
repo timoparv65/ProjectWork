@@ -22,7 +22,18 @@ router.post('/register',function(req,res){
 /**
  *
  */
+router.post('/login',function(req,res){
+   
+    query.loginEmployee(req,res);
+});
+
+/**
+ *
+ */
 router.get('/',function(req,res){
    
     query.getReservationsByEmployeeName(req,res);
 });
+
+module.exports = router;
+

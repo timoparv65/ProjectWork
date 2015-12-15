@@ -11,19 +11,40 @@ var db = require('./database');
  *
  */
 exports.getReservationsByCustomerName = function(req,res){
-    
+    console.log('queries/getReservationsByCustomerName')
 }
 
 /**
  *
  */
 exports.loginCustomer = function(req,res){
-    
+    console.log('queries/loginCustomer');
 }
 
 /**
  *
  */
 exports.registerCustomer = function(req,res){
-    
+    console.log('queries/registerCustomer');
+}
+
+/**
+ *
+ */
+exports.registerEmployee = function(req,res){
+    console.log('queries/registerEmployee');
+}
+
+/**
+ *
+ */
+exports.loginEmployee = function(req,res){
+    console.log('queries/loginEmployee');
+}
+
+/**
+ *
+ */
+exports.getReservationsByEmployeeName = function(req,res){
+    console.log('queries/getReservationsByEmployeeName');
 }

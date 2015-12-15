@@ -38,12 +38,13 @@ var Reservation = mongoose.model('Reservation',{
     finnishtime:String,
     employee:{type:mongoose.Schema.Types.ObjectId,ref:'Employee'},
     customer:{type:mongoose.Schema.Types.ObjectId,ref:'Customer'}
-}'reservation');
+},'reservation');
 
-var Customer = mongoose.model('Customer'),{
+var Customer = mongoose.model('Customer',{
     name:String,
     email:{type:String,unique:true},
-    mobileNumber:{type:String,unique:true}
+    mobileNumber:{type:String,unique:true},
+    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}]
 },'customer');
 
 
