@@ -23,12 +23,18 @@ function connectionStatus(err,ok){
     }
 }
 
+var RegisterButtonState = mongoose.model('RegisterButtonState',{
+    buttonActive:{type:Boolean, default: true}
+});
+
 var Employee = mongoose.model('Employee',{
     name:String,
+    password:String,
+    email:String,
     picture:String,
-    ofDates:[Date],
-    services:[String],
-    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}]
+    ofDates:[Date], // milloin on poissa töistä
+    services:[String], // mitä töitä tekee
+    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'employee');
 
 
@@ -41,10 +47,11 @@ var Reservation = mongoose.model('Reservation',{
 },'reservation');
 
 var Customer = mongoose.model('Customer',{
-    name:String,
+    username:{type:String,unique:true},
+    password:String,
     email:{type:String,unique:true},
     mobileNumber:{type:String,unique:true},
-    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}]
+    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'customer');
 
 
@@ -59,3 +66,4 @@ exports.Employee = Employee;
 exports.Reservation = Reservation;
 exports.Customer = Customer;
 exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
+exports.RegisterButtonState = RegisterButtonState;

@@ -33,13 +33,51 @@ exports.registerCustomer = function(req,res){
  */
 exports.registerEmployee = function(req,res){
     console.log('queries/registerEmployee');
+    
+    var employee = new db.Employee(req.body);
+    employee.save(function(err){
+        
+        if(err){
+            
+            res.status(500).send({status:err.message});
+        }
+        else{
+            res.status(200).send({status:"Ok"});
+        }
+    });
 }
 
 /**
  *
  */
 exports.loginEmployee = function(req,res){
+    
     console.log('queries/loginEmployee');
+    
+    var searchObject = {
+        username:req.body.username,
+        password:req.body.password
+    }
+
+    db.Employee.findOne(searchObject,function(err,data){
+        
+        if(err){
+            
+            res.send(502,{status:err.message});
+            
+        }else{
+            console.log(data);
+            //=< 0 means wrong username or password
+            if(data){
+                req.session.kayttaja = data.username;
+                res.send(200,{status:"Ok"});
+            }
+            else{
+                res.send(401,{status:"Wrong username or password"});
+            }
+            
+        }
+    });
 }
 
 /**
@@ -47,4 +85,46 @@ exports.loginEmployee = function(req,res){
  */
 exports.getReservationsByEmployeeName = function(req,res){
     console.log('queries/getReservationsByEmployeeName');
+}
+
+/**
+ *
+ */
+exports.getAllEmployees = function(req,res){
+    console.log('queries/getAllEmployees');
+    
+    db.Employee.find(function(err,data){
+        if(err){
+            console.log(err.message);
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            console.log(data);
+            //200 = ok
+            res.status(200).send(data);
+        }
+    });
+}
+
+/**
+ * This function saves new employee information to our
+ * employee collection
+ */
+exports.saveNewEmployee = function(req,res){
+    console.log('queries/saveNewEmployee');
+    
+    var employeeTemp = new db.Employee(req.body);
+    
+    // save it to database
+    employeeTemp.save(function(err,newData){
+        
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).json({message:'Fail'});
+        }else{
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+    });
 }
