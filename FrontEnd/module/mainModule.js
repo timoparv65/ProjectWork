@@ -18,6 +18,10 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_addEmployeeView.html',
         controller:'addEmployeeController'
         
+    }).when('/add_service',{
+        
+        templateUrl:'partial_addServiceView.html',
+        controller:'addServiceController'
     });
     
     

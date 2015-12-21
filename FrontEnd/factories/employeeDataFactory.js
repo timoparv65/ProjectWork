@@ -1,5 +1,7 @@
 main_module.factory('employeeDataFactory',function($resource){
     
+    console.log('employeeDataFactory loaded');
+    
     factory = {};
     
     factory.employeeArray = [];

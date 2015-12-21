@@ -36,7 +36,7 @@ router.get('/',function(req,res){
 });
 
 /**
- * Handle POST requets for /employees/ context
+ * Handle POST requets for /employees context
  */
 router.post('/',function(req,res){
     

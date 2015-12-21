@@ -34,7 +34,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             
             Flash.create('warning', 'Työntekijän lisäys epäonnistui!', 'custom-class');
             // sallitaan Save-napin painaminen
-            $('#savePerson').attr("disabled", false);
+            $('#saveEmployee').attr("disabled", false);
         });
     };
 });

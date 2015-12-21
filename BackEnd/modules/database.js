@@ -33,7 +33,7 @@ var Employee = mongoose.model('Employee',{
     email:String,
     picture:String,
     ofDates:[Date], // milloin on poissa töistä
-    services:[String], // mitä töitä tekee
+    services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'], // mitä töitä tekee
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'employee');
 
@@ -58,8 +58,16 @@ var Customer = mongoose.model('Customer',{
 var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInfo',{
     openingHour:String,
     duration:{type:Number},
-    timeRaster:{type:Number}
-},'generateopeninghourstableinfo')
+    timeRaster:{type:Number, default:15} // aikarasterin oletusarvo on 15 minuuttia
+},'generateopeninghourstableinfo');
+
+var Service = mongoose.model('Service',{
+    category:String,
+    description:String,
+    price:Number,
+    timeInMinutes:Number,
+    code:{type:String,unique:true}
+},'service');
 
 //Using exports object you expose the data to other modules
 exports.Employee = Employee;
@@ -67,3 +75,4 @@ exports.Reservation = Reservation;
 exports.Customer = Customer;
 exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
 exports.RegisterButtonState = RegisterButtonState;
+exports.Service = Service;

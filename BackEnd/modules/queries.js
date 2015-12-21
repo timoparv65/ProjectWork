@@ -128,3 +128,25 @@ exports.saveNewEmployee = function(req,res){
         }
     });
 }
+
+/**
+ * This function saves new service information to our
+ * service collection
+ */
+exports.saveNewService = function(req,res){
+    console.log('queries/saveNewService');
+    
+    var serviceTemp = new db.Service(req.body);
+    
+    // save it to database
+    serviceTemp.save(function(err,newData){
+        
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).json({message:'Fail'});
+        }else{
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+    });
+}
