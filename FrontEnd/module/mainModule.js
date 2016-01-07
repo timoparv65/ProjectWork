@@ -18,14 +18,16 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeDataView.html',
         controller:'employeeDataController'
         
+        
     }).when('/lisaa_tyontekijan_tyotehtavat',{
         
         templateUrl:'partial_addServiceView.html',
         controller:'addServiceController'
-    }).when('lisaa_tyontekija',{
+    }).when('/lisaa_tyontekija',{
         
         templateUrl:'partial_addEmployeeView.html',
         controller:'addEmployeeController'
+        
     });
     
     
