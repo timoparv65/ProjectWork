@@ -10,18 +10,22 @@ main_module.config(function($routeProvider){
     
     $routeProvider.when('/',{
         
+        templateUrl:'partial_employeeReservationsView.html',
+        controller:'employeeReservationsController'
+        
+    }).when('/lisaa_tyontekija_paavalikko',{
+        
         templateUrl:'partial_employeeDataView.html',
         controller:'employeeDataController'
         
-    }).when('/insert_employee',{
-        
-        templateUrl:'partial_addEmployeeView.html',
-        controller:'addEmployeeController'
-        
-    }).when('/add_service',{
+    }).when('/lisaa_tyontekijan_tyotehtavat',{
         
         templateUrl:'partial_addServiceView.html',
         controller:'addServiceController'
+    }).when('lisaa_tyontekija',{
+        
+        templateUrl:'partial_addEmployeeView.html',
+        controller:'addEmployeeController'
     });
     
     

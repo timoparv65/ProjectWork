@@ -64,7 +64,6 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 var Service = mongoose.model('Service',{
     category:String,
     description:String,
-    price:Number,
     timeInMinutes:Number,
     code:{type:String,unique:true}
 },'service');

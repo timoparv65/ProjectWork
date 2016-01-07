@@ -12,7 +12,6 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
         var temp = {
             category:$scope.category,
             description:$scope.description,
-            price:$scope.price,
             timeInMinutes:$scope.timelength,
             code:$scope.code
         };
@@ -27,7 +26,6 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
             
             $scope.category = "";
             $scope.description = "";
-            $scope.price = "";
             $scope.timelength = "";
             $scope.code = "";
             
