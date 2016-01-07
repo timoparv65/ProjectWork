@@ -33,7 +33,7 @@ var Employee = mongoose.model('Employee',{
     email:String,
     picture:String,
     ofDates:[Date], // milloin on poissa töistä
-    services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'], // mitä töitä tekee
+    services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'employee');
 
