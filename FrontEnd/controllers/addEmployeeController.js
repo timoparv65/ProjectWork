@@ -1,10 +1,10 @@
-main_module.controller('addEmployeeController',function($scope,Flash,employeeDataFactory){
+main_module.controller('addEmployeeController',function($scope,Flash,employeeDataFactory,$location){
     
     console.log('addEmployeeController loaded');
     
     //Funktiototeutus Save-nappulan painallukselle partial_addEmployeeView.html ikkunassa
     $scope.saveEmployeeClicked = function(){
-        console.log("Save was pressed");
+        console.log('addEmployeeController/saveEmployeeClicked');
         
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveEmployee').attr("disabled", true);
@@ -16,11 +16,25 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             email:$scope.emailaddr
         };
         
+        console.log(temp);
+        
+        if (temp.name.length === 0 ||
+            temp.password.length === 0 ||
+            temp.email.length === 0){
+            
+            alert('Jokin kenttä tyhjä!');
+            return;
+        }
+        
+        
         var waitPromise = employeeDataFactory.insertData(temp);
         
         waitPromise.then(function(response){
             // queries.js/exports.saveNewEmployee: palauttaa data nimisen muuttujan responsessa.
             // Talletetaan se employeeArray:hyn
+            console.log('addEmployeeController/saveEmployeeClicked/waitPromise:success');
+            console.log(response.data);
+            
             employeeDataFactory.employeeArray.push(response.data);
             Flash.create('success', 'Uusi työntekijä lisätty', 'custom-class');
             
@@ -32,9 +46,14 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             $('#saveEmployee').attr("disabled", false);
         },function(error){
             
+            console.log('addEmployeeController/saveEmployeeClicked/waitPromise:fail');
+            console.log(error.message);
+            
             Flash.create('warning', 'Työntekijän lisäys epäonnistui!', 'custom-class');
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
         });
+        
+        //$location.path('/lisaa_tyontekija_paavalikko').replace();
     };
 });

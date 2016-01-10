@@ -15,10 +15,16 @@ main_module.factory('employeeDataFactory',function($resource){
             var resource = $resource('/employees',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
                 
+                console.log('employeeDataFactory/getEmployees:success');
+                console.log(data);
+
               factory.employeeArray = data;
               callbackFunc(factory.employeeArray);    
                 
             },function(error){
+                
+                console.log('employeeDataFactory/getEmployees:fail');
+                console.log(error.message);
                 
                 factory.employeeArray = [];
                 callbackFunc(factory.employeeArray);
@@ -31,6 +37,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertData = function(data){
         
         console.log('employeeDataFactory/insertData');
+        console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/employees',{},{'post':{method:'POST'}});
@@ -51,6 +58,7 @@ main_module.factory('employeeDataFactory',function($resource){
         
         for (var i = 0; i < factory.employeeArray.length; i++){
             if (factory.employeeArray[i]._id === factory.selected_id){
+                console.log(factory.employeeArray[i]);
                 return factory.employeeArray[i];
             }
         }

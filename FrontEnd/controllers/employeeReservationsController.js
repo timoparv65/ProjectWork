@@ -10,6 +10,8 @@ main_module.controller('employeeReservationsController',function($scope,employee
         console.log('employeeReservationsController/dataCallback');
     
         $scope.employeeData = dataArray;
+        
+        console.log($scope.employeeData);
     }
     
 });

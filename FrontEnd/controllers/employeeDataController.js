@@ -9,6 +9,8 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
         console.log('employeeDataController/dataCallback');
     
         $scope.employeeData = dataArray;
+        
+        console.log($scope.employeeData);
     }
     
     $scope.rowClicked = function(id){

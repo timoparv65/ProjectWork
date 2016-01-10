@@ -93,7 +93,7 @@ exports.getReservationsByEmployeeName = function(req,res){
 exports.getAllEmployees = function(req,res){
     console.log('queries/getAllEmployees');
     
-    db.Employee.find(function(err,data){
+    db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
             console.log(err.message);
             //500 = Internal Server Error
@@ -113,6 +113,7 @@ exports.getAllEmployees = function(req,res){
  */
 exports.saveNewEmployee = function(req,res){
     console.log('queries/saveNewEmployee');
+    console.log(req.body);
     
     var employeeTemp = new db.Employee(req.body);
     
@@ -135,6 +136,7 @@ exports.saveNewEmployee = function(req,res){
  */
 exports.saveNewService = function(req,res){
     console.log('queries/saveNewService');
+    console.log(req.body);
     
     var serviceTemp = new db.Service(req.body);
     
