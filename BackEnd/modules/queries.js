@@ -135,6 +135,8 @@ exports.saveNewEmployee = function(req,res){
  * service collection
  */
 exports.saveNewService = function(req,res){
+    
+    /*
     console.log('queries/saveNewService');
     console.log(req.body);
     
@@ -151,4 +153,49 @@ exports.saveNewService = function(req,res){
             res.status(200).json({data:newData});
         }
     });
+    
+    */
+    
+    console.log('queries/saveNewService');
+    console.log(req.body);
+    
+    var temp = {
+        category: req.body.category,
+        description: req.body.description,
+        timeInMinutes: req.body.timeInMinutes,
+        code:req.body.code
+    };
+    
+    console.log(temp);
+    console.log(req.body.name);
+    
+    //var serviceTemp = new db.Service(req.body);
+    var serviceTemp = new db.Service(temp);
+    
+    // save it to database
+    serviceTemp.save(function(err,newData){
+        /*
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).json({message:'Fail'});
+        }else{
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+        */
+        db.Employee.update({name:req.body.name},
+                          {$push:{'services':serviceTemp._id}},
+                          function(err,model){
+            
+            if(err){
+                //500 = Internal Server Error
+                res.status(500).json({message:'Fail'});
+                }else{
+                //200 = ok
+                res.status(200).json({data:newData});
+                }
+            
+        });
+    });
+    
 }

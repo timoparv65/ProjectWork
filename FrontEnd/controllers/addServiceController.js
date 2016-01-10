@@ -12,6 +12,7 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
         
         // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
         var temp = {
+            name:'timppa',
             category:$scope.category,
             description:$scope.description,
             timeInMinutes:$scope.timelength,

@@ -23,6 +23,7 @@ main_module.config(function($routeProvider){
         
         templateUrl:'partial_addServiceView.html',
         controller:'addServiceController'
+        
     }).when('/lisaa_tyontekija',{
         
         templateUrl:'partial_addEmployeeView.html',
