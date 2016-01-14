@@ -66,7 +66,7 @@ exports.loginEmployee = function(req,res){
             res.send(502,{status:err.message});
             
         }else{
-            console.log(data);
+            //console.log(data);
             //=< 0 means wrong username or password
             if(data){
                 req.session.kayttaja = data.username;
@@ -95,12 +95,12 @@ exports.getAllEmployees = function(req,res){
     
     db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
-            console.log(err.message);
+            //console.log(err.message);
             //500 = Internal Server Error
             res.status(500).send({status:err.message});
         }
         else{
-            console.log(data);
+            //console.log(data);
             //200 = ok
             res.status(200).send(data);
         }
@@ -113,7 +113,7 @@ exports.getAllEmployees = function(req,res){
  */
 exports.saveNewEmployee = function(req,res){
     console.log('queries/saveNewEmployee');
-    console.log(req.body);
+    //console.log(req.body);
     
     var employeeTemp = new db.Employee(req.body);
     
@@ -136,28 +136,8 @@ exports.saveNewEmployee = function(req,res){
  */
 exports.saveNewService = function(req,res){
     
-    /*
     console.log('queries/saveNewService');
-    console.log(req.body);
-    
-    var serviceTemp = new db.Service(req.body);
-    
-    // save it to database
-    serviceTemp.save(function(err,newData){
-        
-        if(err){
-            //500 = Internal Server Error
-            res.status(500).json({message:'Fail'});
-        }else{
-            //200 = ok
-            res.status(200).json({data:newData});
-        }
-    });
-    
-    */
-    
-    console.log('queries/saveNewService');
-    console.log(req.body);
+    //console.log(req.body);
     
     var temp = {
         category: req.body.category,
@@ -166,23 +146,15 @@ exports.saveNewService = function(req,res){
         code:req.body.code
     };
     
-    console.log(temp);
-    console.log(req.body.name);
+    //console.log(temp);
+    //console.log(req.body.name);
     
     //var serviceTemp = new db.Service(req.body);
     var serviceTemp = new db.Service(temp);
     
     // save it to database
     serviceTemp.save(function(err,newData){
-        /*
-        if(err){
-            //500 = Internal Server Error
-            res.status(500).json({message:'Fail'});
-        }else{
-            //200 = ok
-            res.status(200).json({data:newData});
-        }
-        */
+
         db.Employee.update({name:req.body.name},
                           {$push:{'services':serviceTemp._id}},
                           function(err,model){

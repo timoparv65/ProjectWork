@@ -11,7 +11,7 @@ main_module.controller('employeeReservationsController',function($scope,employee
     
         $scope.employeeData = dataArray;
         
-        console.log($scope.employeeData);
+        //console.log($scope.employeeData);
     }
     
 });

@@ -10,7 +10,7 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     
         $scope.employeeData = dataArray;
         
-        console.log($scope.employeeData);
+        //console.log($scope.employeeData);
     }
     
     $scope.rowClicked = function(id){
@@ -18,8 +18,8 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
         console.log('employeeDataController/rowClicked');
         
         employeeDataFactory.selected_id = id;
-        console.log('employeeDataFactory.selected_id: ');
-        console.log(employeeDataFactory.selected_id);
+        //console.log('employeeDataFactory.selected_id: ');
+        //console.log(employeeDataFactory.selected_id);
         
         $location.path('/lisaa_tyontekijan_tyotehtavat').replace();
     }

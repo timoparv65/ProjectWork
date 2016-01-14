@@ -3,8 +3,8 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
     console.log('addServiceController loaded');
     
     var selectedEmployee = employeeDataFactory.getSelectedEmployee();
-    console.log('selectedEmployee');
-    console.log(selectedEmployee);
+    //console.log('selectedEmployee');
+    //console.log(selectedEmployee);
     
     //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
@@ -23,7 +23,7 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
             code:$scope.code
         };
         
-        console.log(temp);
+        //console.log(temp);
         
         if (temp.category.length === 0 ||
             temp.description.length === 0 ||
@@ -39,7 +39,7 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
         waitPromise.then(function(response){
             
             console.log('addServiceController/saveServiceClicked/waitPromise:success');
-            console.log(response.data);
+            //console.log(response.data);
             
             
             // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
@@ -57,7 +57,7 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
         },function(error){
             
             console.log('addServiceController/saveServiceClicked/waitPromise:fail');
-            console.log(error.message);
+            //console.log(error.message);
             
             Flash.create('warning', 'Palvelun lisäys epäonnistui!', 'custom-class');
             // sallitaan Save-napin painaminen
