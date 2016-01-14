@@ -6,6 +6,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.selected_id = null;
     
     factory.employeeArray = [];
+    factory.serviceArray = [];
     
     factory.getEmployees = function(callbackFunc){
         
@@ -46,6 +47,18 @@ main_module.factory('employeeDataFactory',function($resource){
     }
     
     
+    factory.insertServiceData = function(data){
+        
+        console.log('employeeDataFactory/insertServiceData');
+        console.log(data);
+        
+        // luo resurssi objektin
+        var resource = $resource('/services',{},{'post':{method:'POST'}});
+        // lähetä data POSTilla ja palauta $promise:n
+        return resource.post(data).$promise;
+    }
+    
+    
     /**
       *This function searches an employee from array containing an id
       *that was stored when user cliked the row in the partial_employeeDataView
@@ -55,6 +68,10 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getSelectedEmployee = function(){
         
         console.log('employeeDataFactory/getSelectedEmployee');
+        console.log('factory.employeeArray: ');
+        console.log(factory.employeeArray);
+        console.log('factory.selected_id: ');
+        console.log(factory.selected_id);
         
         for (var i = 0; i < factory.employeeArray.length; i++){
             if (factory.employeeArray[i]._id === factory.selected_id){

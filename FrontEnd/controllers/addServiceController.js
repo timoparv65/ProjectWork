@@ -1,6 +1,10 @@
-main_module.controller('addServiceController',function($scope,serviceDataFactory,Flash){
+main_module.controller('addServiceController',function($scope,employeeDataFactory,Flash){
     
     console.log('addServiceController loaded');
+    
+    var selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    console.log('selectedEmployee');
+    console.log(selectedEmployee);
     
     //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
@@ -12,7 +16,7 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
         
         // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
         var temp = {
-            name:'timppa',
+            name:selectedEmployee.name,
             category:$scope.category,
             description:$scope.description,
             timeInMinutes:$scope.timelength,
@@ -30,7 +34,7 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
             return;
         }
         
-        var waitPromise = serviceDataFactory.insertData(temp);
+        var waitPromise = employeeDataFactory.insertServiceData(temp);
         
         waitPromise.then(function(response){
             
@@ -40,7 +44,7 @@ main_module.controller('addServiceController',function($scope,serviceDataFactory
             
             // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
             // Talletetaan se serviceArray:hyn
-            serviceDataFactory.serviceArray.push(response.data);
+            employeeDataFactory.serviceArray.push(response.data);
             Flash.create('success', 'Uusi palvelu lisätty', 'custom-class');
             
             $scope.category = "";

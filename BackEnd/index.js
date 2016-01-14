@@ -33,7 +33,7 @@ app.use(function(req,res,next){
     console.log(req.path);
     console.log(__dirname);
     console.log(req.body);
-    console.log(req.session);
+    //console.log(req.session);
     //Send request forward in stack
     next();
 });
