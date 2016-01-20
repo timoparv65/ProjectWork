@@ -1,0 +1,25 @@
+<div class='table_container'>
+    <h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>
+    
+    <a href="#/tyontekija_lisaa_palvelu">Lisää palvelu</a>
+    
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Kategoria</th>
+                <th>Kuvaus</th>
+                <th>Kesto [min]</th>
+                <th>Koodi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='palvelu in ServiceData' ng-click='rowClicked(palvelu._id)'>
+                <td>{{palvelu.category}}</td>
+                <td>{{palvelu.description}}</td>
+                <td>{{palvelu.timeInMinutes}}</td>
+                <td>{{palvelu.code}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

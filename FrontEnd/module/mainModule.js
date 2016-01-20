@@ -13,21 +13,30 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeReservationsView.html',
         controller:'employeeReservationsController'
         
-    }).when('/lisaa_tyontekija_paavalikko',{
+    }).when('/tyontekija_paavalikko',{
         
         templateUrl:'partial_employeeDataView.html',
         controller:'employeeDataController'
-        
-        
-    }).when('/lisaa_tyontekijan_tyotehtavat',{
-        
-        templateUrl:'partial_addServiceView.html',
-        controller:'addServiceController'
-        
+    
     }).when('/lisaa_tyontekija',{
         
         templateUrl:'partial_addEmployeeView.html',
         controller:'addEmployeeController'
+        
+    }).when('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko',{
+        
+        templateUrl:'partial_listEmployeeFunctionsView.html',
+        controller:'listEmployeeFunctionsController'
+    
+    }).when('/tyontekijan_palvelut_paavalikko',{
+        
+        templateUrl:'partial_employeeServicesMainView.html',
+        controller:'employeeServiceMainController'
+        
+    }).when('/tyontekija_lisaa_palvelu',{
+        
+        templateUrl:'partial_employeeAddServiceView.html',
+        controller:'addEmployeeServiceController'
         
     });
     

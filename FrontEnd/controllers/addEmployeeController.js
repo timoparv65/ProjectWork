@@ -32,6 +32,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
         waitPromise.then(function(response){
             // queries.js/exports.saveNewEmployee: palauttaa data nimisen muuttujan responsessa.
             // Talletetaan se employeeArray:hyn
+            
             console.log('addEmployeeController/saveEmployeeClicked/waitPromise:success');
             //console.log(response.data);
             
@@ -44,6 +45,8 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
+            
+            $location.path('/tyontekija_paavalikko').replace();
         },function(error){
             
             console.log('addEmployeeController/saveEmployeeClicked/waitPromise:fail');
@@ -54,6 +57,5 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             $('#saveEmployee').attr("disabled", false);
         });
         
-        //$location.path('/lisaa_tyontekija_paavalikko').replace();
     };
 });

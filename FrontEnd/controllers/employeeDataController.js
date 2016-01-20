@@ -21,7 +21,7 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
         //console.log('employeeDataFactory.selected_id: ');
         //console.log(employeeDataFactory.selected_id);
         
-        $location.path('/lisaa_tyontekijan_tyotehtavat').replace();
+        $location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko').replace();
     }
     
 });

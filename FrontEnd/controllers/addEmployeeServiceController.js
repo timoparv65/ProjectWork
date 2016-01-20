@@ -1,6 +1,6 @@
-main_module.controller('addServiceController',function($scope,employeeDataFactory,Flash){
+main_module.controller('addEmployeeServiceController',function($scope,employeeDataFactory,Flash,$location){
     
-    console.log('addServiceController loaded');
+    console.log('addEmployeeServiceController loaded');
     
     var selectedEmployee = employeeDataFactory.getSelectedEmployee();
     //console.log('selectedEmployee');
@@ -9,8 +9,8 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
     //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
         
-        console.log('addServiceController/saveServiceClicked');
-        
+        console.log('addEmployeeServiceController/saveServiceClicked');
+        console.log('selectedEmployee:' + selectedEmployee);
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveService').attr("disabled", true);
         
@@ -38,7 +38,7 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
         
         waitPromise.then(function(response){
             
-            console.log('addServiceController/saveServiceClicked/waitPromise:success');
+            console.log('addEmployeeServiceController/saveServiceClicked/waitPromise:success');
             //console.log(response.data);
             
             
@@ -54,9 +54,12 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
             
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
+            
+            $location.path('/tyontekijan_palvelut_paavalikko').replace();
+            
         },function(error){
             
-            console.log('addServiceController/saveServiceClicked/waitPromise:fail');
+            console.log('addEmployeeServiceController/saveServiceClicked/waitPromise:fail');
             //console.log(error.message);
             
             Flash.create('warning', 'Palvelun lisäys epäonnistui!', 'custom-class');
@@ -64,6 +67,5 @@ main_module.controller('addServiceController',function($scope,employeeDataFactor
             $('#saveService').attr("disabled", false);
         });
         
-        //location.path('/lisaa_tyontekija_paavalikko').replace();
     }
 });

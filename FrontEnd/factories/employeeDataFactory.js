@@ -4,9 +4,11 @@ main_module.factory('employeeDataFactory',function($resource){
     
     factory = {};
     factory.selected_id = null;
+    factory.selected_service_id = null;
     
     factory.employeeArray = [];
     factory.serviceArray = [];
+    var selectedEmployee = null;
     
     factory.getEmployees = function(callbackFunc){
         
@@ -17,7 +19,7 @@ main_module.factory('employeeDataFactory',function($resource){
             resource.query().$promise.then(function(data){
                 
                 console.log('employeeDataFactory/getEmployees:success');
-                console.log(data);
+                //console.log(data);
 
               factory.employeeArray = data;
               callbackFunc(factory.employeeArray);    
@@ -25,7 +27,7 @@ main_module.factory('employeeDataFactory',function($resource){
             },function(error){
                 
                 console.log('employeeDataFactory/getEmployees:fail');
-                console.log(error.message);
+                //console.log(error.message);
                 
                 factory.employeeArray = [];
                 callbackFunc(factory.employeeArray);
@@ -38,7 +40,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertData = function(data){
         
         console.log('employeeDataFactory/insertData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/employees',{},{'post':{method:'POST'}});
@@ -50,12 +52,44 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertServiceData = function(data){
         
         console.log('employeeDataFactory/insertServiceData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/services',{},{'post':{method:'POST'}});
         // lähetä data POSTilla ja palauta $promise:n
         return resource.post(data).$promise;
+    }
+    
+    
+    factory.getServices = function(callbackFunc){
+        
+        console.log('employeeDataFactory/getServices');
+        
+        if(factory.serviceArray.length === 0){
+            var nimi = selectedEmployee.name;
+            console.log('name:' + nimi);
+            
+            var resource = $resource('/services',{name:nimi},{'get':{method:'GET'}});
+            
+            resource.query().$promise.then(function(data){
+                
+                console.log('employeeDataFactory/getServices:success');
+                
+                factory.serviceArray = data;
+                callbackFunc(factory.serviceArray);
+            },function(error){
+                
+                console.log('employeeDataFactory/getServices:fail');
+                console.log(error.message);
+                
+                factory.serviceArray = [];
+                callbackFunc(factory.serviceArray);
+            });
+        }else{
+            
+            callbackFunc(factory.serviceArray);
+        }
+        
     }
     
     
@@ -68,15 +102,13 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getSelectedEmployee = function(){
         
         console.log('employeeDataFactory/getSelectedEmployee');
-        console.log('factory.employeeArray: ');
-        console.log(factory.employeeArray);
-        console.log('factory.selected_id: ');
-        console.log(factory.selected_id);
         
         for (var i = 0; i < factory.employeeArray.length; i++){
             if (factory.employeeArray[i]._id === factory.selected_id){
-                console.log(factory.employeeArray[i]);
-                return factory.employeeArray[i];
+                //console.log(factory.employeeArray[i]);
+                selectedEmployee = factory.employeeArray[i];
+                //return factory.employeeArray[i];
+                return selectedEmployee;
             }
         }
     }

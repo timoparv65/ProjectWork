@@ -1,6 +1,6 @@
 /**
  *This file gives query services
- *Version:0.0.1
+ *Version:0.0.2
  *Author:Timo Parviainen
  *Description:Cteated this new file
  */
@@ -11,7 +11,18 @@ var db = require('./database');
  *
  */
 exports.getReservationsByCustomerName = function(req,res){
-    console.log('queries/getReservationsByCustomerName')
+    console.log('queries/getReservationsByCustomerName');
+    
+    db.Customer.findOne({username:req.body.username}).
+        populate('assignments').exec(function(err,data){
+        
+        if(data){
+            res.send(data.assignments);
+        }else{
+            res.redirect('/');
+        }
+    });
+    
 }
 
 /**
@@ -85,6 +96,39 @@ exports.loginEmployee = function(req,res){
  */
 exports.getReservationsByEmployeeName = function(req,res){
     console.log('queries/getReservationsByEmployeeName');
+    
+    db.Employee.findOne({name:req.body.name}).
+        populate('assignments').exec(function(err,data){
+        
+        if(data){
+            res.send(data.assignments);
+        }else{
+            res.redirect('/');
+        }
+    });
+    
+}
+
+/**
+ *
+ */
+exports.getServicesByEmployeeName = function(req,res){
+    console.log('queries/getServicesByEmployeeName');
+    console.log(req.query);
+    
+    db.Employee.findOne({name:req.query.name}).
+        populate('services').exec(function(err,data){
+        
+        console.log(data);
+        console.log(data.services);
+        
+        if(data){
+            res.send(data.services);
+        }else{
+            res.redirect('/');
+        }
+    });
+    
 }
 
 /**
@@ -137,7 +181,7 @@ exports.saveNewEmployee = function(req,res){
 exports.saveNewService = function(req,res){
     
     console.log('queries/saveNewService');
-    //console.log(req.body);
+    console.log(req.body);
     
     var temp = {
         category: req.body.category,
@@ -146,8 +190,8 @@ exports.saveNewService = function(req,res){
         code:req.body.code
     };
     
-    //console.log(temp);
-    //console.log(req.body.name);
+    console.log(temp);
+    console.log(req.body.name);
     
     //var serviceTemp = new db.Service(req.body);
     var serviceTemp = new db.Service(temp);

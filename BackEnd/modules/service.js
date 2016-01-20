@@ -1,8 +1,8 @@
 /**
  *This file is a router for Service resourse
- *Version:0.0.1
+ *Version:0.0.2
  *Author:Timo Parviainen
- *Description:Cteated this new file
+ *Description:Created this new file
  */
 
 var query = require('./queries');
@@ -17,6 +17,14 @@ var router = express.Router();
 router.post('/',function(req,res){
     
     query.saveNewService(req,res);
+});
+
+/**
+ * Handle GET requets for /services context
+ */
+router.get('/',function(req,res){
+    console.log('router for GET requets for /services context');
+    query.getServicesByEmployeeName(req,res);
 });
 
 module.exports = router;
