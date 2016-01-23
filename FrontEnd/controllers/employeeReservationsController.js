@@ -2,6 +2,7 @@ main_module.controller('employeeReservationsController',function($scope,employee
     
     console.log('employeeReservationsController loaded');
     
+    //employeeDataFactory.init;
     employeeDataFactory.getEmployees(dataCallback);
     
     
@@ -10,8 +11,6 @@ main_module.controller('employeeReservationsController',function($scope,employee
         console.log('employeeReservationsController/dataCallback');
     
         $scope.employeeData = dataArray;
-        
-        //console.log($scope.employeeData);
     }
     
 });

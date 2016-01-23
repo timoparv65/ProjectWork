@@ -23,6 +23,11 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_addEmployeeView.html',
         controller:'addEmployeeController'
         
+    }).when('/poista_tyontekija',{
+        
+        templateUrl:'partial_deleteEmployeeView.html',
+        controller:'deleteEmployeeController'
+        
     }).when('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko',{
         
         templateUrl:'partial_listEmployeeFunctionsView.html',

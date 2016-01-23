@@ -3,16 +3,6 @@ main_module.controller('listEmployeeFunctionsController',function($scope,employe
     console.log('listEmployeeFunctionsController loaded');
 
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
-    
-    employeeDataFactory.getServices(dataCallback);
-    
-    
-    function dataCallback(dataArray){
-    
-        console.log('listEmployeeFunctionsController/dataCallback');
-        console.log('dataArray' + dataArray);
-        
-        $scope.ServiceData = dataArray;
-    }
+    console.log('$scope.selectedEmployee: ' + $scope.selectedEmployee)
     
 });

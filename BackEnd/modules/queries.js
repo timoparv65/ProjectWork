@@ -175,6 +175,26 @@ exports.saveNewEmployee = function(req,res){
 }
 
 /**
+ * This function deletes employee information from our
+ * employee collection
+ */
+exports.deleteEmployee = function(req,res){
+    console.log('queries/deleteEmployee');
+    
+    var toDelete = [];
+    
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    
+    console.log('ei valmis');
+    res.status(200).send({message:'Poistoa ei vielä toteutettu'});
+}
+
+/**
  * This function saves new service information to our
  * service collection
  */

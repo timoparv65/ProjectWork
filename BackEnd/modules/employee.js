@@ -43,4 +43,12 @@ router.post('/',function(req,res){
     query.saveNewEmployee(req,res);
 });
 
+/**
+ * Handle DELETE requets for /employees context
+ */
+router.delete('/',function(req,res){
+    
+    query.deleteEmployee(req,res);
+});
+
 module.exports = router;

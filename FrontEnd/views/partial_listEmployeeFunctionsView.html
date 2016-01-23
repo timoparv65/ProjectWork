@@ -2,25 +2,8 @@
     <h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>
     
     <a href="#/tyontekijan_palvelut_paavalikko">Palvelut: lisää/muokkaa/poista</a><br/>
-
-    <table>
-        <thead>
-            <tr>Palvelut</tr>
-            <tr>
-                <th>Kategoria</th>
-                <th>Kuvaus</th>
-                <th>Kesto [min]</th>
-                <th>Koodi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat='palvelu in ServiceData'>
-                <td>{{palvelu.category}}</td>
-                <td>{{palvelu.description}}</td>
-                <td>{{palvelu.timeInMinutes}}</td>
-                <td>{{palvelu.code}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <a href="#/muokkaa_tietoja_tyontekija">Tiedot: muokkaa</a><br/>
+    <a href="#/tyontekijan_varaukset_paavalikko">Varaukset: muokkaa/poista</a><br/>
+    <a href="#/tyontekija_poissaolot_paavalikko">Poissaolot: lisää/muokkaa/poista</a>
     
 </div>
