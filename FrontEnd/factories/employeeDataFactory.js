@@ -79,6 +79,17 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.post(data).$promise;
     }
     
+    factory.updateData = function(data){
+        
+        console.log('employeeDataFactory/updateData');
+        console.log(data);
+        
+        // luo resurssi objektin
+        var resource = $resource('/employees',{},{'put':{method:'PUT'}});
+        // lähetä data PUTilla ja palauta $promise
+        return resource.put(data).$promise;
+    }
+    
     factory.deleteData = function(data){
         
         console.log('employeeDataFactory/deleteData');

@@ -1,6 +1,6 @@
-main_module.controller('deleteEmployeeController',function($scope,employeeDataFactory,$location){
+main_module.controller('employeeDeleteController',function($scope,employeeDataFactory,$location){
     
-    console.log('deleteEmployeeController loaded');
+    console.log('employeeDeleteController loaded');
     
     $scope.deleteArray = [];
     
@@ -8,7 +8,7 @@ main_module.controller('deleteEmployeeController',function($scope,employeeDataFa
     
     function dataCallback(dataArray){
     
-        console.log('deleteEmployeeController/dataCallback');
+        console.log('employeeDeleteController/dataCallback');
     
         $scope.employeeData = dataArray;
     }
@@ -19,7 +19,7 @@ main_module.controller('deleteEmployeeController',function($scope,employeeDataFa
     //employee we want to delete
     $scope.addToDelete = function($event,$index,id){
         
-        console.log('deleteEmployeeController/addToDelete');
+        console.log('employeeDeleteController/addToDelete');
         console.log('id: ' + id);
         
         //Check if item was selected
@@ -38,7 +38,7 @@ main_module.controller('deleteEmployeeController',function($scope,employeeDataFa
     //This is called when delete button is pressed
     $scope.sendToDelete = function(){
         
-        console.log('deleteEmployeeController/sendToDelete');
+        console.log('employeeDeleteController/sendToDelete');
         
         //Nothing to delete
         if($scope.deleteArray.length === 0){

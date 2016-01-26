@@ -176,6 +176,36 @@ exports.saveNewEmployee = function(req,res){
 }
 
 /**
+ * This function updates employee information to our
+ * employee collection
+ */
+exports.updateEmployee = function(req,res){
+    console.log('queries/updateEmployee');
+    
+    console.log(req.body);
+    
+    var updateData = {
+        name:req.body.name,
+        password:req.body.password,
+        email:req.body.email
+    }
+    
+    console.log(updateData);
+    
+    db.Employee.update({_id:req.body.id},updateData,function(err){
+        
+        if(err){
+            
+            res.status(500).json({message:err.message});
+        }else{
+            
+            res.status(200).json({message:"Data updated"});
+        }
+    });
+
+}
+
+/**
  * This function deletes employee information from our
  * employee collection
  */
@@ -202,7 +232,7 @@ exports.deleteEmployee = function(req,res){
 exports.saveNewService = function(req,res){
     
     console.log('queries/saveNewService');
-    console.log('req.body: ' + req.body);
+    console.log(req.body);
     
     var temp = {
         category: req.body.category,

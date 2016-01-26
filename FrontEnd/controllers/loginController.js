@@ -4,7 +4,7 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){
         
-        console.log('loginController/login was pressed');
+        console.log('loginController/loginClicked');
         
         var temp = {
             username:$scope.user,
@@ -25,7 +25,7 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
     
     $scope.registerClicked = function(){
         
-        console.log('loginController/register was pressed');
+        console.log('loginController/registerClicked');
         
         var temp = {
             username:$scope.user,

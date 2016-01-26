@@ -1,10 +1,10 @@
-main_module.controller('addEmployeeController',function($scope,Flash,employeeDataFactory,$location){
+main_module.controller('employeeAddController',function($scope,Flash,employeeDataFactory,$location){
     
-    console.log('addEmployeeController loaded');
+    console.log('employeeAddController loaded');
     
     //Funktiototeutus Save-nappulan painallukselle partial_addEmployeeView.html ikkunassa
     $scope.saveEmployeeClicked = function(){
-        console.log('addEmployeeController/saveEmployeeClicked');
+        console.log('employeeAddController/saveEmployeeClicked');
         
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveEmployee').attr("disabled", true);
@@ -33,7 +33,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             // queries.js/exports.saveNewEmployee: palauttaa data nimisen muuttujan responsessa.
             // Talletetaan se employeeArray:hyn
             
-            console.log('addEmployeeController/saveEmployeeClicked/waitPromise:success');
+            console.log('employeeAddController/saveEmployeeClicked/waitPromise:success');
             console.log(response.data);
             
             employeeDataFactory.employeeArray.push(response.data);
@@ -49,7 +49,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             $location.path('/tyontekija_paavalikko').replace();
         },function(error){
             
-            console.log('addEmployeeController/saveEmployeeClicked/waitPromise:fail');
+            console.log('employeeAddController/saveEmployeeClicked/waitPromise:fail');
             console.log(error.message);
             
             Flash.create('warning', 'Työntekijän lisäys epäonnistui!', 'custom-class');

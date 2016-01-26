@@ -15,7 +15,7 @@ var router = express.Router();
  * Handle POST requets for /employees/register context
  */
 router.post('/register',function(req,res){
-    
+    console.log('Handle POST requets for /employees/register context');
     query.registerEmployee(req,res);
 });
 
@@ -23,7 +23,7 @@ router.post('/register',function(req,res){
  * Handle POST requets for /employees/login context
  */
 router.post('/login',function(req,res){
-   
+    console.log('Handle POST requets for /employees/login context');
     query.loginEmployee(req,res);
 });
 
@@ -31,7 +31,7 @@ router.post('/login',function(req,res){
  * Handle GET requets for /employees context
  */
 router.get('/',function(req,res){
-   
+    console.log('Handle GET requets for /employees context');
     query.getAllEmployees(req,res);
 });
 
@@ -39,15 +39,23 @@ router.get('/',function(req,res){
  * Handle POST requets for /employees context
  */
 router.post('/',function(req,res){
-    
+    console.log('Handle POST requets for /employees context');
     query.saveNewEmployee(req,res);
+});
+
+/**
+ * Handle PUT requets for /employees context
+ */
+router.put('/',function(req,res){
+    console.log('Handle PUT requets for /employees context');
+    query.updateEmployee(req,res);
 });
 
 /**
  * Handle DELETE requets for /employees context
  */
 router.delete('/',function(req,res){
-    
+    console.log('Handle DELETE requets for /employees context');
     query.deleteEmployee(req,res);
 });
 

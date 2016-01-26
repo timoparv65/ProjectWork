@@ -20,19 +20,24 @@ main_module.config(function($routeProvider){
     
     }).when('/lisaa_tyontekija',{
         
-        templateUrl:'partial_addEmployeeView.html',
-        controller:'addEmployeeController'
+        templateUrl:'partial_employeeAddView.html',
+        controller:'employeeAddController'
         
     }).when('/poista_tyontekija',{
         
-        templateUrl:'partial_deleteEmployeeView.html',
-        controller:'deleteEmployeeController'
+        templateUrl:'partial_employeeDeleteView.html',
+        controller:'employeeDeleteController'
         
     }).when('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko',{
         
-        templateUrl:'partial_listEmployeeFunctionsView.html',
-        controller:'listEmployeeFunctionsController'
+        templateUrl:'partial_employeeListFunctionsView.html',
+        controller:'employeeListFunctionsController'
+        
+    }).when('/tyontekija_muokkaa_tietoja',{
     
+        templateUrl:'partial_employeeEditView.html',
+        controller:'employeeEditController'
+        
     }).when('/tyontekijan_palvelut_paavalikko',{
         
         templateUrl:'partial_employeeServicesMainView.html',
