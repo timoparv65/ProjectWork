@@ -7,10 +7,10 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     function dataCallback(dataArray){
     
         console.log('employeeDataController/dataCallback');
+        console.log(dataArray);
     
         $scope.employeeData = dataArray;
         
-        //console.log($scope.employeeData);
     }
     
     $scope.rowClicked = function(id){

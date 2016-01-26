@@ -16,7 +16,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             email:$scope.emailaddr
         };
         
-        //console.log(temp);
+        console.log(temp);
         
         if (temp.name.length === 0 ||
             temp.password.length === 0 ||
@@ -34,7 +34,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
             // Talletetaan se employeeArray:hyn
             
             console.log('addEmployeeController/saveEmployeeClicked/waitPromise:success');
-            //console.log(response.data);
+            console.log(response.data);
             
             employeeDataFactory.employeeArray.push(response.data);
             Flash.create('success', 'Uusi työntekijä lisätty', 'custom-class');
@@ -50,7 +50,7 @@ main_module.controller('addEmployeeController',function($scope,Flash,employeeDat
         },function(error){
             
             console.log('addEmployeeController/saveEmployeeClicked/waitPromise:fail');
-            //console.log(error.message);
+            console.log(error.message);
             
             Flash.create('warning', 'Työntekijän lisäys epäonnistui!', 'custom-class');
             // sallitaan Save-napin painaminen

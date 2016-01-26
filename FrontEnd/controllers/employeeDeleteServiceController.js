@@ -1,25 +1,29 @@
-main_module.controller('deleteEmployeeController',function($scope,employeeDataFactory,$location){
+main_module.controller('employeeDeleteServiceController',function($scope,employeeDataFactory,Flash,$location){
     
-    console.log('deleteEmployeeController loaded');
+    console.log('employeeDeleteServiceController loaded');
     
     $scope.deleteArray = [];
     
-    employeeDataFactory.getEmployees(dataCallback);
+    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    
+    employeeDataFactory.getServices(dataCallback);
+    
     
     function dataCallback(dataArray){
     
-        console.log('deleteEmployeeController/dataCallback');
-    
-        $scope.employeeData = dataArray;
+        console.log('employeeDeleteServiceController/dataCallback');
+        console.log(dataArray);
+        
+        $scope.serviceData = dataArray;
     }
     
     //Called when user click one of the checkboxes from table
     //First argument is a event. There we can check if checkbox is selected
     //or not. Index is the index of cliked row in table. Id is the id of 
-    //employee we want to delete
+    //service we want to delete
     $scope.addToDelete = function($event,$index,id){
         
-        console.log('deleteEmployeeController/addToDelete');
+        console.log('employeeDeleteServiceController/addToDelete');
         console.log('id: ' + id);
         
         //Check if item was selected
@@ -38,30 +42,31 @@ main_module.controller('deleteEmployeeController',function($scope,employeeDataFa
     //This is called when delete button is pressed
     $scope.sendToDelete = function(){
         
-        console.log('deleteEmployeeController/sendToDelete');
+        console.log('employeeDeleteServiceController/sendToDelete');
         
         //Nothing to delete
         if($scope.deleteArray.length === 0){
             
-            console.log('nothing to delete');
+            Flash.create('warning', 'Nothing to delete!', 'custom-class');
         }
         else{
             
+            console.log('$scope.selectedEmployee.name: ' + $scope.selectedEmployee.name);
+            
             var data = {
-                
+                name:$scope.selectedEmployee.name,
                 forDelete:$scope.deleteArray
             }
+            
             console.log(data);
             
-            employeeDataFactory.deleteData(data).then(function(data){
-                
-                //employeeDataFactory.serviceArray = [];
-                employeeDataFactory.employeeArray = [];
-                $location.path('/tyontekija_paavalikko').replace();
+            employeeDataFactory.deleteServiceData(data).then(function(data){
+                employeeDataFactory.serviceArray = [];
+                $location.path('/tyontekijan_palvelut_paavalikko').replace();
                 
             },function(error){
                 
-                console.log('error in server');
+                Flash.create('warning', 'Error in server!', 'custom-class');
             });
         }
     }

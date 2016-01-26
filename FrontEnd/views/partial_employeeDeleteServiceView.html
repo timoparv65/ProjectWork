@@ -1,25 +1,27 @@
 <div class='table_container'>
     <h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>
-    
-    <a href="#/tyontekija_lisaa_palvelu">Lisää palvelu</a><br/>
-    <a href="#/tyontekija_poista_palvelu">Poista palvelu</a><br/>
-    
-    <table>
+    <h3>Palvelut...</h3>
+    <p>Valitse poistettavat palvelut</p>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Kategoria</th>
                 <th>Kuvaus</th>
-                <th>Kesto [min]</th>
+                <th>Kesto</th>
                 <th>Koodi</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat='palvelu in ServiceData' ng-click='rowClicked(palvelu._id)'>
+            <tr ng-repeat='palvelu in serviceData'>
                 <td>{{palvelu.category}}</td>
                 <td>{{palvelu.description}}</td>
                 <td>{{palvelu.timeInMinutes}}</td>
                 <td>{{palvelu.code}}</td>
+                <td><input type="checkbox" ng-click='addToDelete($event,$index,palvelu._id)'></td>
             </tr>
         </tbody>
     </table>
+    <button class="btn btn-default" ng-click='sendToDelete()'>Poista valitut</button>
 </div>
+<div class="flash-style" flash-message="2000"></div>

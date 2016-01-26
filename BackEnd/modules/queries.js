@@ -156,8 +156,9 @@ exports.getAllEmployees = function(req,res){
  * employee collection
  */
 exports.saveNewEmployee = function(req,res){
+    
     console.log('queries/saveNewEmployee');
-    //console.log(req.body);
+    console.log('req.body: ' + req.body);
     
     var employeeTemp = new db.Employee(req.body);
     
@@ -201,7 +202,7 @@ exports.deleteEmployee = function(req,res){
 exports.saveNewService = function(req,res){
     
     console.log('queries/saveNewService');
-    console.log(req.body);
+    console.log('req.body: ' + req.body);
     
     var temp = {
         category: req.body.category,
@@ -234,4 +235,72 @@ exports.saveNewService = function(req,res){
         });
     });
     
+}
+
+/**
+ * This function updates service information to our
+ * service collection
+ */
+exports.updateService = function(req,res){
+    
+    console.log('queries/updateService');
+    console.log('req.body: ' + req.body);
+    
+    var updateData = {
+        category:req.body.category,
+        description:req.body.description,
+        timeInMinutes:req.body.timeInMinutes,
+        code:req.body.code
+    }
+    
+    db.Service.update({_id:req.body.id},updateData,function(err){
+        
+        if(err){
+            
+            res.status(500).json({message:err.message});
+        }else{
+            
+            res.status(200).json({message:"Data updated"});
+        }
+    });
+    
+}
+
+/**
+ * This function delete service information from our
+ * service collection
+ */
+exports.deleteService = function(req,res){
+    
+    console.log('queries/deleteService');
+    console.log(req.body);
+    console.log(req.query);
+    
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    console.log('toDelete: ' + toDelete);
+    
+    db.Service.remove({_id:{$in:toDelete}},function(err,data){
+        
+        if(err){
+            console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            
+            db.Employee.update({name:req.query.name},{$pull:{'services':{$in:toDelete}}},function(err,data){
+                if(err){
+                    console.log('err: ' + err);
+                    res.status(500).send({message:err.message});
+                }else{
+                    
+                    res.status(200).send({message:'Delete success'});
+                }
+            });
+        }
+    });
 }

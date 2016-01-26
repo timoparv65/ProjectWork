@@ -1,4 +1,4 @@
-main_module.controller('employeeServiceMainController',function($scope,employeeDataFactory,Flash){
+main_module.controller('employeeServiceMainController',function($scope,employeeDataFactory,Flash,$location){
     
     console.log('employeeServiceMainController loaded');
     
@@ -10,7 +10,7 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
     function dataCallback(dataArray){
     
         console.log('employeeServiceMainController/dataCallback');
-        console.log('dataArray' + dataArray);
+        console.log(dataArray);
         
         $scope.ServiceData = dataArray;
     }
@@ -21,6 +21,8 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
         
         employeeDataFactory.selected_service_id = id;
         console.log('employeeDataFactory.selected_service_id: ' + employeeDataFactory.selected_service_id);
+        
+        $location.path('/tyontekija_muokkaa_palvelua').replace();
     }
     
 });

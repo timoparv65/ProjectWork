@@ -41,7 +41,17 @@ main_module.config(function($routeProvider){
     }).when('/tyontekija_lisaa_palvelu',{
         
         templateUrl:'partial_employeeAddServiceView.html',
-        controller:'addEmployeeServiceController'
+        controller:'employeeAddServiceController'
+        
+    }).when('/tyontekija_muokkaa_palvelua',{
+        
+        templateUrl:'partial_employeeEditServiceView.html',
+        controller:'employeeEditServiceController'
+        
+    }).when('/tyontekija_poista_palvelu',{
+        
+        templateUrl:'partial_employeeDeleteServiceView.html',
+        controller:'employeeDeleteServiceController'
         
     });
     
@@ -50,21 +60,5 @@ main_module.config(function($routeProvider){
     
     
     
-    /*.when('/list_employee',{
-        
-        templateUrl:'partial_employeeDataView.html',
-        controller:'employeeDataController'
-    });*/
-    /*when('/insert_employee',{
-        
-        templateUrl:'partial_addEmployeeView.html',
-        controller:'addEmployeeController'
-        
-    }).when('/delete_employee',{
-        
-        templateUrl:'partial_deleteEmployee.html',
-        controller:'deleteEmployeeController'
-        
-    });
-    */
+    
 });

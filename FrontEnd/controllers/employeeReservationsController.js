@@ -9,6 +9,7 @@ main_module.controller('employeeReservationsController',function($scope,employee
     function dataCallback(dataArray){
     
         console.log('employeeReservationsController/dataCallback');
+        console.log(dataArray);
     
         $scope.employeeData = dataArray;
     }
