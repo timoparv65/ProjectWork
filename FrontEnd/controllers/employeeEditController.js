@@ -45,7 +45,7 @@ main_module.controller('employeeEditController',function($scope,employeeDataFact
         
         // sallitaan Save-napin painaminen
         $('#saveEmployee').attr("disabled", false);
-        $location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko').replace();
+        //$location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko').replace();
     }
     
     function error(data){

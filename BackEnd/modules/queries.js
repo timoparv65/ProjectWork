@@ -221,8 +221,45 @@ exports.deleteEmployee = function(req,res){
        toDelete.push(req.query.forDelete); 
     }
     
-    console.log('ei valmis');
-    res.status(200).send({message:'Poistoa ei vielä toteutettu'});
+    console.log(toDelete);
+    
+    db.Employee.findOne({_id:{$in:toDelete}}).
+        populate('services').exec(function(err,data){
+    
+        if(err){
+            console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            var toDeleteServices = [];
+            if(data.services instanceof Array)
+                toDeleteServices = data.services;
+            else{
+                toDeleteServices.push(data.services); 
+            }
+            
+            db.Service.remove({_id:{$in:toDeleteServices}},function(err,data){
+               if(err) {
+                   console.log('err: ' + err);
+                   res.status(500).send({message:err.message});
+               }else{
+                   console.log('Employee services removed');
+               }
+            });
+            
+        }
+    
+    });
+    
+    
+    db.Employee.remove({_id:{$in:toDelete}},function(err,data){
+        if(err){
+            console.log(err);
+            res.status(500).send({message:err.message});
+        }else{
+            res.status(200).send({message:'Delete success'});
+        }
+    });
+    
 }
 
 /**
