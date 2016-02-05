@@ -3,7 +3,6 @@ main_module.controller('employeeEditController',function($scope,employeeDataFact
     console.log('employeeEditController loaded');
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
-    
     console.log($scope.selectedEmployee);
     
     $scope.id = $scope.selectedEmployee._id;

@@ -212,7 +212,7 @@ exports.updateEmployee = function(req,res){
 exports.deleteEmployee = function(req,res){
     console.log('queries/deleteEmployee');
     
-    var toDelete = [];
+    var toDelete = []; // tuhottavien työntekijöiden _id
     
     if(req.query.forDelete instanceof Array)
         toDelete = req.query.forDelete;
@@ -221,28 +221,33 @@ exports.deleteEmployee = function(req,res){
        toDelete.push(req.query.forDelete); 
     }
     
-    console.log(toDelete);
+    console.log(toDelete[0]);
     
-    db.Employee.findOne({_id:{$in:toDelete}}).
+    db.Employee.find({_id:toDelete[0]}).
         populate('services').exec(function(err,data){
-    
+        console.log('DATAA:' + data);
         if(err){
             console.log('err: ' + err);
             res.status(500).send({message:err.message});
         }else{
-            var toDeleteServices = [];
-            if(data.services instanceof Array)
-                toDeleteServices = data.services;
-            else{
-                toDeleteServices.push(data.services); 
-            }
             
-            db.Service.remove({_id:{$in:toDeleteServices}},function(err,data){
+            db.Service.remove({_id:{$in:data.services}},function(err,data){
                if(err) {
                    console.log('err: ' + err);
                    res.status(500).send({message:err.message});
                }else{
                    console.log('Employee services removed');
+                   console.log(data);
+                   //res.status(200).send({message:'Delete success'});
+                   
+                   db.Employee.remove({_id:toDelete[0]},function(err,data){
+                        if(err){
+                                console.log(err);
+                                res.status(500).send({message:err.message});
+                        }else{
+                                res.status(200).send({message:'Delete success'});
+                        }
+                    });
                }
             });
             
@@ -250,15 +255,6 @@ exports.deleteEmployee = function(req,res){
     
     });
     
-    
-    db.Employee.remove({_id:{$in:toDelete}},function(err,data){
-        if(err){
-            console.log(err);
-            res.status(500).send({message:err.message});
-        }else{
-            res.status(200).send({message:'Delete success'});
-        }
-    });
     
 }
 

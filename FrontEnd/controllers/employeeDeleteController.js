@@ -4,6 +4,16 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
     
     $scope.deleteArray = [];
     
+    var selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    console.log('selectedEmployee');
+    console.log(selectedEmployee);
+    var dataArray = [];
+    dataArray.push(selectedEmployee);
+    $scope.employeeData = dataArray;
+    console.log('$scope.employeeData');
+    console.log($scope.employeeData);
+    
+    /*
     employeeDataFactory.getEmployees(dataCallback);
     
     function dataCallback(dataArray){
@@ -11,8 +21,10 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
         console.log('employeeDeleteController/dataCallback');
     
         $scope.employeeData = dataArray;
+        console.log('$scope.employeeData');
+        console.log($scope.employeeData);
     }
-    
+    */
     //Called when user click one of the checkboxes from table
     //First argument is a event. There we can check if checkbox is selected
     //or not. Index is the index of cliked row in table. Id is the id of 

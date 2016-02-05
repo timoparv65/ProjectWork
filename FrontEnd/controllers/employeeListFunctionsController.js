@@ -5,8 +5,8 @@ main_module.controller('employeeListFunctionsController',function($scope,employe
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
     console.log($scope.selectedEmployee);
     
-    //localStorage['selectedEmployee'] = $scope.selectedEmployee.name;
-    //console.log($scope.selectedEmployee.name);
-    //console.log(localStorage['selectedEmployee']);
+    localStorage['valittuTyontekija'] = $scope.selectedEmployee.name;
+    console.log($scope.selectedEmployee.name);
+    console.log(localStorage['valittuTyontekija']);
     
 });
