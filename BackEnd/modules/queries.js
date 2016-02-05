@@ -225,26 +225,27 @@ exports.deleteEmployee = function(req,res){
     
     db.Employee.find({_id:toDelete[0]}).
         populate('services').exec(function(err,data){
-        console.log('DATAA:' + data);
+        console.log('DATAA:' + data[0].services);
         if(err){
             console.log('err: ' + err);
             res.status(500).send({message:err.message});
         }else{
             
-            db.Service.remove({_id:{$in:data.services}},function(err,data){
+            db.Service.remove({_id:{$in:data[0].services}},function(err,data){
                if(err) {
                    console.log('err: ' + err);
                    res.status(500).send({message:err.message});
                }else{
                    console.log('Employee services removed');
-                   console.log(data);
+                   //console.log(data);
                    //res.status(200).send({message:'Delete success'});
                    
                    db.Employee.remove({_id:toDelete[0]},function(err,data){
                         if(err){
-                                console.log(err);
+                                console.log('err: ' + err);
                                 res.status(500).send({message:err.message});
                         }else{
+                                console.log('Employee removed');
                                 res.status(200).send({message:'Delete success'});
                         }
                     });
