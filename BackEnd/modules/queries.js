@@ -271,7 +271,7 @@ exports.saveNewService = function(req,res){
     var temp = {
         category: req.body.category,
         description: req.body.description,
-        timeInMinutes: req.body.timeInMinutes,
+        duration: req.body.duration,
         code:req.body.code
     };
     
@@ -313,7 +313,7 @@ exports.updateService = function(req,res){
     var updateData = {
         category:req.body.category,
         description:req.body.description,
-        timeInMinutes:req.body.timeInMinutes,
+        duration:req.body.duration,
         code:req.body.code
     }
     
@@ -365,6 +365,124 @@ exports.deleteService = function(req,res){
                     res.status(200).send({message:'Delete success'});
                 }
             });
+        }
+    });
+}
+
+
+/**
+ * This function saves new service information to our
+ * service collection
+ */
+exports.saveNewServiceChoise = function(req,res){
+    
+    console.log('queries/saveNewServiceChoise');
+    console.log(req.body);
+    
+    var temp = {
+        category: req.body.category,
+        description: req.body.description,
+        duration: req.body.duration,
+        code:req.body.code
+    };
+    
+    console.log(temp);
+    console.log(req.body.name);
+    
+    var serviceChoiseTemp = new db.ServiceChoise(temp);
+    
+    // save it to database
+    serviceChoiseTemp.save(function(err,newData){
+
+        if(err){
+            
+            //500 = Internal Server Error
+            res.status(500).json({message:err.message});
+        }else{
+                
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+    });
+    
+}
+
+/**
+ * This function updates service information to our
+ * service collection
+ */
+exports.updateServiceChoise = function(req,res){
+    
+    console.log('queries/updateServiceChoise');
+    console.log('req.body: ' + req.body);
+    
+    var updateData = {
+        category:req.body.category,
+        description:req.body.description,
+        duration:req.body.duration,
+        code:req.body.code
+    }
+    
+    db.ServiceChoise.update({_id:req.body.id},updateData,function(err){
+        
+        if(err){
+            
+            res.status(500).json({message:err.message});
+        }else{
+            
+            res.status(200).json({message:"Data updated"});
+        }
+    });
+    
+}
+
+/**
+ * This function delete service information from our
+ * service collection
+ */
+exports.deleteServiceChoise = function(req,res){
+    
+    console.log('queries/deleteServiceChoise');
+    console.log(req.body);
+    console.log(req.query);
+    
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    console.log('toDelete: ' + toDelete);
+    
+    db.ServiceChoise.remove({_id:{$in:toDelete}},function(err,data){
+        
+        if(err){
+            
+            console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            
+            res.status(200).send({message:'Delete success'});
+        }
+    });
+}
+
+
+exports.getAllServiceChoises = function(req,res){
+    
+    console.log('queries/getAllServiceChoises');
+    
+    db.ServiceChoise.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt palvaluvaihtoehdot
+        if(err){
+            console.log(err.message);
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            console.log(data);
+            //200 = ok
+            res.status(200).send(data);
         }
     });
 }

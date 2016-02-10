@@ -1,17 +1,17 @@
-main_module.controller('employeeDeleteController',function($scope,employeeDataFactory,$location){
+main_module.controller('serviceDeleteController',function($scope,serviceDataFactory,$location){
     
-    console.log('employeeDeleteController loaded');
+    console.log('serviceDeleteController loaded');
     
     $scope.deleteArray = [];
     
-    var selectedEmployee = employeeDataFactory.getSelectedEmployee();
-    console.log('selectedEmployee');
-    console.log(selectedEmployee);
-    var dataArray = [];
-    dataArray.push(selectedEmployee);
-    $scope.employeeData = dataArray;
-    console.log('$scope.employeeData');
-    console.log($scope.employeeData);
+    serviceDataFactory.getServices(dataCallback);
+    
+    function dataCallback(dataArray){
+    
+        console.log('serviceDeleteController/dataCallback');
+    
+        $scope.serviceData = dataArray;
+    }
     
     //Called when user click one of the checkboxes from table
     //First argument is a event. There we can check if checkbox is selected
@@ -19,7 +19,7 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
     //employee we want to delete
     $scope.addToDelete = function($event,$index,id){
         
-        console.log('employeeDeleteController/addToDelete');
+        console.log('serviceDeleteController/addToDelete');
         console.log('id: ' + id);
         
         //Check if item was selected
@@ -38,7 +38,7 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
     //This is called when delete button is pressed
     $scope.sendToDelete = function(){
         
-        console.log('employeeDeleteController/sendToDelete');
+        console.log('serviceDeleteController/sendToDelete');
         
         //Nothing to delete
         if($scope.deleteArray.length === 0){
@@ -53,11 +53,10 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
             }
             console.log(data);
             
-            employeeDataFactory.deleteData(data).then(function(data){
-                
-                //employeeDataFactory.serviceArray = [];
-                employeeDataFactory.employeeArray = [];
-                $location.path('/tyontekija_paavalikko').replace();
+            serviceDataFactory.deleteData(data).then(function(data){
+
+                serviceDataFactory.serviceArray = [];
+                $location.path('/palvelut_paavalikko').replace();
                 
             },function(error){
                 

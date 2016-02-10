@@ -11,7 +11,7 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
     console.log('$scope.category: ' + $scope.category);
     $scope.description = selectedService.description;
     console.log('$scope.description: ' + $scope.description);
-    $scope.duration = selectedService.duration;
+    $scope.duration = selectedService.timeInMinutes;
     console.log('$scope.duration: ' + $scope.duration);
     $scope.code = selectedService.code;
     console.log('$scope.code: ' + $scope.code);
@@ -24,7 +24,7 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
             id:$scope.id,
             category:$scope.category,
             description:$scope.description,
-            duration:$scope.duration,
+            timeInMinutes:$scope.duration,
             code:$scope.code
         }
         

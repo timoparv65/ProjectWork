@@ -64,9 +64,16 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 var Service = mongoose.model('Service',{
     category:String,
     description:String,
-    timeInMinutes:Number,
-    code:{type:String,unique:true}
+    duration:Number,
+    code:{type:Number,unique:true}
 },'service');
+
+var ServiceChoise = mongoose.model('ServiceChoise',{
+    category:String,
+    description:{type:String,unique:true},
+    duration:{type:Number,min:0,max:180}, // minimiaika 0 min, maksimiaika 3 tuntia
+    code:{type:Number,unique:true}
+});
 
 //Using exports object you expose the data to other modules
 exports.Employee = Employee;
@@ -75,3 +82,4 @@ exports.Customer = Customer;
 exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
 exports.RegisterButtonState = RegisterButtonState;
 exports.Service = Service;
+exports.ServiceChoise = ServiceChoise;

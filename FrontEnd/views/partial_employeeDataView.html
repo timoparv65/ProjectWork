@@ -1,7 +1,8 @@
-<a href="#/lisaa_tyontekija">Lisää uusi työntekijä</a>
+<a href="#/tyontekija_lisaa">Lisää uusi työntekijä</a>
 <div class='table_container'>
     <h3>Työntekijät...</h3>
     <p> Klikkaa riviä jolla työntekijä on kun haluat<p>
+    <p>- poistaa työntekijän tiedot</p>
     <p>- lisätä/muokata/poistaa työntekijän palveluita</p>
     <p>- muokata/poistaa työntekijän tietoja</p>
     <p>- muokata/poistaa työntekijän varaustietoja</p>
@@ -10,11 +11,15 @@
         <thead>
             <tr>
                 <th>Nimi</th>
+                <th>Palveluita</th>
+                <th>Varauksia</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat='tyontekija in employeeData' ng-click='rowClicked(tyontekija._id)'>
                 <td>{{tyontekija.name}}</td>
+                <td>{{tyontekija.services.length}}</td>
+                <td>{{tyontekija.assignments.length}}</td>
             </tr>
         </tbody>
     </table>

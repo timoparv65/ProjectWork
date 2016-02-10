@@ -17,7 +17,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
             name:selectedEmployee.name,
             category:$scope.category,
             description:$scope.description,
-            duration:$scope.duration,
+            timeInMinutes:$scope.duration,
             code:$scope.code
         };
         
@@ -25,7 +25,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
         
         if (temp.category.length === 0 ||
             temp.description.length === 0 ||
-            temp.duration.length === 0 ||
+            temp.timeInMinutes.length === 0 ||
             temp.code.length === 0){
             
             alert('Jokin kenttä tyhjä!');

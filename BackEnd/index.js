@@ -6,6 +6,7 @@ var queries = require('./modules/queries');
 var employee = require('./modules/employee');
 var customer = require('./modules/customer');
 var service = require('./modules/service');
+var servicechoise = require('./modules/servicechoise')
 
 
 // This is used for creating a secret key value for our session cookie
@@ -52,6 +53,7 @@ app.use('/FrontEnd/factories',express.static(path.join(__dirname, '../FrontEnd/f
 app.use('/employees',employee);
 app.use('/customers',customer);
 app.use('/services',service);
+app.use('/servicechoises',servicechoise)
 
 //=====================ROUTERS============================
 

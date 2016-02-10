@@ -1,0 +1,25 @@
+<a href="#/palvelu_lisaa">Lisää uusi palvelu</a>
+<div class='table_container'>
+    <h3>Palvelut...</h3>
+    <p> Klikkaa riviä jolla palvelu on kun haluat</p>
+    <p>- muokata palvelun tietoja</p>
+    <p>- poistaa palvelun tiedot</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kategoria</th>
+                <th>Kuvaus</th>
+                <th>Kesto</th>
+                <th>Koodi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='palvelu in serviceData' ng-click='rowClicked(palvelu._id)'>
+                <td>{{palvelu.category}}</td>
+                <td>{{palvelu.description}}</td>
+                <td>{{palvelu.duration}}</td>
+                <td>{{palvelu.code}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
