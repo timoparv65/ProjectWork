@@ -17,10 +17,10 @@ main_module.factory('employeeDataFactory',function($resource){
         console.log('employeeDataFactory/getEmployees');
         console.log('factory.employeeArray.length: ' + factory.employeeArray.length);
         console.log('factory.selected_id: ' + factory.selected_id);
-        console.log('factory.selected_service_id: ' + factory.selected_service_id);
-        console.log('factory.employeeArray: ' + factory.employeeArray);
-        console.log('factory.serviceArray:' + factory.serviceArray);
-        console.log('factory.selectedEmployee: ' + factory.selectedEmployee);
+        console.log('factory.employeeArray:');
+        console.log(factory.employeeArray);
+        console.log('factory.selectedEmployee:');
+        console.log(factory.selectedEmployee);
         
         if(factory.employeeArray.length === 0){
             

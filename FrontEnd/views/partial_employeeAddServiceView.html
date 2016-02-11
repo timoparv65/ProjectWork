@@ -1,8 +1,8 @@
-<form class="loginForm">
-    <h3>Lisää uuden palvelun tiedot</h3>
-    <input class="form-control" type="text" placeholder="kategoria" ng-model="category"><br/>
-    <input class="form-control" type="text" placeholder="kuvaus" ng-model="description"><br/>
-    <input class="form-control" type="number" placeholder="kesto minuutteina" ng-model="duration"><br/>
-    <input class="form-control" type="text" placeholder="koodi" ng-model="code"><br/>
+<form>
+    <select ng-model="selected">
+        <option ng-value='choise.code' ng-repeat='choise in serviceChoiseData'>
+                    {{choise.category}} {{choise.description}}
+        </option>
+    </select>
     <input id="saveService" class="btn btn-default" type="button" value="Tallenna" ng-click='saveServiceClicked()'>
 </form>
