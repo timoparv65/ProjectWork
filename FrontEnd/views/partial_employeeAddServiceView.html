@@ -1,6 +1,7 @@
 <form>
-    <select ng-model="selected">
-        <option ng-value='choise.code' ng-repeat='choise in serviceChoiseData'>
+    <label for="selectService"> Valitse palvelu: </label><br>
+    <select name="selectedService" ng-model="selected">
+        <option ng-repeat='choise in serviceChoiseData' value="{{choise.code}}">
                     {{choise.category}} {{choise.description}}
         </option>
     </select>
