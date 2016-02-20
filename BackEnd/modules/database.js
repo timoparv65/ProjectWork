@@ -30,7 +30,7 @@ var RegisterButtonState = mongoose.model('RegisterButtonState',{
 var Employee = mongoose.model('Employee',{
     name:String,
     password:String,
-    email:String,
+    email:{type:String,unique:true},
     picture:String,
     ofDates:[Date], // milloin on poissa töistä
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
@@ -47,7 +47,7 @@ var Reservation = mongoose.model('Reservation',{
 },'reservation');
 
 var Customer = mongoose.model('Customer',{
-    username:{type:String,unique:true},
+    name:String,
     password:String,
     email:{type:String,unique:true},
     mobileNumber:{type:String,unique:true},
@@ -62,9 +62,9 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 },'generateopeninghourstableinfo');
 
 var Service = mongoose.model('Service',{
-    category:String,
-    description:String,
-    duration:Number,
+    //category:String,
+    //description:String,
+    //duration:Number,
     code:{type:Number,unique:true}
 },'service');
 

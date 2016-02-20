@@ -1,4 +1,4 @@
-main_module.controller('serviceAddController',function($scope,serviceDataFactory,$location){
+main_module.controller('serviceAddController',function($scope,employeeDataFactory,$location,Flash){
     
     console.log('serviceAddController loaded');
     
@@ -28,7 +28,7 @@ main_module.controller('serviceAddController',function($scope,serviceDataFactory
             return;
         }
         
-        var waitPromise = serviceDataFactory.insertData(temp);
+        var waitPromise = employeeDataFactory.insertServiceChoiseData(temp);
         
         waitPromise.then(function(response){
             
@@ -37,23 +37,27 @@ main_module.controller('serviceAddController',function($scope,serviceDataFactory
             
             
             // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
-            // Talletetaan se serviceArray:hyn
-            serviceDataFactory.serviceArray.push(response.data);
+            // Talletetaan se serviceChoiseArray:hyn
+            employeeDataFactory.serviceChoiseArray.push(response.data);
             
             $scope.category = "";
             $scope.description = "";
             $scope.duration = "";
             $scope.code = "";
             
+            Flash.create('success', 'Palvelu lisättiin onnistuneesti!', 'custom-class');
+            
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
             
-            $location.path('/palvelut_paavalikko').replace();
+            //$location.path('/palvelut_paavalikko').replace();
             
         },function(error){
             
             console.log('serviceAddController/saveServiceClicked/waitPromise:fail');
             console.log(error.message);
+            
+            Flash.create('danger','Palvelun lisäys epäonnistui. Koodi oli jo käytössä!', 'custom-class');
             
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);

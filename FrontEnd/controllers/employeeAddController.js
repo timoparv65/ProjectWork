@@ -46,13 +46,13 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
             
-            $location.path('/tyontekija_paavalikko').replace();
+            //$location.path('/tyontekija_paavalikko').replace();
         },function(error){
             
             console.log('employeeAddController/saveEmployeeClicked/waitPromise:fail');
             console.log(error.message);
             
-            Flash.create('warning', 'Työntekijän lisäys epäonnistui!', 'custom-class');
+            Flash.create('warning', 'Työntekijän lisäys epäonnistui. Sähköpostiosoite oli jo käytössä!', 'custom-class');
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
         });

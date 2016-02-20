@@ -1,10 +1,10 @@
-main_module.controller('serviceDeleteController',function($scope,serviceDataFactory,$location){
+main_module.controller('serviceDeleteController',function($scope,employeeDataFactory,$location){
     
     console.log('serviceDeleteController loaded');
     
     $scope.deleteArray = [];
     
-    serviceDataFactory.getServices(dataCallback);
+    employeeDataFactory.getServiceChoises(dataCallback);
     
     function dataCallback(dataArray){
     
@@ -53,9 +53,9 @@ main_module.controller('serviceDeleteController',function($scope,serviceDataFact
             }
             console.log(data);
             
-            serviceDataFactory.deleteData(data).then(function(data){
+            employeeDataFactory.deleteServiceChoiseData(data).then(function(data){
 
-                serviceDataFactory.serviceArray = [];
+                employeeDataFactory.serviceChoiseArray = [];
                 $location.path('/palvelut_paavalikko').replace();
                 
             },function(error){

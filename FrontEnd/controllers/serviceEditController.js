@@ -1,8 +1,8 @@
-main_module.controller('serviceEditController',function($scope,serviceDataFactory,$location,Flash){
+main_module.controller('serviceEditController',function($scope,employeeDataFactory,$location,Flash){
     
     console.log('serviceEditController loaded');
     
-    $scope.selectedService = serviceDataFactory.getSelectedService();
+    $scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
     console.log($scope.selectedService);
     
     $scope.id = $scope.selectedService._id;
@@ -20,7 +20,7 @@ main_module.controller('serviceEditController',function($scope,serviceDataFactor
         
         var temp = {
             id:$scope.id,
-            gategory:$scope.category,
+            category:$scope.category,
             description:$scope.description,
             duration:$scope.duration,
             code:$scope.code
@@ -28,7 +28,7 @@ main_module.controller('serviceEditController',function($scope,serviceDataFactor
         
         console.log(temp);
         
-        serviceDataFactory.updateData(temp).then(success,error);
+        employeeDataFactory.updateServiceChoiseData(temp).then(success,error);
         
     }
     
@@ -36,7 +36,7 @@ main_module.controller('serviceEditController',function($scope,serviceDataFactor
         
         console.log('serviceEditController/success');
         
-        serviceDataFactory.serviceArray = [];
+        employeeDataFactory.serviceChoiseArray = [];
         $scope.category = "";
         $scope.description = "";
         $scope.duration = "";
@@ -46,14 +46,14 @@ main_module.controller('serviceEditController',function($scope,serviceDataFactor
         
         // sallitaan Save-napin painaminen
         $('#saveService').attr("disabled", false);
-        $location.path('palvelut_paavalikko').replace();
+        //$location.path('palvelut_paavalikko').replace();
     }
     
     function error(data){
         
         console.log('serviceEditController/error');
         
-        Flash.create('danger',data.message, 'custom-class'); 
+        Flash.create('danger','Palvelun tietojen muokkaus epäonnistui. Koodi oli jo käytössä!', 'custom-class'); 
     }
     
 });

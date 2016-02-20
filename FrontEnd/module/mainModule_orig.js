@@ -22,6 +22,22 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_serviceDeleteEditView.html',
         controller:'serviceDeleteEditController'
         
+       /* 
+    }).when('/palvelut_muokkaa_poista_paavalikko',{
+        
+        templateUrl:'partial_serviceListFunctionsView.html',
+        controller:'serviceListFunctionsController'
+        
+    }).when('/palvelu_poista',{
+        
+        templateUrl:'partial_serviceDeleteView.html',
+        controller:'serviceDeleteController'
+        
+    }).when('/palvelu_muokkaa',{
+        
+        templateUrl:'partial_serviceEditView.html',
+        controller:'serviceEditController'
+        */
     }).when('/tyontekija_paavalikko',{
         
         templateUrl:'partial_employeeDataView.html',

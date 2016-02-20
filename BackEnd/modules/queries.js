@@ -11,7 +11,7 @@ var db = require('./database');
  *
  */
 exports.getReservationsByCustomerName = function(req,res){
-    console.log('queries/getReservationsByCustomerName');
+    //console.log('queries/getReservationsByCustomerName');
     
     db.Customer.findOne({username:req.body.username}).
         populate('assignments').exec(function(err,data){
@@ -29,21 +29,21 @@ exports.getReservationsByCustomerName = function(req,res){
  *
  */
 exports.loginCustomer = function(req,res){
-    console.log('queries/loginCustomer');
+    //console.log('queries/loginCustomer');
 }
 
 /**
  *
  */
 exports.registerCustomer = function(req,res){
-    console.log('queries/registerCustomer');
+    //console.log('queries/registerCustomer');
 }
 
 /**
  *
  */
 exports.registerEmployee = function(req,res){
-    console.log('queries/registerEmployee');
+    //console.log('queries/registerEmployee');
     
     var employee = new db.Employee(req.body);
     employee.save(function(err){
@@ -63,7 +63,7 @@ exports.registerEmployee = function(req,res){
  */
 exports.loginEmployee = function(req,res){
     
-    console.log('queries/loginEmployee');
+    //console.log('queries/loginEmployee');
     
     var searchObject = {
         username:req.body.username,
@@ -95,7 +95,7 @@ exports.loginEmployee = function(req,res){
  *
  */
 exports.getReservationsByEmployeeName = function(req,res){
-    console.log('queries/getReservationsByEmployeeName');
+    //console.log('queries/getReservationsByEmployeeName');
     
     db.Employee.findOne({name:req.body.name}).
         populate('assignments').exec(function(err,data){
@@ -113,14 +113,14 @@ exports.getReservationsByEmployeeName = function(req,res){
  *
  */
 exports.getServicesByEmployeeName = function(req,res){
-    console.log('queries/getServicesByEmployeeName');
-    console.log(req.query);
+    //console.log('queries/getServicesByEmployeeName');
+    //console.log(req.query);
     
     db.Employee.findOne({name:req.query.name}).
         populate('services').exec(function(err,data){
         
-        console.log(data);
-        console.log(data.services);
+        //console.log(data);
+        //console.log(data.services);
         
         if(data){
             res.send(data.services);
@@ -135,7 +135,7 @@ exports.getServicesByEmployeeName = function(req,res){
  *
  */
 exports.getAllEmployees = function(req,res){
-    console.log('queries/getAllEmployees');
+    //console.log('queries/getAllEmployees');
     
     db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
@@ -157,8 +157,8 @@ exports.getAllEmployees = function(req,res){
  */
 exports.saveNewEmployee = function(req,res){
     
-    console.log('queries/saveNewEmployee');
-    console.log('req.body: ' + req.body);
+    //console.log('queries/saveNewEmployee');
+    //console.log('req.body: ' + req.body);
     
     var employeeTemp = new db.Employee(req.body);
     
@@ -180,9 +180,9 @@ exports.saveNewEmployee = function(req,res){
  * employee collection
  */
 exports.updateEmployee = function(req,res){
-    console.log('queries/updateEmployee');
+    //console.log('queries/updateEmployee');
     
-    console.log(req.body);
+    //console.log(req.body);
     
     var updateData = {
         name:req.body.name,
@@ -190,7 +190,7 @@ exports.updateEmployee = function(req,res){
         email:req.body.email
     }
     
-    console.log(updateData);
+    //console.log(updateData);
     
     db.Employee.update({_id:req.body.id},updateData,function(err){
         
@@ -210,7 +210,7 @@ exports.updateEmployee = function(req,res){
  * employee collection
  */
 exports.deleteEmployee = function(req,res){
-    console.log('queries/deleteEmployee');
+    //console.log('queries/deleteEmployee');
     
     var toDelete = []; // tuhottavien työntekijöiden _id
     
@@ -221,31 +221,31 @@ exports.deleteEmployee = function(req,res){
        toDelete.push(req.query.forDelete); 
     }
     
-    console.log(toDelete[0]);
+    //console.log(toDelete[0]);
     
     db.Employee.find({_id:toDelete[0]}).
         populate('services').exec(function(err,data){
-        console.log('DATAA:' + data[0].services);
+        //console.log('DATAA:' + data[0].services);
         if(err){
-            console.log('err: ' + err);
+            //console.log('err: ' + err);
             res.status(500).send({message:err.message});
         }else{
             
             db.Service.remove({_id:{$in:data[0].services}},function(err,data){
                if(err) {
-                   console.log('err: ' + err);
+                   //console.log('err: ' + err);
                    res.status(500).send({message:err.message});
                }else{
-                   console.log('Employee services removed');
+                   //console.log('Employee services removed');
                    //console.log(data);
                    //res.status(200).send({message:'Delete success'});
                    
                    db.Employee.remove({_id:toDelete[0]},function(err,data){
                         if(err){
-                                console.log('err: ' + err);
+                                //console.log('err: ' + err);
                                 res.status(500).send({message:err.message});
                         }else{
-                                console.log('Employee removed');
+                                //console.log('Employee removed');
                                 res.status(200).send({message:'Delete success'});
                         }
                     });
@@ -266,17 +266,17 @@ exports.deleteEmployee = function(req,res){
 exports.saveNewService = function(req,res){
     
     console.log('queries/saveNewService');
-    console.log(req.body);
+    //console.log(req.body);
     
     var temp = {
-        category: req.body.category,
-        description: req.body.description,
-        duration: req.body.duration,
+        //category: req.body.category,
+        //description: req.body.description,
+        //duration: req.body.duration,
         code:req.body.code
     };
     
-    console.log(temp);
-    console.log(req.body.name);
+    //console.log(temp);
+    //console.log(req.body.name);
     
     //var serviceTemp = new db.Service(req.body);
     var serviceTemp = new db.Service(temp);
@@ -307,13 +307,13 @@ exports.saveNewService = function(req,res){
  */
 exports.updateService = function(req,res){
     
-    console.log('queries/updateService');
-    console.log('req.body: ' + req.body);
+    //console.log('queries/updateService');
+    //console.log('req.body: ' + req.body);
     
     var updateData = {
-        category:req.body.category,
-        description:req.body.description,
-        duration:req.body.duration,
+        //category:req.body.category,
+        //description:req.body.description,
+        //duration:req.body.duration,
         code:req.body.code
     }
     
@@ -336,9 +336,9 @@ exports.updateService = function(req,res){
  */
 exports.deleteService = function(req,res){
     
-    console.log('queries/deleteService');
-    console.log(req.body);
-    console.log(req.query);
+    //console.log('queries/deleteService');
+    //console.log(req.body);
+    //console.log(req.query);
     
     var toDelete = [];
     if(req.query.forDelete instanceof Array)
@@ -347,18 +347,18 @@ exports.deleteService = function(req,res){
         
        toDelete.push(req.query.forDelete); 
     }
-    console.log('toDelete: ' + toDelete);
+    //console.log('toDelete: ' + toDelete);
     
     db.Service.remove({_id:{$in:toDelete}},function(err,data){
         
         if(err){
-            console.log('err: ' + err);
+            //console.log('err: ' + err);
             res.status(500).send({message:err.message});
         }else{
             
             db.Employee.update({name:req.query.name},{$pull:{'services':{$in:toDelete}}},function(err,data){
                 if(err){
-                    console.log('err: ' + err);
+                    //console.log('err: ' + err);
                     res.status(500).send({message:err.message});
                 }else{
                     
@@ -376,8 +376,8 @@ exports.deleteService = function(req,res){
  */
 exports.saveNewServiceChoise = function(req,res){
     
-    console.log('queries/saveNewServiceChoise');
-    console.log(req.body);
+    //console.log('queries/saveNewServiceChoise');
+    //console.log(req.body);
     
     var temp = {
         category: req.body.category,
@@ -386,8 +386,8 @@ exports.saveNewServiceChoise = function(req,res){
         code:req.body.code
     };
     
-    console.log(temp);
-    console.log(req.body.name);
+    //console.log(temp);
+    //console.log(req.body.name);
     
     var serviceChoiseTemp = new db.ServiceChoise(temp);
     
@@ -413,8 +413,8 @@ exports.saveNewServiceChoise = function(req,res){
  */
 exports.updateServiceChoise = function(req,res){
     
-    console.log('queries/updateServiceChoise');
-    console.log('req.body: ' + req.body);
+    //console.log('queries/updateServiceChoise');
+    //console.log('req.body: ' + req.body);
     
     var updateData = {
         category:req.body.category,
@@ -442,9 +442,9 @@ exports.updateServiceChoise = function(req,res){
  */
 exports.deleteServiceChoise = function(req,res){
     
-    console.log('queries/deleteServiceChoise');
-    console.log(req.body);
-    console.log(req.query);
+    //console.log('queries/deleteServiceChoise');
+    //console.log(req.body);
+    //console.log(req.query);
     
     var toDelete = [];
     if(req.query.forDelete instanceof Array)
@@ -453,13 +453,13 @@ exports.deleteServiceChoise = function(req,res){
         
        toDelete.push(req.query.forDelete); 
     }
-    console.log('toDelete: ' + toDelete);
+    //console.log('toDelete: ' + toDelete);
     
     db.ServiceChoise.remove({_id:{$in:toDelete}},function(err,data){
         
         if(err){
             
-            console.log('err: ' + err);
+            //console.log('err: ' + err);
             res.status(500).send({message:err.message});
         }else{
             
@@ -471,16 +471,16 @@ exports.deleteServiceChoise = function(req,res){
 
 exports.getAllServiceChoises = function(req,res){
     
-    console.log('queries/getAllServiceChoises');
+    //console.log('queries/getAllServiceChoises');
     
     db.ServiceChoise.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt palvaluvaihtoehdot
         if(err){
-            console.log(err.message);
+            //console.log(err.message);
             //500 = Internal Server Error
             res.status(500).send({status:err.message});
         }
         else{
-            console.log(data);
+            //console.log(data);
             //200 = ok
             res.status(200).send(data);
         }

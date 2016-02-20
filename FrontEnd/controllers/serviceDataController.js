@@ -1,8 +1,8 @@
-main_module.controller('serviceDataController',function($scope,serviceDataFactory,$location){
+main_module.controller('serviceDataController',function($scope,employeeDataFactory,$location){
     
     console.log('serviceDataController loaded');
     
-    serviceDataFactory.getServices(dataCallback);
+    employeeDataFactory.getServiceChoises(dataCallback);
     
     function dataCallback(dataArray){
     
@@ -17,10 +17,11 @@ main_module.controller('serviceDataController',function($scope,serviceDataFactor
         
         console.log('serviceDataController/rowClicked');
         
-        serviceDataFactory.selected_id = id;
-        console.log('serviceDataFactory.selected_id: ' + serviceDataFactory.selected_id);
+        employeeDataFactory.selected_service_choise_id = id;
+        console.log('employeeDataFactory.selected_service_choise_id: ' + employeeDataFactory.selected_service_choise_id);
         
-        $location.path('/palvelut_muokkaa_poista_paavalikko').replace();
+        //$location.path('/palvelut_muokkaa_poista_paavalikko').replace();
+        $location.path('/palvelu_muokkaa_poista').replace();
 
     }
     
