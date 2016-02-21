@@ -62,10 +62,10 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 },'generateopeninghourstableinfo');
 
 var Service = mongoose.model('Service',{
-    //category:String,
-    //description:String,
-    //duration:Number,
-    code:{type:Number,unique:true}
+    category:String,
+    description:String,
+    duration:Number,
+    code:Number
 },'service');
 
 var ServiceChoise = mongoose.model('ServiceChoise',{

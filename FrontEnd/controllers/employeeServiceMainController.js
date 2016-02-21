@@ -12,7 +12,7 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
         console.log('employeeServiceMainController/dataCallback');
         console.log(dataArray);
         
-        $scope.ServiceData = dataArray;
+        $scope.serviceData = dataArray;
     }
     
     $scope.rowClicked = function(id){
@@ -24,5 +24,6 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
         
         $location.path('/tyontekija_muokkaa_palvelua').replace();
     }
+    
     
 });

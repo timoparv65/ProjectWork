@@ -57,11 +57,6 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeAddServiceView.html',
         controller:'employeeAddServiceController'
         
-    }).when('/tyontekija_muokkaa_palvelua',{
-        
-        templateUrl:'partial_employeeEditServiceView.html',
-        controller:'employeeEditServiceController'
-        
     }).when('/tyontekija_poista_palvelu',{
         
         templateUrl:'partial_employeeDeleteServiceView.html',

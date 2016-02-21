@@ -16,7 +16,7 @@
             <tr ng-repeat='palvelu in serviceData'>
                 <td>{{palvelu.category}}</td>
                 <td>{{palvelu.description}}</td>
-                <td>{{palvelu.timeInMinutes}}</td>
+                <td>{{palvelu.duration}}</td>
                 <td>{{palvelu.code}}</td>
                 <td><input type="checkbox" ng-click='addToDelete($event,$index,palvelu._id)'></td>
             </tr>

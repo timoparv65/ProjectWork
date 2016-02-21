@@ -1,37 +1,39 @@
 main_module.controller('employeeAddServiceController',function($scope,employeeDataFactory,$location){
-    
+
     console.log('employeeAddServiceController loaded');
     
-    var selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
     console.log('selectedEmployee:');
-    console.log(selectedEmployee);
+    console.log($scope.selectedEmployee);
     
-    //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
+    employeeDataFactory.getServiceChoises(dataCallback);
+    
+    function dataCallback(dataArray){
+    
+        console.log('employeeAddServiceController/dataCallback');
+        console.log(dataArray);
+    
+        $scope.serviceChoiseData = dataArray;
+        
+    }
+    
+    //Funktiototeutus Save-nappulan painallukselle partial_employeeAddServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
         
         console.log('employeeAddServiceController/saveServiceClicked');
+        var value = $scope.selected;
+        console.log(value);
+        
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveService').attr("disabled", true);
         
-        // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
+        // pitäisi tarkistaa että Comboboxin palauttama arvo ei ole undefines
+        // => tehdään Java Scriptillä. Katso mallia aikaisemmista harjoituksista
+        
         var temp = {
-            name:selectedEmployee.name,
-            category:$scope.category,
-            description:$scope.description,
-            duration:$scope.duration,
-            code:$scope.code
+            name:$scope.selectedEmployee.name,
+            code:value
         };
-        
-        console.log(temp);
-        
-        if (temp.category.length === 0 ||
-            temp.description.length === 0 ||
-            temp.duration.length === 0 ||
-            temp.code.length === 0){
-            
-            alert('Jokin kenttä tyhjä!');
-            return;
-        }
         
         var waitPromise = employeeDataFactory.insertServiceData(temp);
         
@@ -45,15 +47,10 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
             // Talletetaan se serviceArray:hyn
             employeeDataFactory.serviceArray.push(response.data);
             
-            $scope.category = "";
-            $scope.description = "";
-            $scope.duration = "";
-            $scope.code = "";
-            
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
             
-            $location.path('/tyontekijan_palvelut_paavalikko').replace();
+            //$location.path('/tyontekijan_palvelut_paavalikko').replace();
             
         },function(error){
             
@@ -63,6 +60,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
         });
+
         
     }
+    
 });

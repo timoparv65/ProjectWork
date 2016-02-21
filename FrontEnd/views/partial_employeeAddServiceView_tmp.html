@@ -5,7 +5,7 @@
         <label for="selectService"> Valitse palvelu: </label><br>
         <select name="selectedService" ng-model="selected">
             <option value="">---Valitse ole hyvä---</option>
-            <option ng-repeat='choise in serviceChoiseData' value="{{choise._id}}">
+            <option ng-repeat='choise in serviceChoiseData' value="{{choise.code}}">
                         {{choise.category}} {{choise.description}}
             </option>
         </select>
