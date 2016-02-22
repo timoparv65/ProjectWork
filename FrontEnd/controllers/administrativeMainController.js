@@ -4,9 +4,9 @@ main_module.controller('administrativeMainController',function($scope,$location,
     
     $scope.navbarData = {
         
-        urls:['/logout','#/sovelluksen_hallinnointi_paasivu'],
-        texts:['Poistu','Hallinnointi pääsivu'],
-        classes:['','active']
+        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/tyontekija_paavalikko'],
+        texts:['Poistu','Hallinnointi pääsivu','Palvelut','Työntekijät'],
+        classes:['','active','','']
     }
     
 });

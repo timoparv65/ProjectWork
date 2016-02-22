@@ -4,9 +4,9 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/palvelu_lisaa'],
+        texts:['Poistu','Hallinnointi pääsivu','Palvelut','Lisää palvelu'],
+        classes:['','','active','']
     }
     
     employeeDataFactory.getServiceChoises(dataCallback);

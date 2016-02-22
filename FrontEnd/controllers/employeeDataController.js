@@ -4,9 +4,9 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/tyontekija_paavalikko','#/tyontekija_lisaa'],
+        texts:['Poistu','Hallinnointi pääsivu','Työntekijä','Lisää työntekijä'],
+        classes:['','','active','']
     }
     
     employeeDataFactory.getEmployees(dataCallback);
