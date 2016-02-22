@@ -2,6 +2,13 @@ main_module.controller('employeeReservationsController',function($scope,employee
     
     console.log('employeeReservationsController loaded');
     
+    $scope.navbarData = {
+        
+        urls:['/logout','#/sovelluksen_hallinnointi_login'],
+        texts:['Poistu','Sovelluksen hallinnointi'],
+        classes:['','','']
+    }
+    
     //employeeDataFactory.init;
     employeeDataFactory.getEmployees(dataCallback);
     

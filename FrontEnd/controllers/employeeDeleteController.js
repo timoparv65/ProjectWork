@@ -2,6 +2,13 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
     
     console.log('employeeDeleteController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     $scope.deleteArray = [];
     
     var selectedEmployee = employeeDataFactory.getSelectedEmployee();

@@ -2,6 +2,13 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
     
     console.log('employeeAddController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     //Funktiototeutus Save-nappulan painallukselle partial_addEmployeeView.html ikkunassa
     $scope.saveEmployeeClicked = function(){
         console.log('employeeAddController/saveEmployeeClicked');

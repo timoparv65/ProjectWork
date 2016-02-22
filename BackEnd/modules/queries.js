@@ -63,10 +63,10 @@ exports.registerEmployee = function(req,res){
  */
 exports.loginEmployee = function(req,res){
     
-    //console.log('queries/loginEmployee');
+    console.log('queries/loginEmployee');
     
     var searchObject = {
-        username:req.body.username,
+        name:req.body.username,
         password:req.body.password
     }
 
@@ -77,14 +77,15 @@ exports.loginEmployee = function(req,res){
             res.send(502,{status:err.message});
             
         }else{
-            //console.log(data);
+            console.log(data);
             //=< 0 means wrong username or password
             if(data){
                 req.session.kayttaja = data.username;
                 res.send(200,{status:"Ok"});
             }
             else{
-                res.send(401,{status:"Wrong username or password"});
+                //res.send(401,{status:"Wrong username or password"});
+                res.status(401).send({status:"Wrong username or password"});
             }
             
         }

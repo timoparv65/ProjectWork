@@ -2,6 +2,13 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
     
     console.log('serviceDataController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     employeeDataFactory.getServiceChoises(dataCallback);
     
     function dataCallback(dataArray){

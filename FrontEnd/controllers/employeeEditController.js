@@ -2,6 +2,13 @@ main_module.controller('employeeEditController',function($scope,employeeDataFact
     
     console.log('employeeEditController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
     console.log($scope.selectedEmployee);
     

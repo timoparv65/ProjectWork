@@ -2,6 +2,13 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
     
     console.log('serviceDeleteEditController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     $scope.deleteArray = [];
     
     $scope.selectedService = employeeDataFactory.getSelectedServiceChoise();

@@ -6,6 +6,16 @@ main_module.config(function($routeProvider){
         
         templateUrl:'partial_employeeReservationsView.html',
         controller:'employeeReservationsController'
+    
+    }).when('/sovelluksen_hallinnointi_login',{
+        
+        templateUrl:'partial_loginAddEmployeeAndServiceView.html',
+        controller:'loginAddEmployeeAndServicesController'
+    
+    }).when('/sovelluksen_hallinnointi_paasivu',{
+        
+        templateUrl:'partial_administrativeMainView.html',
+        controller:'administrativeMainController'
         
     }).when('/palvelut_paavalikko',{
         

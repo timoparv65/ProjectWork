@@ -2,6 +2,13 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
     
     console.log('employeeEditServiceController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     var selectedService = employeeDataFactory.getSelectedService();
     console.log('selectedService: ' + selectedService);
     

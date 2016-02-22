@@ -2,6 +2,13 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     
     console.log('employeeDataController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     employeeDataFactory.getEmployees(dataCallback);
     
     function dataCallback(dataArray){

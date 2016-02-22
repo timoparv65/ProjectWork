@@ -2,6 +2,13 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
     
     console.log('serviceAddController loaded');
     
+    $scope.navbarData = {
+        
+        urls:[],
+        texts:[],
+        classes:[]
+    }
+    
     //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
         
