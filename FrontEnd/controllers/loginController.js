@@ -1,5 +1,6 @@
 main_module.controller('loginController',function($scope,loginFactory,$location,Flash){
     
+    console.log('loginController loaded');
     
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){
@@ -15,7 +16,7 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
         
         //Wait the response from server
         waitPromise.then(function(data){
-            $location.path('/list_employee');
+            $location.path('/sovelluksen_paasivu');
             //code inside this block will be called when success response
             //from server receives
         },function(data){
@@ -23,6 +24,7 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
         });
     }
     
+    /*
     $scope.registerClicked = function(){
         
         console.log('loginController/registerClicked');
@@ -47,4 +49,5 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
 
         Flash.create('danger', 'Käyttäjänimi jo käytössä!', 'custom-class');
     }
+    */
 });

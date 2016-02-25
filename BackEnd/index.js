@@ -6,7 +6,7 @@ var queries = require('./modules/queries');
 var employee = require('./modules/employee');
 var customer = require('./modules/customer');
 var service = require('./modules/service');
-var servicechoise = require('./modules/servicechoise')
+var servicechoise = require('./modules/servicechoise');
 
 
 // This is used for creating a secret key value for our session cookie

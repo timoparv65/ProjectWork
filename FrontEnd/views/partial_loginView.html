@@ -1,9 +1,9 @@
 <form class='loginForm'>
-    <h3>Parturi-kampaamo Unelmahöttö, kirjautuminen yksityisille sivuille</h3>
+    <h3 ng-model='barbershopName'>Parturi-kampaamo {{barbershopName}}, kirjautuminen yksityisille sivuille</h3>
     <input class="form-control" type="text" placeholder="nimi" ng-model="user"><br/>
     <input class="form-control" type="password" placeholder="salasana" ng-model='passwd'><br/>
     <input class="btn btn-default" type="button" value="Kirjaudu" ng-click='loginClicked()'>
-    <input id="register" class="btn btn-default" type="button" value="Rekisteröidy" ng-click='registerClicked()'>
+    <!--<input id="register" class="btn btn-default" type="button" value="Rekisteröidy" ng-click='registerClicked()'>-->
 </form>
-<div class="flash-style" flash-message="2000"></div>
+<div class="flash-style" flash-message="4000"></div>
 

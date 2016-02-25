@@ -4,6 +4,11 @@ main_module.config(function($routeProvider){
     
     $routeProvider.when('/',{
         
+        templateUrl:'partial_loginView.html',
+        controller:'loginController'
+    
+    }).when('/sovelluksen_paasivu',{
+        
         templateUrl:'partial_employeeReservationsView.html',
         controller:'employeeReservationsController'
     

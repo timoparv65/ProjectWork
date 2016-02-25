@@ -6,8 +6,13 @@
  */
 
 var mongoose = require("mongoose");
+var db_name = "parturikampaamo";
 
-mongoose.connect('mongodb://localhost:27017/parturikampaamo',connectionStatus);
+var mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
+
+//mongoose.connect('mongodb://localhost:27017/parturikampaamo',connectionStatus);
+
+mongoose.connect(mongodb_connection_string,connectionStatus);
 
 /**
   *Connectuion callback for fail and ok cases
@@ -22,6 +27,10 @@ function connectionStatus(err,ok){
         console.log("We are connected!");
     }
 }
+
+var Company = mongoose.model('Company',{
+    name:String
+},'company');
 
 var RegisterButtonState = mongoose.model('RegisterButtonState',{
     buttonActive:{type:Boolean, default: true}
@@ -83,3 +92,4 @@ exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
 exports.RegisterButtonState = RegisterButtonState;
 exports.Service = Service;
 exports.ServiceChoise = ServiceChoise;
+exports.Company = Company;
