@@ -1,4 +1,6 @@
-main_module.factory('loginFactory',function($resource){
+main_module.factory('employeeLoginFactory',function($resource){
+    
+    console.log('employeeLoginFactory loaded');
     
     var factory = {};
     
@@ -6,6 +8,8 @@ main_module.factory('loginFactory',function($resource){
     //implementation
     
     factory.startLogin = function(data){
+        
+        console.log('employeeLoginFactory/startLogin');
         
         //Create a resource for context '/employees/login'
         var req = $resource('/employees/login',{},{'post':{method:'POST'}});
@@ -16,6 +20,8 @@ main_module.factory('loginFactory',function($resource){
     
     /*
     factory.startRegister = function(data){
+    
+    console.log('employeeLoginFactory/startRegister');
         
         var req = $resource('/employees/register',{},{'post':{method:'POST'}});
         return req.post(data).$promise;

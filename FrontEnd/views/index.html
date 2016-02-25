@@ -2,26 +2,25 @@
 <html land="fi" ng-app='main_module'> <!-- ng-app = Placeholder. Määritetään moduuli (Module kts. kuva), mitä tässä applikaatiossa käytetään. main_module nimi mätsättävä mainModule.js määritellyn nimen kanssa  -->
     <head>
         <meta charset="utf-8">
-        <title>Angular Front End</title>
+        <title>Parturikampaamon ajanvaraus</title>
         <link href="/FrontEnd/css/angular-flash.min.css" type="text/css" rel="stylesheet">
         <link href="/FrontEnd/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="/FrontEnd/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
         <link href="/FrontEnd/css/styles.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <!-- This is placeholder for our views in this app (ng-view directive) -->
-        <div ng-view></div>
+        <div ng-view></div><!-- This is placeholder for our views in this app (ng-view directive) -->
         <script src="/FrontEnd/lib/jquery-2.1.4.min.js"></script> <!-- Angular käyttää jqueryä sisäisesti. Älä käytä suoraan-->
         <script src="/FrontEnd/lib/angular.min.js"></script> <!-- angular core -->
         <script src="/FrontEnd/lib/angular-route.min.js"></script> <!-- angular routter -->
         <script src="/FrontEnd/lib/angular-resource.min.js"></script> <!-- angular resource -->
         <script src="/FrontEnd/lib/angular-flash.min.js"></script> <!-- angular flash -->
         <script src="/FrontEnd/module/mainModule.js"></script> <!-- router -->
-        <script src="/FrontEnd/controllers/loginController.js"></script>
+        <script src="/FrontEnd/controllers/employeeLoginController.js"></script>
         <script src="/FrontEnd/controllers/employeeReservationsController.js"></script>
         <script src="/FrontEnd/controllers/employeeDataController.js"></script>
         <script src="/FrontEnd/factories/employeeDataFactory.js"></script>
-        <script src="/FrontEnd/factories/loginFactory.js"></script>
+        <script src="/FrontEnd/factories/employeeLoginFactory.js"></script>
         <script src="/FrontEnd/controllers/employeeAddController.js"></script>
         <script src="/FrontEnd/controllers/employeeDeleteController.js"></script>
         <script src="/FrontEnd/controllers/employeeListFunctionsController.js"></script>
@@ -36,5 +35,6 @@
         <script src="/FrontEnd/controllers/loginAddEmployeeAndServicesController.js"></script>
         <script src="/FrontEnd/controllers/administrativeMainController.js"></script>
         <script src="/FrontEnd/directives/navbar_directive.js"></script>
+        <script src="/FrontEnd/controllers/mainController.js"></script>
     </body>
 </html>

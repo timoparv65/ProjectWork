@@ -1,18 +1,18 @@
-main_module.controller('loginController',function($scope,loginFactory,$location,Flash){
+main_module.controller('employeeLoginController',function($scope,employeeLoginFactory,$location,Flash){
     
-    console.log('loginController loaded');
+    console.log('employeeLoginController loaded');
     
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){
         
-        console.log('loginController/loginClicked');
+        console.log('employeeLoginController/loginClicked');
         
         var temp = {
             username:$scope.user,
             password:$scope.passwd,
         }
         
-        var waitPromise = loginFactory.startLogin(temp);
+        var waitPromise = employeeLoginFactory.startLogin(temp);
         
         //Wait the response from server
         waitPromise.then(function(data){
@@ -27,14 +27,14 @@ main_module.controller('loginController',function($scope,loginFactory,$location,
     /*
     $scope.registerClicked = function(){
         
-        console.log('loginController/registerClicked');
+        console.log('employeeLoginController/registerClicked');
         
         var temp = {
             username:$scope.user,
             password:$scope.passwd,
         }
          
-        var waitPromise = loginFactory.startRegister(temp);
+        var waitPromise = employeeLoginFactory.startRegister(temp);
         
         //Wait the response from server
         waitPromise.then(success,error)

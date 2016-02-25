@@ -4,8 +4,13 @@ main_module.config(function($routeProvider){
     
     $routeProvider.when('/',{
         
-        templateUrl:'partial_loginView.html',
-        controller:'loginController'
+        templateUrl:'partial_mainView.html',
+        controller:'mainController'
+        
+    }).when('/sisaisille_sivuille',{
+        
+        templateUrl:'partial_employeeLoginView.html',
+        controller:'employeeLoginController'
     
     }).when('/sovelluksen_paasivu',{
         
@@ -21,9 +26,9 @@ main_module.config(function($routeProvider){
         
         templateUrl:'partial_administrativeMainView.html',
         controller:'administrativeMainController'
-        
+
     }).when('/palvelut_paavalikko',{
-        
+
         templateUrl:'partial_serviceDataView.html',
         controller:'serviceDataController'
 
