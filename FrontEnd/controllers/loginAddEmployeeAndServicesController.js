@@ -1,4 +1,4 @@
-main_module.controller('loginAddEmployeeAndServicesController',function($scope,loginFactory,$location,Flash){
+main_module.controller('loginAddEmployeeAndServicesController',function($scope,employeeLoginFactory,$location,Flash){
     
     console.log('loginAddEmployeeAndServicesController');
     
@@ -20,7 +20,7 @@ main_module.controller('loginAddEmployeeAndServicesController',function($scope,l
             password:$scope.passwd,
         }
         
-        var waitPromise = loginFactory.startLogin(temp);
+        var waitPromise = employeeLoginFactory.startLogin(temp);
         
         //Wait the response from server
         waitPromise.then(function(data){

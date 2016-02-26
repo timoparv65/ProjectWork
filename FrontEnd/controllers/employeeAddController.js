@@ -20,14 +20,16 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
         var temp = {
             name:$scope.name,
             password:$scope.passwd,
-            email:$scope.emailaddr
+            email:$scope.emailaddr,
+            role:$scope.emplrole
         };
         
         console.log(temp);
         
         if (temp.name.length === 0 ||
             temp.password.length === 0 ||
-            temp.email.length === 0){
+            temp.email.length === 0 ||
+            temp.role.length === 0){
             
             alert('Jokin kenttä tyhjä!');
             return;
@@ -49,6 +51,7 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             $scope.name = "";
             $scope.passwd = "";
             $scope.emailaddr = "";
+            $scope.emplrole = "";
             
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);

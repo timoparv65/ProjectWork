@@ -81,6 +81,7 @@ exports.loginEmployee = function(req,res){
             //=< 0 means wrong username or password
             if(data){
                 req.session.userId = data.username;
+                //req.session.userRole = data.role;
                 res.send(200,{status:"Ok"});
             }
             else{
@@ -152,6 +153,18 @@ exports.getAllEmployees = function(req,res){
 }
 
 /**
+ *
+ */
+exports.getAuthData = function(callback){
+    
+    db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+        
+        callback(data);
+        
+    });
+}
+
+/**
  * This function saves new employee information to our
  * employee collection
  */
@@ -187,7 +200,8 @@ exports.updateEmployee = function(req,res){
     var updateData = {
         name:req.body.name,
         password:req.body.password,
-        email:req.body.email
+        email:req.body.email,
+        role:req.body.role
     }
     
     //console.log(updateData);

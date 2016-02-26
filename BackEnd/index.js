@@ -7,6 +7,7 @@ var employee = require('./modules/employee');
 var customer = require('./modules/customer');
 var service = require('./modules/service');
 var servicechoise = require('./modules/servicechoise');
+var acl = require('acl');
 
 
 // This is used for creating a secret key value for our session cookie
@@ -15,6 +16,10 @@ var uuid = require('uuid');
 var session = require('express-session');
 
 var app = express();
+
+var conn = require('./modules/database').connect(builAuthorization);
+
+
 //=====================Middlewares========================
 
 // luo session ja cookien
@@ -64,4 +69,50 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
+app.get('/permission_to_company_private_pages',function(req,res,next){
+    console.log('index.js/permission_to_company_private_pages');
+	acl.isAllowed(req.session.userId, 'permission_to_company_private_pages', ['get'],function(err,ok){
+		console.log(err);
+		if(ok === true){
+			//res.send('You are authorized');
+            console.log('Ok');
+            res.send(200,{status:"Ok"});
+        }else{
+			//res.send('Not authorized');
+            console.log('Not authorized');
+            res.send(401,{status:"Not authorized"});
+		}
+	});
+	
+});
+
 app.listen(3000);
+
+
+//=============== Callback functions =====================
+
+function builAuthorization(dbconn){
+	acl = new acl(new acl.mongodbBackend(dbconn.connection.db, "acl_"));
+	acl.allow([
+    {
+        roles:['member','admin'],
+        allows:[
+            {resources:['permission_to_company_private_pages'], permissions:['get','put','delete']},
+			{resources:['permission_to_company_private_pages'],permissions:['get','post','put','delete']}
+        ]
+    },
+	],function(){
+
+		console.log('ROLES ADDED');
+        queries.getAuthData(function(data){
+            console.log(data);  
+            for(i=0; i< data.length; i++){
+                console.log(data[i].name);
+                acl.addUserRoles(data[i].name, data[i].role);
+            }
+
+        });
+		
+	});
+	
+}

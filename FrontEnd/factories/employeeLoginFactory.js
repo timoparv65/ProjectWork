@@ -18,6 +18,15 @@ main_module.factory('employeeLoginFactory',function($resource){
         return req.post(data).$promise;
     }
     
+    //lisätty 26.2.2016
+    factory.checkRole = function(){
+        
+         console.log('employeeLoginFactory/checkRole');
+        
+         var req = $resource('/permission_to_company_private_pages',{},{'get':{method:'GET'}});
+         return req.query().$promise;
+    }
+    
     /*
     factory.startRegister = function(data){
     

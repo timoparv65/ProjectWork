@@ -1,8 +1,8 @@
 /**
  *This file is database model for the barbershop-hairdresser company
- *Version:0.0.1
+ *Version:0.0.2
  *Author:Timo Parviainen
- *Description:Cteated this new file
+ *Description: Added Access Control List (acl) module
  */
 
 var mongoose = require("mongoose");
@@ -10,23 +10,18 @@ var db_name = "parturikampaamo";
 
 var mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
 
-//mongoose.connect('mongodb://localhost:27017/parturikampaamo',connectionStatus);
+exports.connect = function(callback){
+	var dbconn = mongoose.connect(mongodb_connection_string,function(err,ok){
 
-mongoose.connect(mongodb_connection_string,connectionStatus);
+		if(err){
 
-/**
-  *Connectuion callback for fail and ok cases
-  */
-function connectionStatus(err,ok){
-    
-    if(err){
-        
-        console.log(err.message);
-    }else{
-        
-        console.log("We are connected!");
-    }
+			console.log(err.message);
+		}else{
+			callback(dbconn);
+		}
+	})
 }
+
 
 var Company = mongoose.model('Company',{
     name:String
@@ -40,6 +35,7 @@ var Employee = mongoose.model('Employee',{
     name:String,
     password:String,
     email:{type:String,unique:true},
+    role:String,
     picture:String,
     ofDates:[Date], // milloin on poissa töistä
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
