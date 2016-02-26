@@ -71,6 +71,8 @@ app.get('/logout',function(req,res){
 
 app.get('/permission_to_company_private_pages',function(req,res,next){
     console.log('index.js/permission_to_company_private_pages');
+    console.log('req.session.userId');
+    console.log(req.session.userId);
 	acl.isAllowed(req.session.userId, 'permission_to_company_private_pages', ['get'],function(err,ok){
 		console.log(err);
 		if(ok === true){

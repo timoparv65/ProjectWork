@@ -17,30 +17,29 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
         //Wait the response from server
         waitPromise.then(function(data){
             
+            console.log('data');
+            console.log(data);
+            
             // Ckeck if user has permissions for login
             
-            var temp2 = {
-                
-            };
+            
             var waitPromise2 = employeeLoginFactory.checkRole();
             
             waitPromise2.then(function(data2){
                 $location.path('/sovelluksen_paasivu');
             },function(data2){
+                console.log('data2');
+                console.log(data2);
                 Flash.create('danger', 'Käyttäjällä ei ole oikeutta palveluun', 'custom-class');
             });
-            
-            /*
-            waitPromise2.then(function(data2){
-                $location.path('/sovelluksen_paasivu');
-            },function(data2){
-                Flash.create('danger', 'Käyttäjällä ei ole oikeutta palveluun', 'custom-class');
-            }*/
             
             //$location.path('/sovelluksen_paasivu');
             //code inside this block will be called when success response
             //from server receives
         },function(data){
+            console.log('data');
+            console.log(data);
+            
             Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');
         });
     }

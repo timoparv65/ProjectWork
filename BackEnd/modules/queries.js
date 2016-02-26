@@ -80,7 +80,9 @@ exports.loginEmployee = function(req,res){
             console.log(data);
             //=< 0 means wrong username or password
             if(data){
-                req.session.userId = data.username;
+                req.session.userId = data.name;
+                console.log('req.session.userId');
+                console.log(req.session.userId);
                 //req.session.userRole = data.role;
                 res.send(200,{status:"Ok"});
             }
