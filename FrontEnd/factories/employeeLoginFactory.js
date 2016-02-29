@@ -19,23 +19,16 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     //lisätty 26.2.2016
-    factory.checkRole = function(){
+    factory.checkRoleForEnteringCompanyInternalPages = function(){
         
-         console.log('employeeLoginFactory/checkRole');
+         console.log('employeeLoginFactory/checkRoleForEnteringCompanyInternalPages');
         
          var req = $resource('/permission_to_company_private_pages',{},{'get':{method:'GET'}});
          return req.query().$promise;
     }
     
-    /*
-    factory.startRegister = function(data){
     
-    console.log('employeeLoginFactory/startRegister');
-        
-        var req = $resource('/employees/register',{},{'post':{method:'POST'}});
-        return req.post(data).$promise;
-    }
-    */
+    
     
     //Factory must always return an object!!!!
     return factory;

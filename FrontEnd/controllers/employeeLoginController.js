@@ -23,7 +23,7 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
             // Ckeck if user has permissions for login
             
             
-            var waitPromise2 = employeeLoginFactory.checkRole();
+            var waitPromise2 = employeeLoginFactory.checkRoleForEnteringCompanyInternalPages();
             
             waitPromise2.then(function(ok2){
                 return $location.path('/sovelluksen_paasivu');
@@ -44,30 +44,5 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
         });
     }
     
-    /*
-    $scope.registerClicked = function(){
-        
-        console.log('employeeLoginController/registerClicked');
-        
-        var temp = {
-            username:$scope.user,
-            password:$scope.passwd,
-        }
-         
-        var waitPromise = employeeLoginFactory.startRegister(temp);
-        
-        //Wait the response from server
-        waitPromise.then(success,error)
-    }
     
-    function success(data){
-    
-        Flash.create('success', 'Lisätty uusi käyttäjä!', 'custom-class'); 
-    }
-
-    function error(data){
-
-        Flash.create('danger', 'Käyttäjänimi jo käytössä!', 'custom-class');
-    }
-    */
 });
