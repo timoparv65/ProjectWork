@@ -78,11 +78,11 @@ app.get('/permission_to_company_private_pages',function(req,res,next){
 		if(ok === true){
 			//res.send('You are authorized');
             console.log('Ok');
-            res.send(200,{status:"Ok"});
+            res.send(200,[{status:"Ok"}]);
         }else{
 			//res.send('Not authorized');
             console.log('Not authorized');
-            res.send(401,{status:"Not authorized"});
+            res.send(401,[{status:"Not authorized"}]);
 		}
 	});
 	
