@@ -23,11 +23,19 @@ main_module.factory('employeeLoginFactory',function($resource){
         
          console.log('employeeLoginFactory/checkRoleForEnteringCompanyInternalPages');
         
-         var req = $resource('/permission_to_company_private_pages',{},{'get':{method:'GET'}});
+         var req = $resource('/company_private_pages',{},{'get':{method:'GET'}});
          return req.query().$promise;
     }
     
     
+    //lisätty 29.2.2016
+    factory.checkRoleForEnteringCompanyAdminPages = function(){
+        
+         console.log('employeeLoginFactory/checkRoleForEnteringCompanyAdminPages');
+        
+         var req = $resource('/company_admin_pages',{},{'get':{method:'GET'}});
+         return req.query().$promise;
+    }
     
     
     //Factory must always return an object!!!!

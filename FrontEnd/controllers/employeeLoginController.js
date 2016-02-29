@@ -21,8 +21,6 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
             console.log(ok1);
             
             // Ckeck if user has permissions for login
-            
-            
             var waitPromise2 = employeeLoginFactory.checkRoleForEnteringCompanyInternalPages();
             
             waitPromise2.then(function(ok2){

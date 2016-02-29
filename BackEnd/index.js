@@ -69,11 +69,11 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
-app.get('/permission_to_company_private_pages',function(req,res,next){
-    console.log('index.js/permission_to_company_private_pages');
+app.get('/company_private_pages',function(req,res,next){
+    console.log('index.js/company_private_pages');
     console.log('req.session.userId');
     console.log(req.session.userId);
-	acl.isAllowed(req.session.userId, 'permission_to_company_private_pages', ['get'],function(err,ok){
+	acl.isAllowed(req.session.userId, 'company_private_pages', ['get'],function(err,ok){
 		console.log(err);
 		if(ok === true){
 			//res.send('You are authorized');
@@ -84,8 +84,26 @@ app.get('/permission_to_company_private_pages',function(req,res,next){
             console.log('Not authorized');
             res.send(401,[{status:"Not authorized"}]);
 		}
-	});
-	
+	});	
+});
+
+
+app.get('/company_admin_pages',function(req,res,next){
+    console.log('index.js/company_admin_pages');
+    console.log('req.session.userId');
+    console.log(req.session.userId);
+	acl.isAllowed(req.session.userId, 'company_admin_pages', ['get'],function(err,ok){
+		console.log(err);
+		if(ok === true){
+			//res.send('You are authorized');
+            console.log('Ok');
+            res.send(200,[{status:"Ok"}]);
+        }else{
+			//res.send('Not authorized');
+            console.log('Not authorized');
+            res.send(401,[{status:"Not authorized"}]);
+		}
+	});	
 });
 
 app.listen(3000);
@@ -99,8 +117,8 @@ function builAuthorization(dbconn){
     {
         roles:['member','admin'],
         allows:[
-            {resources:['permission_to_company_private_pages'], permissions:['get','put','delete']},
-			{resources:['permission_to_company_private_pages'],permissions:['get','post','put','delete']}
+            {resources:['company_private_pages'], permissions:['get','put','delete']},
+			{resources:['company_private_pages','company_admin_pages'],permissions:['get','post','put','delete']}
         ]
     },
 	],function(){
