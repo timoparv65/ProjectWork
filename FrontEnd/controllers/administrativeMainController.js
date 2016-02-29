@@ -4,7 +4,7 @@ main_module.controller('administrativeMainController',function($scope,$location,
     
     $scope.navbarData = {
         
-        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/tyontekija_paavalikko'],
+        urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/tyontekija_paavalikko'],
         texts:['Poistu','Hallinnointi pääsivu','Palvelut','Työntekijät'],
         classes:['','active','','']
     }

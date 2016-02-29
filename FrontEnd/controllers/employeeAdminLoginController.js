@@ -1,6 +1,6 @@
-main_module.controller('loginAddEmployeeAndServicesController',function($scope,employeeLoginFactory,$location,Flash){
+main_module.controller('employeeAdminLoginController',function($scope,employeeLoginFactory,$location,Flash){
     
-    console.log('loginAddEmployeeAndServicesController');
+    console.log('employeeAdminLoginController');
     
     
     $scope.navbarData = {
@@ -13,7 +13,7 @@ main_module.controller('loginAddEmployeeAndServicesController',function($scope,e
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){
         
-        console.log('loginAddEmployeeAndServicesController/loginClicked');
+        console.log('employeeAdminLoginController/loginClicked');
         
         var temp = {
             username:$scope.user,

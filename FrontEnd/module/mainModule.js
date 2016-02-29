@@ -19,8 +19,8 @@ main_module.config(function($routeProvider){
     
     }).when('/sovelluksen_hallinnointi_login',{
         
-        templateUrl:'partial_loginAddEmployeeAndServiceView.html',
-        controller:'loginAddEmployeeAndServicesController'
+        templateUrl:'partial_employeeAdminLoginView.html',
+        controller:'employeeAdminLoginController'
     
     }).when('/sovelluksen_hallinnointi_paasivu',{
         
