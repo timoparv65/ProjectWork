@@ -115,10 +115,15 @@ function builAuthorization(dbconn){
 	acl = new acl(new acl.mongodbBackend(dbconn.connection.db, "acl_"));
 	acl.allow([
     {
-        roles:['member','admin'],
+        roles:['admin'],
         allows:[
-            {resources:['company_private_pages'], permissions:['get','put','delete']},
 			{resources:['company_private_pages','company_admin_pages'],permissions:['get','post','put','delete']}
+        ]
+    },
+    {
+        roles:['member'],
+        allows:[
+            {resources:['company_private_pages'], permissions:['get','put','delete']}
         ]
     },
 	],function(){
