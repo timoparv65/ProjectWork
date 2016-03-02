@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-sm-4 col-md-4">
             <!--<p>Date: <input type="text" id="datepicker"></p>-->
-            <!--<p><div id="datepicker"></div></p>-->
+            <p><div id="datepicker"></div></p>
             
             
-            
+            <!--
             <input id="datepicker"/>
             <input type="text" id="time"/>
             <input type="text" id="start"/>
-            
+            -->
             
         </div>
         <div class="col-sm-4 col-md-4">
@@ -24,37 +24,5 @@
     <div class="row">
         
     </div>
-    <script src="/FrontEnd/lib/localization/datepicker-fi.js"></script>
-    <script>
-        /*
-            $(document).ready(function(){
-                $("#datepicker").datepicker($.datepicker.regional[ "fi" ],
-                                            {dateFormat: "yy-mm-dd",
-                                             beforeShowDay: $.datepicker.noWeekends,
-                                             nextText: "Later",
-                                             altField: "#actualDate",
-                                             onSelect: function(dateText, inst) {
-                                                 var date = $(this).val();
-                                                 var time = $('#time').val();
-                                                 alert('on select triggered');
-                                                 console.log(date);
-                                             }
-                                            });
-               
-            });
-            */
-        /*
-            $(document).ready(function(){
-                $("#datepicker").datepicker({
-                    onSelect: function(dateText, inst) {
-                        var date = $(this).val();
-                        var time = $('#time').val();
-                        alert('on select triggered');
-                        $("#start").val(date + time.toString(' HH:mm').toString());
-                        console.log(date + time.toString(' HH:mm').toString());
-                    }
-                });
-
-            });*/
-    </script>
+    <!--<script src="/FrontEnd/lib/localization/datepicker-fi.js"></script>-->
 </div>

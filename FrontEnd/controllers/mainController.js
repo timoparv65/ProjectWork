@@ -2,37 +2,28 @@ main_module.controller('mainController',function($scope){
     
     console.log('mainController loaded');
     
-    /*
-    $(document).ready(function(){
-                $("#datepicker").datepicker({
-                    onSelect: function(dateText, inst) {
-                        var date = $(this).val();
-                        var time = $('#time').val();
-                        alert('on select triggered');
-                        $("#start").val(date + time.toString(' HH:mm').toString());
-                        console.log(date + time.toString(' HH:mm').toString());
-                    }
-                });
-
-    });*/
+    $scope.selectedDate = null;
+    console.log($scope.selectedDate);
     
     $(document).ready(function(){
-                $("#datepicker").datepicker(//$.datepicker.regional[ "fi" ],
+                $("#datepicker").datepicker(
                                             {   onSelect: function(dateText, inst) {
                                                     var date = $(this).val();
-                                                    var time = $('#time').val();
-                                                    alert('on select triggered');
-                                                    $("#start").val(date + time.toString(' HH:mm').toString());
-                                                    console.log(date + time.toString(' HH:mm').toString());
+                                                    //var time = $('#time').val();
+                                                    //alert('on select triggered');
+                                                    //$("#start").val(date + time.toString(' HH:mm').toString());
+                                                    //$("#start").val(date + time.toString(' HH:mm'));
+                                                    //console.log(date + time.toString(' HH:mm').toString());
+                                                    $scope.selectedDate = date;
+                                                    console.log($scope.selectedDate);
                                                 },
-                                             dateFormat: "yy-mm-dd",
-                                             beforeShowDay: $.datepicker.noWeekends,
-                                             nextText: "Later",
-                                             altField: "#actualDate"
+                                                dateFormat: "yy-mm-dd",
+                                                beforeShowDay: $.datepicker.noWeekends,
+                                                altField: "#actualDate"
                                             },
-                $.datepicker.regional[ "fi" ]
+                                            $.datepicker.regional[ "fi" ]
                 );
                
-            });
+    });
     
 });
