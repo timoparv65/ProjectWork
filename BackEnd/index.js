@@ -73,8 +73,9 @@ app.get('/logout',function(req,res){
 // this router checks if employee (with admin or member roles) is logged in or not
 app.get('/isLoggedToCompanyPrivatePages',function(req,res){
     console.log('index.js/isLoggedToCompanyPrivatePages');
-    console.log('req.session.userId');
-    console.log(req.session.userId);
+    
+    console.log('req.session.userId: ' + req.session.userId);
+    //console.log(req.session.userId);
     
     // User is logged in if session contains userId attribute
     if(req.session.userId){
@@ -91,8 +92,9 @@ app.get('/isLoggedToCompanyPrivatePages',function(req,res){
 // this router checks if employee (with admin role) is logged in or not
 app.get('/isLoggedToCompanyAdminPages',function(req,res){
     console.log('index.js/isLoggedToCompanyAdminPages');
-    console.log('req.session.adminId');
-    console.log(req.session.adminId);
+    
+    console.log('req.session.adminId: ' + req.session.adminId);
+    //console.log(req.session.adminId);
     
     // User is logged in if session contains userId attribute
     if(req.session.adminId){
@@ -108,17 +110,23 @@ app.get('/isLoggedToCompanyAdminPages',function(req,res){
 
 app.get('/company_private_pages',function(req,res,next){
     console.log('index.js/company_private_pages');
-    console.log('req.session.userId');
-    console.log(req.session.userId);
-	acl.isAllowed(req.session.userId, 'company_private_pages', ['get'],function(err,ok){
+    
+    console.log('req.session.adminId: ' + req.session.adminId);
+	
+    acl.isAllowed(req.session.userId, 'company_private_pages', ['get'],function(err,ok){
 		console.log(err);
 		if(ok === true){
 			//res.send('You are authorized');
             console.log('Ok');
+            console.log('req.session.userId: ' + req.session.userId);
+            //console.log(req.session.userId);
             res.send(200,[{status:"Ok"}]);
         }else{
 			//res.send('Not authorized');
             console.log('Not authorized');
+            req.session.userId = null;// session.userId asetettu queries.js/loginEmployee, mutta käyttäjän rooli ei riitä
+            console.log('req.session.userId: ' + req.session.userId);
+            //console.log(req.session.userId);
             res.send(401,[{status:"Not authorized"}]);
 		}
 	});	
@@ -127,21 +135,39 @@ app.get('/company_private_pages',function(req,res,next){
 
 app.get('/company_admin_pages',function(req,res,next){
     console.log('index.js/company_admin_pages');
-    console.log('req.session.adminId');
-    console.log(req.session.adminId);
-	acl.isAllowed(req.session.adminId, 'company_admin_pages', ['get'],function(err,ok){
+    
+    console.log('req.session.userId: ' + req.session.userId);
+	
+    acl.isAllowed(req.session.adminId, 'company_admin_pages', ['get'],function(err,ok){
 		console.log(err);
 		if(ok === true){
 			//res.send('You are authorized');
             console.log('Ok');
+            console.log('req.session.adminId: ' + req.session.adminId);
+            //console.log(req.session.adminId);
             res.send(200,[{status:"Ok"}]);
         }else{
 			//res.send('Not authorized');
             console.log('Not authorized');
+            req.session.adminId = null; // session.adminId asetettu queries.js/loginAdminEmployee, mutta käyttäjän rooli ei riitä
+            console.log('req.session.adminId: ' + req.session.adminId);
+            //console.log(req.session.adminId);
             res.send(401,[{status:"Not authorized"}]);
 		}
 	});	
 });
+
+// lisätty 3.3.2016
+app.get('/reset_session_admin_id',function(req,res,next){
+    console.log('index.js/reset_session_admin_id');
+    
+    console.log('req.session.userId: ' + req.session.userId);
+    console.log('1) req.session.adminId ' + req.session.adminId);
+    req.session.adminId = null;
+    console.log('2) req.session.adminId ' + req.session.adminId);
+    res.send(200,[{status:"Ok"}]);
+});
+
 
 app.listen(3000);
 

@@ -81,9 +81,9 @@ exports.loginEmployee = function(req,res){
             //=< 0 means wrong username or password
             if(data){
                 req.session.userId = data.name;
-                console.log('req.session.userId');
-                console.log(req.session.userId);
-                //req.session.userRole = data.role;
+                console.log('req.session.userId: ' + req.session.userId);
+                //console.log(req.session.userId);
+                
                 res.send(200,{status:"Ok"});
             }
             else{
@@ -117,8 +117,8 @@ exports.loginAdminEmployee = function(req,res){
             //=< 0 means wrong username or password
             if(data){
                 req.session.adminId = data.name;
-                console.log('req.session.adminId');
-                console.log(req.session.adminId);
+                console.log('req.session.adminId: ' + req.session.adminId);
+                //console.log(req.session.adminId);
                 //req.session.userRole = data.role;
                 res.send(200,{status:"Ok"});
             }

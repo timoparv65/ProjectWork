@@ -1,4 +1,4 @@
-main_module.controller('employeeReservationsController',function($scope,employeeDataFactory){
+main_module.controller('employeeReservationsController',function($scope,employeeDataFactory,employeeLoginFactory){
     
     console.log('employeeReservationsController loaded');
     
@@ -9,7 +9,8 @@ main_module.controller('employeeReservationsController',function($scope,employee
         classes:['','','']
     }
     
-    //employeeDataFactory.init;
+    employeeLoginFactory.resetSessionAdminId();
+    
     employeeDataFactory.getEmployees(dataCallback);
     
     

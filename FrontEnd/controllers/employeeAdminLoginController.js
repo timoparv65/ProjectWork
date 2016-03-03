@@ -1,6 +1,6 @@
 main_module.controller('employeeAdminLoginController',function($scope,employeeLoginFactory,$location,Flash){
     
-    console.log('employeeAdminLoginController');
+    console.log('employeeAdminLoginController loaded');
     
     
     $scope.navbarData = {

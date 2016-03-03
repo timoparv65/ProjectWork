@@ -49,6 +49,15 @@ main_module.factory('employeeLoginFactory',function($resource){
          return req.query().$promise;
     }
     
+    // lisätty 3.3.2016
+    factory.resetSessionAdminId = function(){
+        
+        console.log('employeeLoginFactory/resetSessionAdminId');
+        
+        var req = $resource('/reset_session_admin_id',{},{'get':{method:'GET'}});
+        return req.query().$promise;
+    }
+    
     
     //Factory must always return an object!!!!
     return factory;

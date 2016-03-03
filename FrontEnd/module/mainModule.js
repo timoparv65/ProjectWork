@@ -51,7 +51,7 @@ function loginRequiredToCompanyAdminPages($q,$resource,$location,$http){
         //Mark promise to be failed
         deferred.reject();
         // Go back to root context
-        $location.path('/');
+        $location.path('/sovelluksen_paasivu');
         return deferred;
     });
 
