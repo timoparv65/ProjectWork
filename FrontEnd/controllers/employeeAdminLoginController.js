@@ -43,7 +43,7 @@ main_module.controller('employeeAdminLoginController',function($scope,employeeLo
             password:$scope.passwd,
         }
         
-        var waitPromise = employeeLoginFactory.startLogin(temp);
+        var waitPromise = employeeLoginFactory.startAdminLogin(temp);
         
         //Wait the response from server
         waitPromise.then(function(ok1){

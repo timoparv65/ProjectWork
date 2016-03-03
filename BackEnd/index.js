@@ -69,6 +69,43 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
+
+// this router checks if employee (with admin or member roles) is logged in or not
+app.get('/isLoggedToCompanyPrivatePages',function(req,res){
+    console.log('index.js/isLoggedToCompanyPrivatePages');
+    console.log('req.session.userId');
+    console.log(req.session.userId);
+    
+    // User is logged in if session contains userId attribute
+    if(req.session.userId){
+        // palauttaa send:illä json-objektin arrayna. mainModule:ssa loginRequiredToCompanyPrivatePages
+        // $resource('/isLoggedToCompanyPrivatePages').query()...query vaatii arrayn
+        res.status(200).send([{status:'Ok'}]);
+    }
+    else{
+        res.status(401).send([{status:'Unauthorized'}]);
+    }
+});
+
+
+// this router checks if employee (with admin role) is logged in or not
+app.get('/isLoggedToCompanyAdminPages',function(req,res){
+    console.log('index.js/isLoggedToCompanyAdminPages');
+    console.log('req.session.adminId');
+    console.log(req.session.adminId);
+    
+    // User is logged in if session contains userId attribute
+    if(req.session.adminId){
+        // palauttaa send:illä json-objektin arrayna. mainModule:ssa loginRequiredToCompanyAdminPages
+        // $resource('/isLoggedToCompanyAdminPages').query()...query vaatii arrayn
+        res.status(200).send([{status:'Ok'}]);
+    }
+    else{
+        res.status(401).send([{status:'Unauthorized'}]);
+    }
+});
+
+
 app.get('/company_private_pages',function(req,res,next){
     console.log('index.js/company_private_pages');
     console.log('req.session.userId');
@@ -90,9 +127,9 @@ app.get('/company_private_pages',function(req,res,next){
 
 app.get('/company_admin_pages',function(req,res,next){
     console.log('index.js/company_admin_pages');
-    console.log('req.session.userId');
-    console.log(req.session.userId);
-	acl.isAllowed(req.session.userId, 'company_admin_pages', ['get'],function(err,ok){
+    console.log('req.session.adminId');
+    console.log(req.session.adminId);
+	acl.isAllowed(req.session.adminId, 'company_admin_pages', ['get'],function(err,ok){
 		console.log(err);
 		if(ok === true){
 			//res.send('You are authorized');

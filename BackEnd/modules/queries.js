@@ -95,6 +95,43 @@ exports.loginEmployee = function(req,res){
 }
 
 /**
+ * lisätty 3.3.2016
+ */
+exports.loginAdminEmployee = function(req,res){
+    
+    console.log('queries/loginAdminEmployee');
+    
+    var searchObject = {
+        name:req.body.username,
+        password:req.body.password
+    }
+
+    db.Employee.findOne(searchObject,function(err,data){
+        
+        if(err){
+            
+            res.send(502,{status:err.message});
+        }else{
+
+            console.log(data);
+            //=< 0 means wrong username or password
+            if(data){
+                req.session.adminId = data.name;
+                console.log('req.session.adminId');
+                console.log(req.session.adminId);
+                //req.session.userRole = data.role;
+                res.send(200,{status:"Ok"});
+            }
+            else{
+                res.status(401).send({status:"Wrong username or password"});
+            }
+            
+        }
+    });
+}
+
+
+/**
  *
  */
 exports.getReservationsByEmployeeName = function(req,res){

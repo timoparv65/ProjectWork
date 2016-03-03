@@ -18,6 +18,18 @@ main_module.factory('employeeLoginFactory',function($resource){
         return req.post(data).$promise;
     }
     
+    // lisätty 3.3.2016
+    factory.startAdminLogin = function(data){
+        
+        console.log('employeeLoginFactory/startAdminLogin');
+        
+        //Create a resource for context '/employees/admin_login'
+        var req = $resource('/employees/admin_login',{},{'post':{method:'POST'}});
+        //Use POST method to send the usrename and password to above context
+        //Note that we return an promise object from here
+        return req.post(data).$promise;
+    }
+    
     //lisätty 26.2.2016
     factory.checkRoleForEnteringCompanyInternalPages = function(){
         

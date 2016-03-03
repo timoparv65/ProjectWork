@@ -28,6 +28,14 @@ router.post('/login',function(req,res){
 });
 
 /**
+ * Handle POST requets for /employees/admin_login context
+ */
+router.post('/admin_login',function(req,res){
+    console.log('Handle POST requets for /employees/admin_login context');
+    query.loginAdminEmployee(req,res);
+});
+
+/**
  * Handle GET requets for /employees context
  */
 router.get('/',function(req,res){
