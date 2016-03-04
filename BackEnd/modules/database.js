@@ -24,7 +24,8 @@ exports.connect = function(callback){
 
 
 var Company = mongoose.model('Company',{
-    name:String
+    name:String,
+    address:String
 },'company');
 
 var RegisterButtonState = mongoose.model('RegisterButtonState',{

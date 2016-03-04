@@ -7,22 +7,29 @@
             <!--<p>Date: <input type="text" id="datepicker"></p>-->
             <p><div id="datepicker"></div></p>
             
-            
-            <!--
-            <input id="datepicker"/>
-            <input type="text" id="time"/>
-            <input type="text" id="start"/>
-            -->
-            
         </div>
         <div class="col-sm-4 col-md-4">
             Column 2
             <a href="#/sisaisille_sivuille">Yrityksen sisäisille sivuille</a>
         </div>
-        <div class="col-sm-4 col-md-4">Column 3</div>
+        <div class="col-sm-4 col-md-4">
+
+            <!-- lataa kirjastot: eli Google Maps API. Normaalisti API key liitetään pyyntöön, nyt sitä ei ole -->
+            <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+            <!-- oma skripti, jossa tehdään juttuja paikkatiedolle -->
+            <!--<script src="/FrontEnd/lib/my_location_script.js"></script>-->
+            <div class="map_container">
+                <h3>Sijaitsemme täällä:</h3>
+                <!-- määriteltävä piirtoelementti, annetaan leveys ja korkeus. VAADITAAN -->
+                <div id="my_map" style="width:500px;height:380px;"></div>
+                <!--<input type="text" placeholder="address,city" id="osoite"/><br/>-->
+                <!--<input type="button" value="Get Map" id="getBtn">-->
+            </div>
+	
+        </div>
     </div>
     <div class="row">
         
     </div>
-    <!--<script src="/FrontEnd/lib/localization/datepicker-fi.js"></script>-->
+
 </div>
