@@ -46,6 +46,7 @@ main_module.factory('employeeDataFactory',function($resource){
             });
         }else{
             
+            console.log("companyDataFactory/getCompanyInformation: employeeArray.length != 0");
             callbackFunc(factory.employeeArray);
         }
     }

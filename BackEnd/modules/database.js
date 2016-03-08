@@ -28,6 +28,7 @@ var Company = mongoose.model('Company',{
     address:String
 },'company');
 
+
 var RegisterButtonState = mongoose.model('RegisterButtonState',{
     buttonActive:{type:Boolean, default: true}
 });

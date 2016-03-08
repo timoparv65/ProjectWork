@@ -7,6 +7,7 @@ var employee = require('./modules/employee');
 var customer = require('./modules/customer');
 var service = require('./modules/service');
 var servicechoise = require('./modules/servicechoise');
+var company = require('./modules/company');
 var acl = require('acl');
 
 
@@ -59,7 +60,9 @@ app.use('/FrontEnd/directives',express.static(path.join(__dirname, '../FrontEnd/
 app.use('/employees',employee);
 app.use('/customers',customer);
 app.use('/services',service);
-app.use('/servicechoises',servicechoise)
+app.use('/servicechoises',servicechoise);
+app.use('/companies',company);
+
 
 //=====================ROUTERS============================
 

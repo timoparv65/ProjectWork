@@ -1,11 +1,23 @@
-main_module.controller('mainController',function($scope){
+main_module.controller('mainController',function($scope,companyDataFactory){
     
     console.log('mainController loaded');
     
     $scope.selectedDate = null;
     console.log($scope.selectedDate);
     
+    companyDataFactory.getCompanyInformation(dataCallback);
+    
+    function dataCallback(dataArray){
+    
+        console.log('mainController/dataCallback');
+        console.log(dataArray);
+    
+        $scope.companyData = dataArray;
+        
+    }
+    
     $(document).ready(function(){
+        
                 $("#datepicker").datepicker(
                                             {   onSelect: function(dateText, inst) {
                                                     var date = $(this).val();
@@ -26,7 +38,9 @@ main_module.controller('mainController',function($scope){
 
 
                 var my_address = "Kiviharjunlenkki 1, Oulu";
-                console.log(my_address);
+                //console.log(my_address);
+                console.log("$scope.companyData");
+                console.log($scope.companyData);
 
                 var geocoder = new google.maps.Geocoder();
 
@@ -69,5 +83,6 @@ main_module.controller('mainController',function($scope){
                 });
 
             });
-    
+
+
 });

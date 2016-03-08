@@ -522,11 +522,36 @@ exports.deleteServiceChoise = function(req,res){
 }
 
 
+/**
+ * 
+ */
 exports.getAllServiceChoises = function(req,res){
     
     //console.log('queries/getAllServiceChoises');
     
     db.ServiceChoise.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt palvaluvaihtoehdot
+        if(err){
+            //console.log(err.message);
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            //console.log(data);
+            //200 = ok
+            res.status(200).send(data);
+        }
+    });
+}
+
+
+/**
+ * 
+ */
+exports.getCompanyInformation = function(req,res){
+    
+    console.log('queries/getCompanyInformation');
+    
+    db.Company.find(function(err,data){ // data:ssa palauttaa kaikki löydetyjen yritysten tiedot. Niitä on vain yksi
         if(err){
             //console.log(err.message);
             //500 = Internal Server Error
