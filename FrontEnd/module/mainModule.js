@@ -153,7 +153,18 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeDeleteServiceView.html',
         controller:'employeeDeleteServiceController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+    
+    }).when('/yritys_paavalikko',{
         
+        templateUrl:'partial_companyDataView.html',
+        controller:'companyDataController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+        
+    }).when('/yritys_lisaa',{
+        
+        templateUrl:'partial_companyAddView.html',
+        controller:'companyAddController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
     });
     
     

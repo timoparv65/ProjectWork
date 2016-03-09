@@ -1,0 +1,29 @@
+<nav-bar navbar-data='navbarData'></nav-bar>
+<div class='table_container'>
+    <h3>Yritys...</h3>
+    <p> Klikkaa riviä jolla yritys on kun haluat<p>
+    <p>- poistaa yrityksen tiedot</p>
+    <p>- muokata yrityksen tietoja</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nimi</th>
+                <th>Osoite</th>
+                <th>Postinumero</th>
+                <th>Paikkakunta</th>
+                <th>Maa</th>
+                <th>Puhelinnumero</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='yritys in companyData' ng-click='rowClicked(yritys._id)'>
+                <td>{{yritys.name}}</td>
+                <td>{{yritys.address}}</td>
+                <td>{{yritys.postalCode}}</td>
+                <td>{{yritys.city}}</td>
+                <td>{{yritys.country}}</td>
+                <td>{{yritys.phoneNumber}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

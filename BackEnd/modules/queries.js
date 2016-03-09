@@ -564,3 +564,28 @@ exports.getCompanyInformation = function(req,res){
         }
     });
 }
+
+
+/**
+ * This function saves new company information to our
+ * company collection
+ */
+exports.saveNewCompany = function(req,res){
+    
+    console.log('queries/saveNewCompany');
+    console.log('req.body: ' + req.body);
+    
+    var companyTemp = new db.Company(req.body);
+    
+    // save it to database
+    companyTemp.save(function(err,newData){
+        
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).json({message:'Fail'});
+        }else{
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+    });
+}

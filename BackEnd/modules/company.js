@@ -19,4 +19,12 @@ router.get('/',function(req,res){
     query.getCompanyInformation(req,res);
 });
 
+/**
+ * Handle POST requets for /companies context
+ */
+router.post('/',function(req,res){
+    console.log('Handle POST requets for /companies context');
+    query.saveNewCompany(req,res);
+});
+
 module.exports = router;

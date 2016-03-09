@@ -1,8 +1,8 @@
 /**
  *This file is database model for the barbershop-hairdresser company
- *Version:0.0.2
+ *Version:0.0.3
  *Author:Timo Parviainen
- *Description: Added Access Control List (acl) module
+ *Description: Modified Company database model
  */
 
 var mongoose = require("mongoose");
@@ -25,7 +25,11 @@ exports.connect = function(callback){
 
 var Company = mongoose.model('Company',{
     name:String,
-    address:String
+    address:String,
+    postalCode:Number,
+    city:String,
+    country:String,
+    phoneNumber:String
 },'company');
 
 
