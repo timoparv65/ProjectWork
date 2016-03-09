@@ -6,7 +6,7 @@ main_module.factory('companyDataFactory',function($resource){
     
     factory.informationArray = [];
     
-    factory.getCompanyInformation = function(callBackFunc){
+    factory.getCompanyInformation = function(callbackFunc){
         
         console.log("companyDataFactory/getCompanyInformation");
         
