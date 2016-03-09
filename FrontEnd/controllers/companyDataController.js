@@ -27,7 +27,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
         companyDataFactory.selected_id = id;
         console.log('companyDataFactory.selected_id: ' + companyDataFactory.selected_id);
         //$location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko').replace();
-        //$location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko');
+        $location.path('/yrityksen_tiedot_paavalikko');
     }
     
     

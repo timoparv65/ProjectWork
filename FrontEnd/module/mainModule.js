@@ -165,6 +165,13 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_companyAddView.html',
         controller:'companyAddController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+    
+    }).when('/yrityksen_tiedot_paavalikko',{
+        
+        templateUrl:'partial_companyListFunctionsView.html',
+        controller:'companyListFunctionsController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+        
     });
     
     

@@ -110,7 +110,8 @@ app.get('/isLoggedToCompanyAdminPages',function(req,res){
     }
 });
 
-
+// this router checks if user has rights to company's private pages. I.e. user must be
+// employee with member or admin user role
 app.get('/company_private_pages',function(req,res,next){
     console.log('index.js/company_private_pages');
     
@@ -136,6 +137,8 @@ app.get('/company_private_pages',function(req,res,next){
 });
 
 
+// this router checks if user has rights to company's administration pages. I.e. user must be
+// employee with admin user role
 app.get('/company_admin_pages',function(req,res,next){
     console.log('index.js/company_admin_pages');
     

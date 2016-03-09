@@ -18,7 +18,11 @@
             <!-- oma skripti, jossa tehdään juttuja paikkatiedolle -->
             <!--<script src="/FrontEnd/lib/my_location_script.js"></script>-->
             <div class="map_container">
-                <h3>Sijaitsemme täällä:</h3>
+                <!--<h3>Sijaitsemme täällä:</h3>-->
+                <h4 ng-model='companyData'>
+                    Parturi-kampaamo {{companyData.name}}<br/>
+                    {{companyData.address}}, {{companyData.city}}
+                </h4>
                 <!-- määriteltävä piirtoelementti, annetaan leveys ja korkeus. VAADITAAN -->
                 <div id="my_map" style="width:500px;height:380px;"></div>
                 <!--<input type="text" placeholder="address,city" id="osoite"/><br/>-->
