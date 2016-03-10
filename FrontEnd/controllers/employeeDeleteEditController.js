@@ -1,12 +1,12 @@
-main_module.controller('employeeeDeleteEditController',function($scope,employeeDataFactory,$location,Flash){
+main_module.controller('employeeDeleteEditController',function($scope,employeeDataFactory,$location,Flash){
     
-    console.log('employeeeDeleteEditController loaded');
+    console.log('employeeDeleteEditController loaded');
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['/logout'],
+        texts:['Poistu'],
+        classes:['']
     }
     
     $scope.deleteArray = [];
@@ -22,7 +22,7 @@ main_module.controller('employeeeDeleteEditController',function($scope,employeeD
     
     $scope.saveEmployeeClicked = function(){
         
-        console.log('employeeeDeleteEditController/saveEmployeeClicked');
+        console.log('employeeDeleteEditController/saveEmployeeClicked');
         
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveEmployee').attr("disabled", true);
@@ -43,7 +43,7 @@ main_module.controller('employeeeDeleteEditController',function($scope,employeeD
     
     function success(){
         
-        console.log('employeeeDeleteEditController/success');
+        console.log('employeeDeleteEditController/success');
         
         employeeDataFactory.serviceChoiseArray = [];
         $scope.name = "";
@@ -60,7 +60,7 @@ main_module.controller('employeeeDeleteEditController',function($scope,employeeD
     
     function error(data){
         
-        console.log('employeeeDeleteEditController/error');
+        console.log('employeeDeleteEditController/error');
         
         Flash.create('danger','Palvelun tietojen muokkaus epäonnistui. Koodi oli jo käytössä!', 'custom-class');
         
@@ -71,7 +71,7 @@ main_module.controller('employeeeDeleteEditController',function($scope,employeeD
     
     $scope.deleteEmployeeClicked = function(){
         
-        console.log('employeeeDeleteEditController/deleteEmployeeClicked');
+        console.log('employeeDeleteEditController/deleteEmployeeClicked');
         
         // estetään Delete-napin painaminen sillä välin kun tiedot poistetaan tietokannasta
         $('#deleteEmployee').attr("disabled", true);

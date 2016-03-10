@@ -4,9 +4,9 @@ main_module.controller('employeeListFunctionsController',function($scope,employe
     
     $scope.navbarData = {
         
-        urls:['/logout','#/tyontekija_paavalikko','#/tyontekija_muokkaa_poista'],
-        texts:['Poistu','Työntekijä','Muokkaa tai poista työntekijä'],
-        classes:['','','']
+        urls:['/logout','#/tyontekija_paavalikko','#/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko','#/tyontekija_muokkaa_poista','#/tyontekijan_palvelut_paavalikko'],
+        texts:['Poistu','Työntekijät','Työntekijä','Muokkaa/poista','Lisää/poista palvelu'],
+        classes:['','','active','','']
     }
 
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();

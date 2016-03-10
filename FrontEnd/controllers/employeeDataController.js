@@ -7,7 +7,7 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/tyontekija_paavalikko','#/tyontekija_lisaa'],
-        texts:['Poistu','Hallinnointi pääsivu','Työntekijä','Lisää työntekijä'],
+        texts:['Poistu','Hallinnointi pääsivu','Työntekijät','Lisää työntekijä'],
         classes:['','','active','']
     }
     

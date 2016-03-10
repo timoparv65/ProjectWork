@@ -6,9 +6,9 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['/logout','#/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko'],
+        texts:['Poistu','Työntekijä'],
+        classes:['','']
     }
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();

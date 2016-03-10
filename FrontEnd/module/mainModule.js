@@ -138,7 +138,7 @@ main_module.config(function($routeProvider){
         
     }).when('/tyontekija_muokkaa_poista',{
         
-        emplateUrl:'partial_employeeDeleteEditView.html',
+        templateUrl:'partial_employeeDeleteEditView.html',
         controller:'employeeDeleteEditController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
     
@@ -160,6 +160,18 @@ main_module.config(function($routeProvider){
         controller:'employeeDeleteServiceController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
     
+    }).when('/tyontekijan_varaukset_paavalikko',{
+        
+        templateUrl:'partial_employeeReservationsMainView.html',
+        controller:'employeeReservationsMainController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+        
+    }).when('/tyontekijan_poissaolot_paavalikko',{
+        
+        templateUrl:'partial_employeeAbsencesMainView.html',
+        controller:'employeeAbsencesMainController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+        
     }).when('/yritys_paavalikko',{
         
         templateUrl:'partial_companyDataView.html',
@@ -179,6 +191,5 @@ main_module.config(function($routeProvider){
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
         
     });
-    
     
 });

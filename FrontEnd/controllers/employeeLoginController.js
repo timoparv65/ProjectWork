@@ -1,6 +1,19 @@
-main_module.controller('employeeLoginController',function($scope,employeeLoginFactory,$location,Flash){
+main_module.controller('employeeLoginController',function($scope,employeeLoginFactory,$location,Flash,companyDataFactory){
     
     console.log('employeeLoginController loaded');
+    
+    $scope.companyData = [];
+    
+    companyDataFactory.getCompanyInformation(dataCallback);
+    
+    function dataCallback(dataArray){
+    
+        console.log('mainController/dataCallback');
+        console.log("dataArray[0]");
+        console.log(dataArray[0]);
+    
+        $scope.companyData = dataArray[0];
+    }
     
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){

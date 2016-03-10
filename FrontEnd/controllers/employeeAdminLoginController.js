@@ -5,9 +5,9 @@ main_module.controller('employeeAdminLoginController',function($scope,employeeLo
     
     $scope.navbarData = {
         
-        urls:['/logout','#/','#/sovelluksen_hallinnointi_login'],
-        texts:['Poistu','Pääsivu','Sovelluksen hallinnointi'],
-        classes:['','','active']
+        urls:['/logout','#/sovelluksen_paasivu',],
+        texts:['Poistu','Pääsivu'],
+        classes:['','']
     }
     
 
