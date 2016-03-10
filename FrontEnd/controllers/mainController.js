@@ -31,18 +31,28 @@ main_module.controller('mainController',function($scope,companyDataFactory){
                                     },
                                     $.datepicker.regional[ "fi" ]
         );
+        
 
+    });
 
-        var my_address = "Kiviharjunlenkki 1, Oulu";
-        //console.log(my_address);
-        //var my_address2 = $scope.companyData.name;
-        //console.log("my_address2: " + my_address2);
+    
+    function dataCallback(dataArray){
+    
+        console.log('mainController/dataCallback');
+        console.log("dataArray[0]");
+        console.log(dataArray[0]);
+    
+        $scope.companyData = dataArray[0];
+
+        //var my_address = $scope.companyData.address;
+        //console.log("my_address: " + my_address);
 
         var geocoder = new google.maps.Geocoder();
 
         // kts. GeocoderRequest object specification
         var geoCodeRequest = {
-            address:my_address
+            //address:my_address
+            address:$scope.companyData.address
         }
 
         geocoder.geocode(geoCodeRequest,function(response,status){
@@ -67,7 +77,7 @@ main_module.controller('mainController',function($scope,companyDataFactory){
                 var marker = new google.maps.Marker({
                     position: latlng, 
                     map: map,  // mihin karttaan piirretään
-                    title:"Olemme täällä"
+                    title:"Parturi-kampaamo " + $scope.companyData.name + ",\n" + $scope.companyData.address
                 });
 
 
@@ -77,18 +87,8 @@ main_module.controller('mainController',function($scope,companyDataFactory){
             }
 
         });
-
-    });
-
-    
-    function dataCallback(dataArray){
-    
-        console.log('mainController/dataCallback');
-        console.log("dataArray[0]");
-        console.log(dataArray[0]);
-    
-        $scope.companyData = dataArray[0];
         
     }
+    
 
 });
