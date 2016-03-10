@@ -2,6 +2,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
     
     console.log('employeeAddServiceController loaded');
     
+    $scope.serviceChoiseData = [];
+    
     $scope.navbarData = {
         
         urls:[],

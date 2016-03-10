@@ -2,6 +2,8 @@ main_module.controller('employeeReservationsController',function($scope,employee
     
     console.log('employeeReservationsController loaded');
     
+    $scope.employeeData = [];
+    
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_login'],

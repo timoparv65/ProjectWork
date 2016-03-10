@@ -37,8 +37,7 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
         
         console.log(temp);
         
-        employeeDataFactory.updateServiceData(temp).then(success,error);
-        
+        employeeDataFactory.updateServiceData(temp).then(success,error); 
     }
     
     function success(){

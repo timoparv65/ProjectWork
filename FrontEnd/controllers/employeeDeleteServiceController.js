@@ -10,6 +10,7 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
     }
     
     $scope.deleteArray = [];
+    $scope.serviceData = [];
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
     

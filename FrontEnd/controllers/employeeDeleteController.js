@@ -17,6 +17,7 @@ main_module.controller('employeeDeleteController',function($scope,employeeDataFa
     var dataArray = [];
     dataArray.push(selectedEmployee);
     $scope.employeeData = dataArray;
+    
     console.log('$scope.employeeData');
     console.log($scope.employeeData);
     

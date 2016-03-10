@@ -2,6 +2,8 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
     
     console.log('companyDataController loaded');
     
+    $scope.companyData = [];
+    
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/yritys_paavalikko','#/yritys_lisaa'],
@@ -26,7 +28,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
         
         companyDataFactory.selected_id = id;
         console.log('companyDataFactory.selected_id: ' + companyDataFactory.selected_id);
-        //$location.path('/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko').replace();
+        //$location.path('/yrityksen_tiedot_paavalikko').replace();
         $location.path('/yrityksen_tiedot_paavalikko');
     }
     

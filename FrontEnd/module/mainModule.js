@@ -135,6 +135,12 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeEditView.html',
         controller:'employeeEditController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
+        
+    }).when('/tyontekija_muokkaa_poista',{
+        
+        emplateUrl:'partial_employeeDeleteEditView.html',
+        controller:'employeeDeleteEditController',
+        resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
     
     }).when('/tyontekijan_palvelut_paavalikko',{
         

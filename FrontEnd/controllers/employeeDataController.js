@@ -2,6 +2,8 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
     
     console.log('employeeDataController loaded');
     
+    $scope.employeeData = [];
+    
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/tyontekija_paavalikko','#/tyontekija_lisaa'],

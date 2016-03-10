@@ -2,6 +2,8 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
     
     console.log('serviceDataController loaded');
     
+    $scope.serviceData = [];
+    
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/palvelu_lisaa'],
@@ -27,7 +29,7 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
         employeeDataFactory.selected_service_choise_id = id;
         console.log('employeeDataFactory.selected_service_choise_id: ' + employeeDataFactory.selected_service_choise_id);
         
-        //$location.path('/palvelut_muokkaa_poista_paavalikko').replace();
+        //$location.path('/palvelu_muokkaa_poista').replace();
         $location.path('/palvelu_muokkaa_poista').replace();
 
     }

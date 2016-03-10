@@ -187,7 +187,6 @@ main_module.factory('employeeDataFactory',function($resource){
     }
     
     
-   // -------------------
         
     factory.insertServiceChoiseData = function(data){
         

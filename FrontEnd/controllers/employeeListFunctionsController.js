@@ -4,9 +4,9 @@ main_module.controller('employeeListFunctionsController',function($scope,employe
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['/logout','#/tyontekija_paavalikko','#/tyontekija_muokkaa_poista'],
+        texts:['Poistu','Työntekijä','Muokkaa tai poista työntekijä'],
+        classes:['','','']
     }
 
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();

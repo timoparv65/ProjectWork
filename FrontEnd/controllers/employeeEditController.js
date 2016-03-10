@@ -33,7 +33,6 @@ main_module.controller('employeeEditController',function($scope,employeeDataFact
         
         console.log(temp);
         
-       // employeeDataFactory.updateData(temp).then(success,error);
         employeeDataFactory.updateData(temp).then(success,error);
         
     }
