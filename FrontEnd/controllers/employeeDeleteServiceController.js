@@ -4,9 +4,9 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['#/sovelluksen_paasivu','#/tyontekijan_palvelut_paavalikko','#/tyontekija_poista_palvelu'],
+        texts:['Poistu','Palvelut','Poista palvelu'],
+        classes:['','','active']
     }
     
     $scope.deleteArray = [];

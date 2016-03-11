@@ -4,7 +4,7 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
     
     $scope.navbarData = {
         
-        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/palvelu_muokkaa_poista'],
+        urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/palvelut_paavalikko','#/palvelu_muokkaa_poista'],
         texts:['Poistu','Hallinnointi pääsivu','Palvelut','Muokkaa tai poista palvelu'],
         classes:['','','','active']
     }

@@ -78,7 +78,7 @@ app.get('/isLoggedToCompanyPrivatePages',function(req,res){
     console.log('index.js/isLoggedToCompanyPrivatePages');
     
     console.log('req.session.userId: ' + req.session.userId);
-    //console.log(req.session.userId);
+    console.log('req.session.adminId: ' + req.session.adminId);
     
     // User is logged in if session contains userId attribute
     if(req.session.userId){
@@ -97,7 +97,7 @@ app.get('/isLoggedToCompanyAdminPages',function(req,res){
     console.log('index.js/isLoggedToCompanyAdminPages');
     
     console.log('req.session.adminId: ' + req.session.adminId);
-    //console.log(req.session.adminId);
+    console.log('req.session.userId: ' + req.session.userId);
     
     // User is logged in if session contains userId attribute
     if(req.session.adminId){
@@ -168,6 +168,7 @@ app.get('/reset_session_admin_id',function(req,res,next){
     console.log('index.js/reset_session_admin_id');
     
     console.log('req.session.userId: ' + req.session.userId);
+
     console.log('1) req.session.adminId ' + req.session.adminId);
     req.session.adminId = null;
     console.log('2) req.session.adminId ' + req.session.adminId);

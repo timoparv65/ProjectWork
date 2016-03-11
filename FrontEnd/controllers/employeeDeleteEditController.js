@@ -4,9 +4,9 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
     
     $scope.navbarData = {
         
-        urls:['/logout'],
-        texts:['Poistu'],
-        classes:['']
+        urls:['#/sovelluksen_paasivu','#/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko','#/tyontekija_muokkaa_poista'],
+        texts:['Poistu','Työntekijä','Muokkaa/poista'],
+        classes:['','','active']
     }
     
     $scope.deleteArray = [];

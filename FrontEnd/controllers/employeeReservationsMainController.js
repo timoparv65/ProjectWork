@@ -4,9 +4,9 @@ main_module.controller('employeeReservationsMainController',function($scope){
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['#/sovelluksen_paasivu','#/tyontekijan_tiedot_palvelut_varaukset_poissaolot_paavalikko','#/tyontekijan_varaukset_paavalikko'],
+        texts:['Poistu','Työntekijä','Varaukset'],
+        classes:['','','active']
     }
 
     

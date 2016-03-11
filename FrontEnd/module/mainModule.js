@@ -129,9 +129,9 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeDeleteView.html',
         controller:'employeeDeleteController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
-    
+        
     }).when('/tyontekija_muokkaa_tietoja',{
-    
+        
         templateUrl:'partial_employeeEditView.html',
         controller:'employeeEditController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
@@ -141,7 +141,7 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_employeeDeleteEditView.html',
         controller:'employeeDeleteEditController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
-    
+        
     }).when('/tyontekijan_palvelut_paavalikko',{
         
         templateUrl:'partial_employeeServicesMainView.html',

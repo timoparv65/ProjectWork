@@ -6,9 +6,9 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
     
     $scope.navbarData = {
         
-        urls:[],
-        texts:[],
-        classes:[]
+        urls:['#/sovelluksen_paasivu','#/tyontekijan_palvelut_paavalikko','#/tyontekija_lisaa_palvelu'],
+        texts:['Poistu','Palvelut','Lisää palvelu'],
+        classes:['','','active']
     }
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
