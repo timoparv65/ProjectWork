@@ -5,9 +5,9 @@ main_module.controller('employeeAdminLoginController',function($scope,employeeLo
     
     $scope.navbarData = {
         
-        urls:['/logout','#/sovelluksen_paasivu',],
-        texts:['Poistu','Pääsivu'],
-        classes:['','']
+        urls:['/logout','#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_login'],
+        texts:['Poistu','Pääsivu','Sovelluksen hallinnointi'],
+        classes:['','','active']
     }
     
 
@@ -38,6 +38,9 @@ main_module.controller('employeeAdminLoginController',function($scope,employeeLo
                 console.log('err2');
                 console.log(err2.message);
                 Flash.create('danger', 'Käyttäjällä ei ole oikeutta palveluun', 'custom-class');
+                
+                $scope.user = "";
+                $scope.passwd = "";
             });
             
         },function(err1){
@@ -45,6 +48,9 @@ main_module.controller('employeeAdminLoginController',function($scope,employeeLo
             console.log(err1.message);
             
             Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');
+            
+            $scope.user = "";
+            $scope.passwd = "";
         });
     }
     

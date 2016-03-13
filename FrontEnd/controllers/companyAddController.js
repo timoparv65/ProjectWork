@@ -2,11 +2,25 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
     
     console.log('companyAddController loaded');
     
+    $scope.companyData = [];
+    
     $scope.navbarData = {
         
         urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/yritys_paavalikko','#/yritys_lisaa'],
         texts:['Poistu','Hallinnointi pääsivu','Yritys','Lisää yrityksen tiedot'],
         classes:['','','','active']
+    }
+    
+    
+    companyDataFactory.getCompanyInformation(dataCallback);
+    
+    function dataCallback(dataArray){
+    
+        console.log('companyAddController/dataCallback');
+        console.log(dataArray);
+    
+        $scope.companyData = dataArray;
+
     }
     
     

@@ -15,7 +15,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat='palvelu in serviceData' ng-click='rowClicked(palvelu._id)'>
+            <!--<tr ng-repeat='palvelu in serviceData' ng-click='rowClicked(palvelu._id)'>-->
+            <tr ng-repeat='palvelu in serviceData'>
                 <td>{{palvelu.category}}</td>
                 <td>{{palvelu.description}}</td>
                 <td>{{palvelu.duration}}</td>

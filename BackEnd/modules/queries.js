@@ -319,7 +319,7 @@ exports.deleteEmployee = function(req,res){
 exports.saveNewService = function(req,res){
     
     console.log('queries/saveNewService');
-    //console.log(req.body);
+    console.log(req.body);
     
     var temp = {
         category: req.body.category,
