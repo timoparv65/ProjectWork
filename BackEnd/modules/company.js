@@ -27,4 +27,20 @@ router.post('/',function(req,res){
     query.saveNewCompany(req,res);
 });
 
+/**
+ * Handle PUT requets for /companies context
+ */
+router.put('/',function(req,res){
+    console.log('Handle PUT requets for /companies context');
+    query.updateCompany(req,res);
+});
+
+/**
+ * Handle DELETE requets for /companies context
+ */
+router.delete('/',function(req,res){
+    console.log('Handle DELETE requets for /companies context');
+    query.deleteCompany(req,res);
+});
+
 module.exports = router;

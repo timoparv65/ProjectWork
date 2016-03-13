@@ -7,7 +7,7 @@ main_module.controller('employeeReservationsController',function($scope,employee
     $scope.navbarData = {
         
         urls:['/logout','#/sovelluksen_hallinnointi_login'],
-        texts:['Poistu','Hallinnoi työntekijöitä'],
+        texts:['Poistu','Sovelluksen hallinnointi'],
         classes:['','','']
     }
     

@@ -184,10 +184,12 @@ main_module.config(function($routeProvider){
         controller:'companyAddController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
     
-    }).when('/yrityksen_tiedot_paavalikko',{
+    }).when('/yritys_muokkaa_poista',{
         
-        templateUrl:'partial_companyListFunctionsView.html',
-        controller:'companyListFunctionsController',
+        //templateUrl:'partial_companyListFunctionsView.html',
+        //controller:'companyListFunctionsController',
+        templateUrl:'partial_companyDeleteEditView.html',
+        controller:'companyDeleteEditController',
         resolve:{loginRequiredToCompanyAdminPages:loginRequiredToCompanyAdminPages}
         
     });

@@ -1,8 +1,8 @@
 /**
  *This file gives query services
- *Version:0.0.2
+ *Version:0.0.3
  *Author:Timo Parviainen
- *Description:Cteated this new file
+ *Description: Added updateCompany and deleteCompany
  */
 
 var db = require('./database');
@@ -589,3 +589,69 @@ exports.saveNewCompany = function(req,res){
         }
     });
 }
+
+/**
+ * This function updates company information to our
+ * company collection
+ */
+exports.updateCompany = function(req,res){
+    
+    console.log('queries/updateCompany');
+    console.log('req.body: ' + req.body);
+    
+    var updateData = {
+        name:req.body.name,
+        address:req.body.address,
+        postalCode:req.body.postalCode,
+        city:req.body.city,
+        country:req.body.country,
+        phoneNumber:req.body.phoneNumber
+    }
+    
+    console.log(updateData);
+    
+    db.Company.update({_id:req.body.id},updateData,function(err){
+        
+        if(err){
+            
+            res.status(500).json({message:err.message});
+        }else{
+            
+            res.status(200).json({message:"Data updated"});
+        }
+    });
+
+}
+
+/**
+ * This function deletes company information from our
+ * company collection
+ */
+exports.deleteCompany = function(req,res){
+    
+    console.log('queries/deleteCompany');
+    console.log(req.body);
+    console.log(req.query);
+    
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    console.log('toDelete: ' + toDelete);
+    
+    db.Company.remove({_id:{$in:toDelete}},function(err,data){
+        
+        if(err){
+            
+            //console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            
+            res.status(200).send({message:'Delete success'});
+        }
+    });
+}
+

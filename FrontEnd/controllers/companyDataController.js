@@ -6,7 +6,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
     
     $scope.navbarData = {
         
-        urls:['/logout','#/sovelluksen_hallinnointi_paasivu','#/yritys_paavalikko','#/yritys_lisaa'],
+        urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/yritys_paavalikko','#/yritys_lisaa'],
         texts:['Poistu','Hallinnointi pääsivu','Yritys','Lisää yrityksen tiedot'],
         classes:['','','active','']
     }
@@ -29,7 +29,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
         companyDataFactory.selected_id = id;
         console.log('companyDataFactory.selected_id: ' + companyDataFactory.selected_id);
         //$location.path('/yrityksen_tiedot_paavalikko').replace();
-        $location.path('/yrityksen_tiedot_paavalikko');
+        $location.path('/yritys_muokkaa_poista');
     }
     
     
