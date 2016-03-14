@@ -52,7 +52,7 @@ main_module.controller('mainController',function($scope,companyDataFactory){
         // kts. GeocoderRequest object specification
         var geoCodeRequest = {
             //address:my_address
-            address:$scope.companyData.address
+            address:$scope.companyData.address + "," + $scope.companyData.city
         }
 
         geocoder.geocode(geoCodeRequest,function(response,status){
