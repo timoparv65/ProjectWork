@@ -24,6 +24,12 @@ main_module.controller('mainController',function($scope,companyDataFactory){
                                             $scope.selectedDate = date;
                                             console.log("$scope.selectedDate(2)");
                                             console.log($scope.selectedDate);
+                                     
+                                            var dateAsString = dateText; //the first parameter of this function
+                                            var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+                                            console.log("dateAsString: " + dateAsString);
+                                            console.log("dateAsObject");
+                                            console.log(dateAsObject);
                                         },
                                         dateFormat: "yy-mm-dd",
                                         beforeShowDay: $.datepicker.noWeekends,
