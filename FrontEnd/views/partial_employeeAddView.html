@@ -4,7 +4,11 @@
     <input class="form-control" type="text" placeholder="nimi" ng-model="name"><br/>
     <input class="form-control" type="password" placeholder="salasana" ng-model="passwd"><br/>
     <input class="form-control" type="email" placeholder="sähköposti osoite" ng-model="emailaddr"><br/>
-    <input class="form-control" type="role" placeholder="käyttäjän rooli" ng-model="emplrole"><br/>
+    <!--<input class="form-control" type="text" placeholder="käyttäjän rooli" ng-model="emplrole"><br/>-->
+    <select class="form-control" name="userRole" ng-model="selectedRole">
+        <option value="admin">admin</option>
+        <option value="member" selected>member</option>
+    </select><br/>
     <input id="saveEmployee" class="btn btn-default" type="button" value="Tallenna" ng-click='saveEmployeeClicked()'>
 </form>
 <div class="flash-style" flash-message="4000"></div>

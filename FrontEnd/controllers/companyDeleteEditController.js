@@ -13,6 +13,7 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
     $scope.deleteArray = [];
     
     $scope.selectedCompany = companyDataFactory.getSelectedCompany();
+    console.log('$scope.selectedCompany');
     console.log($scope.selectedCompany);
     
     $scope.id = $scope.selectedCompany._id;
