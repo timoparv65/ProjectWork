@@ -26,7 +26,7 @@ var conn = require('./modules/database').connect(builAuthorization);
 // luo session ja cookien
 app.use(session({
     secret:uuid.v1(),
-    cookie:{maxAge:1200000} // kuinka kauan cookie on valid => 1200'000 ms = 20min
+    cookie:{maxAge:2400000} // kuinka kauan cookie on valid => 2400'000 ms = 40min
 }));
 
 //Bodyparser json() middleware parses the json object

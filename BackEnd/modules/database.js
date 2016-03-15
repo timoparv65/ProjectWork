@@ -2,7 +2,8 @@
  *This file is database model for the barbershop-hairdresser company
  *Version:0.0.3
  *Author:Timo Parviainen
- *Description: Modified Company database model
+ *Description: Modified Company and Employee database models, added ofDate
+ *             database model
  */
 
 var mongoose = require("mongoose");
@@ -28,8 +29,11 @@ var Company = mongoose.model('Company',{
     address:String,
     postalCode:Number,
     city:String,
-    country:String,
-    phoneNumber:String
+    country:{type:String, default:'Finland'},
+    phoneNumber:String,
+    openingTime:{type:Number, default:8},
+    closingTime:{type:Number, default:20},
+    timeRaster:{type:Number, default:15} // aikarasterin oletusarvo on 15 minuuttia
 },'company');
 
 
@@ -43,16 +47,17 @@ var Employee = mongoose.model('Employee',{
     email:{type:String,unique:true},
     role:String,
     picture:String,
-    ofDates:[Date], // milloin on poissa töistä
+    ofDates:[{type:mongoose.Schema.Types.ObjectId,ref:'ofDate'}], // milloin on poissa töistä
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
-    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
+    assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}], // varaukset
+    company:{type:mongoose.Schema.Types.ObjectId,ref:'Company'}
 },'employee');
 
 
 var Reservation = mongoose.model('Reservation',{
     date:Date,
-    openingTime:String,
-    closingTime:String,
+    startingTime:String,
+    finnishTime:String,
     employee:{type:mongoose.Schema.Types.ObjectId,ref:'Employee'},
     customer:{type:mongoose.Schema.Types.ObjectId,ref:'Customer'}
 },'reservation');
@@ -67,8 +72,8 @@ var Customer = mongoose.model('Customer',{
 
 
 var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInfo',{
-    openingHour:String,
-    duration:{type:Number},
+    openingTime:String,
+    closingTime:String,
     timeRaster:{type:Number, default:15} // aikarasterin oletusarvo on 15 minuuttia
 },'generateopeninghourstableinfo');
 
@@ -86,12 +91,18 @@ var ServiceChoise = mongoose.model('ServiceChoise',{
     code:{type:Number,unique:true}
 });
 
+var ofDate = mongoose.model('ofDate',{
+    startingTime:Date,
+    finnishTime:Date
+},'ofDate');
+
 //Using exports object you expose the data to other modules
 exports.Employee = Employee;
 exports.Reservation = Reservation;
 exports.Customer = Customer;
-exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
+//exports.GenerateOpeningHoursTableInfo = GenerateOpeningHoursTableInfo;
 exports.RegisterButtonState = RegisterButtonState;
 exports.Service = Service;
 exports.ServiceChoise = ServiceChoise;
 exports.Company = Company;
+exports.ofDate = ofDate;

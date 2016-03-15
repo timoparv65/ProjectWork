@@ -38,7 +38,10 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             postalCode:$scope.postalcode,
             city:$scope.city,
             country:$scope.country,
-            phoneNumber:$scope.phonenumber
+            phoneNumber:$scope.phonenumber,
+            openingTime:$scope.openingtime,
+            closingTime:$scope.closingtime,
+            timeRaster:$scope.timeraster
         };
         
         console.log(temp);
@@ -48,7 +51,10 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             temp.postalCode.length === 0 ||
             temp.city.length === 0 ||
             temp.country.length === 0 ||
-            temp.phoneNumber.length === 0){
+            temp.phoneNumber.length === 0 ||
+            temp.openingTime.length === 0 ||
+            temp.closingTime.length === 0 ||
+            temp.timeRaster.length === 0){
             
             alert('Jokin kenttä tyhjä!');
             return;
@@ -73,6 +79,9 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             $scope.city = "";
             $scope.country = "";
             $scope.phonenumber = "";
+            $scope.openingtime = "";
+            $scope.closingtime = "";
+            $scope.timeraster = "";
             
             // sallitaan Save-napin painaminen
             $('#saveCompany').attr("disabled", false);

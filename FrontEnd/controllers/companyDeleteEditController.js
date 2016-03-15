@@ -22,6 +22,9 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
     $scope.city = $scope.selectedCompany.city;
     $scope.country = $scope.selectedCompany.country;
     $scope.phonenumber = $scope.selectedCompany.phoneNumber;
+    $scope.openingtime = $scope.selectedCompany.openingTime;
+    $scope.closingtime = $scope.selectedCompany.closingTime;
+    $scope.timeraster = $scope.selectedCompany.timeRaster;
     
     $scope.saveCompanyClicked = function(){
         
@@ -37,7 +40,10 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
             postalCode:$scope.postalcode,
             city:$scope.city,
             country:$scope.country,
-            phoneNumber:$scope.phonenumber
+            phoneNumber:$scope.phonenumber,
+            openingTime:$scope.openingtime,
+            closingTime:$scope.closingtime,
+            timeRaster:$scope.timeraster
         }
         
         console.log(temp);
@@ -57,6 +63,9 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
         $scope.city = "";
         $scope.country = "";
         $scope.phonenumber = "";
+        $scope.openingtime = "";
+        $scope.closingtime = "";
+        $scope.timeraster = "";
         
         Flash.create('success', 'Yrityksen tietoja muokattu onnistuneesti!', 'custom-class');
         

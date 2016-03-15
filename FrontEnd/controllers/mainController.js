@@ -1,6 +1,8 @@
-main_module.controller('mainController',function($scope,companyDataFactory){
+main_module.controller('mainController',function($scope,companyDataFactory,employeeDataFactory){
     
     console.log('mainController loaded');
+    
+    $scope.employeeData = [];
     
     $scope.selectedDate = null;
     console.log("$scope.selectedDate(1)");
@@ -8,6 +10,7 @@ main_module.controller('mainController',function($scope,companyDataFactory){
     
     companyDataFactory.getCompanyInformation(dataCallback);
     
+    employeeDataFactory.getEmployees(data2Callback);
     
     $(document).ready(function(){
         
@@ -95,6 +98,21 @@ main_module.controller('mainController',function($scope,companyDataFactory){
         });
         
     }
+    
+    
+    function data2Callback(dataArray){
+    
+        console.log('mainController/data2Callback');
+        console.log(dataArray);
+    
+        $scope.employeeData = dataArray;
+    }
+    
+    /*
+    $scope.klikattuSolua = function($event){
+        console.log("mainController/klikattuSolua");
+        
+    }*/
     
 
 });

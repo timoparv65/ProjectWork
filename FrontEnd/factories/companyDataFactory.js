@@ -12,14 +12,14 @@ main_module.factory('companyDataFactory',function($resource){
         
         console.log("companyDataFactory/getCompanyInformation");
         
-        console.log('factory.companyArray.length: ' + factory.companyArray.length);
+        //console.log('factory.companyArray.length: ' + factory.companyArray.length);
         console.log('factory.selected_id: ' + factory.selected_id);
         console.log('factory.companyArray:');
         console.log(factory.companyArray);
         console.log('factory.selectedCompany:');
         console.log(factory.selectedCompany);
         
-        if (factory.companyArray.length === 0){
+        //if (factory.companyArray.length === 0){
             
             var resource = $resource('/companies',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
@@ -38,12 +38,12 @@ main_module.factory('companyDataFactory',function($resource){
                 factory.companyArray = [];
                 callbackFunc(factory.companyArray);
             });
-            
+            /*
         } else {
             
             console.log("companyDataFactory/getCompanyInformation: companyArray.length != 0");
             callbackFunc(factory.companyArray);
-        }
+        }*/
     }
     
     

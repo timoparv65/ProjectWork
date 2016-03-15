@@ -32,6 +32,7 @@
         </div>
     </div>
     <div class="row">
+        <!--
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -43,7 +44,7 @@
             <tbody>
                 <tr>
                     <td>08:00</td>
-                    <td>Vapaa</td>
+                    <td ng-click='klikattuSolua($event)'>Vapaa</td>
                     <td>Varattu</td>
                 </tr>
                 <tr>
@@ -53,6 +54,26 @@
                 </tr>
             </tbody>
         </table>
+        -->
+
+        <h3>Työntekijät ja varaukset</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th ng-repeat='tyontekija in employeeData'>
+                        {{tyontekija.name}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='aika in ["08:00","09:00","10:00"]'>
+                    <td>{{aika}}</td>
+                    <td>Varaa</td>
+                </tr>
+            </tbody>
+        </table>
+        
     </div>
 
 </div>

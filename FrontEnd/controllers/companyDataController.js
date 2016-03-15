@@ -8,7 +8,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
         
         urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/yritys_paavalikko','#/yritys_lisaa'],
         texts:['Poistu','Hallinnointi pääsivu','Yritys','Lisää yrityksen tiedot'],
-        classes:['','','active','']
+        classes:['','','active','','']
     }
     
     companyDataFactory.getCompanyInformation(dataCallback);

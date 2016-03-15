@@ -605,7 +605,10 @@ exports.updateCompany = function(req,res){
         postalCode:req.body.postalCode,
         city:req.body.city,
         country:req.body.country,
-        phoneNumber:req.body.phoneNumber
+        phoneNumber:req.body.phoneNumber,
+        openingTime:req.body.openingTime,
+        closingTime:req.body.closingTime,
+        timeRaster:req.body.timeRaster
     }
     
     console.log(updateData);

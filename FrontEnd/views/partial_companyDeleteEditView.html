@@ -13,6 +13,12 @@
     <input class="form-control" type="text" id="country" placeholder="maa" ng-model="country"><br/>
     <label for="phonenumber">Puhelinnumero</label>
     <input class="form-control" type="tel" id="phonenumber" placeholder="puhelinnumero" ng-model="phonenumber"><br/>
+    <label for="openingtime">Aukeamisaika</label>
+    <input class="form-control" type="number" id="openingtime" placeholder="aukeamisaika" ng-model="openingtime"><br/>
+    <label for="closingtime">Sulkemisaika</label>
+    <input class="form-control" type="number" id="closingtime" placeholder="sulkemisaika" ng-model="closingtime"><br/>
+    <label for="timeraster">Aikarasteri [min]</label>
+    <input class="form-control" type="number" id="timeraster" placeholder="aikarasteri/min" ng-model="timeraster"><br/>
     <input id="saveCompany" class="btn btn-default" type="button" value="Muokkaa" ng-click='saveCompanyClicked()'>
     <input id="deleteCompany" class="btn btn-default" type="button" value="Poista" ng-click='deleteCompanyClicked()'>
 </form>
