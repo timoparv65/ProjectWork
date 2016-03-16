@@ -24,16 +24,4 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
         $scope.serviceData = dataArray;
     }
     
-    /*
-    $scope.rowClicked = function(id){
-        
-        console.log('employeeServiceMainController/rowClicked');
-        
-        employeeDataFactory.selected_service_id = id;
-        console.log('employeeDataFactory.selected_service_id: ' + employeeDataFactory.selected_service_id);
-        
-        //$location.path('/tyontekija_muokkaa_palvelua').replace();
-    }*/
-
-    
 });

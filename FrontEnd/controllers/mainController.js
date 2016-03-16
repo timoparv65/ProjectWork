@@ -3,6 +3,8 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     console.log('mainController loaded');
     
     $scope.employeeData = [];
+    $scope.companyData = [];
+    $scope.bookingTimes = [];
     
     $scope.selectedDate = null;
     console.log("$scope.selectedDate(1)");
@@ -51,7 +53,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         console.log("dataArray[0]");
         console.log(dataArray[0]);
     
-        $scope.companyData = dataArray[0];
+        $scope.companyData = dataArray;
 
         //var my_address = $scope.companyData.address;
         //console.log("my_address: " + my_address);
@@ -61,7 +63,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         // kts. GeocoderRequest object specification
         var geoCodeRequest = {
             //address:my_address
-            address:$scope.companyData.address + "," + $scope.companyData.city
+            address:$scope.companyData[0].address + "," + $scope.companyData[0].city
         }
 
         geocoder.geocode(geoCodeRequest,function(response,status){
@@ -86,7 +88,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
                 var marker = new google.maps.Marker({
                     position: latlng, 
                     map: map,  // mihin karttaan piirretään
-                    title:"Parturi-kampaamo " + $scope.companyData.name + ",\n" + $scope.companyData.address
+                    title:"Parturi-kampaamo " + $scope.companyData[0].name + ",\n" + $scope.companyData[0].address
                 });
 
 
@@ -96,6 +98,39 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
             }
 
         });
+
+        var step = 60 / $scope.companyData[0].timeRaster;
+        console.log("step: " + step);
+        /*
+        for (i=0; i < 10; i += step){
+            console.log(i);
+        }*/
+        
+        var stoppi = true;
+        var tmp = 0;
+        do{
+            console.log(tmp);
+            console.log(stoppi);
+            tmp += step;
+            console.log(tmp);
+            if (tmp > 27){
+                stoppi = false;
+            }
+            console.log(stoppi);
+        }while(stoppi);
+        
+        var montako = ($scope.companyData[0].closingTime - $scope.companyData[0].openingTime) * step + 1;
+        console.log("montako: " + montako);
+        
+        var tmp2 = 0;
+        var aika = $scope.companyData[0].openingTime;
+        var tunnit = "";
+        var minuutit = 
+        do{
+            if(aika < 10){
+                aikaleima = "0" + aika.toString();
+            }
+        }while(stoppi);
         
     }
     
@@ -106,6 +141,9 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         console.log(dataArray);
     
         $scope.employeeData = dataArray;
+        
+        //console.log("$scope.companyData[0]");
+        //console.log($scope.companyData[0]);
     }
     
     /*

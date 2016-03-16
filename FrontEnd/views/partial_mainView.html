@@ -20,8 +20,8 @@
             <div class="map_container">
                 <!--<h3>Sijaitsemme täällä:</h3>-->
                 <h4 ng-model='companyData'>
-                    Parturi-kampaamo {{companyData.name}}<br/>
-                    {{companyData.address}}, {{companyData.city}}
+                    Parturi-kampaamo {{companyData[0].name}}<br/>
+                    {{companyData[0].address}}, {{companyData[0].city}}
                 </h4>
                 <!-- määriteltävä piirtoelementti, annetaan leveys ja korkeus. VAADITAAN -->
                 <div id="my_map" style="width:500px;height:380px;"></div>
