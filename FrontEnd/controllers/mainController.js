@@ -7,8 +7,8 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     $scope.bookingTimes = [];
     
     $scope.selectedDate = null;
-    console.log("$scope.selectedDate(1)");
-    console.log($scope.selectedDate);
+    //console.log("$scope.selectedDate(1)");
+    //console.log($scope.selectedDate);
     
     companyDataFactory.getCompanyInformation(dataCallback);
     
@@ -27,8 +27,8 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
                                             //$("#start").val(date + time.toString(' HH:mm'));
                                             //console.log(date + time.toString(' HH:mm').toString());
                                             $scope.selectedDate = date;
-                                            console.log("$scope.selectedDate(2)");
-                                            console.log($scope.selectedDate);
+                                            //console.log("$scope.selectedDate(2)");
+                                            //console.log($scope.selectedDate);
                                      
                                             var dateAsString = dateText; //the first parameter of this function
                                             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
@@ -134,6 +134,14 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
             }
         }while(stoppi);*/
         
+        
+        
+        console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
+        
+        var aikaraster_min = $scope.companyData[0].timeRaster.split(":")[1];
+        console.log("aikaraster_min: " + aikaraster_min);
+        //uusiAika("10:00","00:15");
+        uusiAika("23:55","00:15");
     }
     
     
@@ -163,5 +171,36 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         console.log('mainController/tulostan2DatepickerArvon');
         console.log("arvo: " + arvo);
     }
+    
+    function uusiAika(alkuaika,lisattavaaika){
+        console.log("mainController/uusiAika");
+        var alkuaika_tunnit = parseInt(alkuaika.split(":")[0]);
+        var alkuaika_minuutit = parseInt(alkuaika.split(":")[1]);
+        var lisattavaaika_tunnit = parseInt(lisattavaaika.split(":")[0]);
+        var lisattavaaika_minuutit = parseInt(lisattavaaika.split(":")[1]);
+        
+        console.log("alkuaika_tunnit: " + alkuaika_tunnit);
+        console.log("alkuaika_minuutit: " + alkuaika_minuutit);
+        console.log("lisattavaaika_tunnit: " + lisattavaaika_tunnit);
+        console.log("lisattavaaika_minuutit: " + lisattavaaika_minuutit);
+        
+        var uusiaika_tunnit = alkuaika_tunnit + lisattavaaika_tunnit;
+        console.log("(1) uusiaika_tunnit: " + uusiaika_tunnit);
+        var uusiaika_minuutit = alkuaika_minuutit + lisattavaaika_minuutit;
+        console.log("(1) uusiaika_minuutit: " + uusiaika_minuutit);
+        if (uusiaika_minuutit > 59){
+            uusiaika_tunnit += 1;
+            uusiaika_minuutit -= 60;
+        }
+    
+        if (uusiaika_tunnit > 23){
+            uusiaika_tunnit = 0;
+        }
+        
+        console.log("(2) uusiaika_tunnit: " + uusiaika_tunnit);
+        console.log("(2) uusiaika_minuutit: " + uusiaika_minuutit);
+    }
+    
+    
 
 });

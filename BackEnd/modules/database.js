@@ -31,9 +31,12 @@ var Company = mongoose.model('Company',{
     city:String,
     country:{type:String, default:'Finland'},
     phoneNumber:String,
-    openingTime:{type:Number, default:8},
-    closingTime:{type:Number, default:20},
-    timeRaster:{type:Number, default:15} // aikarasterin oletusarvo on 15 minuuttia
+    //openingTime:{type:Number, default:8},
+    openingTime:{type:String, default:"08:00"},
+    //closingTime:{type:Number, default:20},
+    closingTime:{type:String, default:"20:00"},
+    //timeRaster:{type:Number, default:15} // aikarasterin oletusarvo on 15 minuuttia
+    timeRaster:{type:String, default:"00:15"} // aikarasterin oletusarvo on 15 minuuttia
 },'company');
 
 
@@ -50,7 +53,7 @@ var Employee = mongoose.model('Employee',{
     ofDates:[{type:mongoose.Schema.Types.ObjectId,ref:'ofDate'}], // milloin on poissa töistä
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}], // varaukset
-    company:{type:mongoose.Schema.Types.ObjectId,ref:'Company'}
+    //company:{type:mongoose.Schema.Types.ObjectId,ref:'Company'}
 },'employee');
 
 
