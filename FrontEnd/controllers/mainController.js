@@ -33,8 +33,10 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
                                             var dateAsString = dateText; //the first parameter of this function
                                             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
                                             console.log("dateAsString: " + dateAsString);
+                                        tulostanDatepickerArvon(dateAsString);
                                             console.log("dateAsObject");
                                             console.log(dateAsObject);
+                                        tulostan2DatepickerArvon(dateAsObject);
                                         },
                                         dateFormat: "yy-mm-dd",
                                         beforeShowDay: $.datepicker.noWeekends,
@@ -43,7 +45,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
                                     $.datepicker.regional[ "fi" ]
         );
         
-
+        
     });
 
     
@@ -99,13 +101,13 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
 
         });
 
-        var step = 60 / $scope.companyData[0].timeRaster;
-        console.log("step: " + step);
+        //var step = 60 / $scope.companyData[0].timeRaster;
+        //console.log("step: " + step);
         /*
         for (i=0; i < 10; i += step){
             console.log(i);
         }*/
-        
+        /*
         var stoppi = true;
         var tmp = 0;
         do{
@@ -118,19 +120,19 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
             }
             console.log(stoppi);
         }while(stoppi);
-        
-        var montako = ($scope.companyData[0].closingTime - $scope.companyData[0].openingTime) * step + 1;
-        console.log("montako: " + montako);
-        
+        */
+        //var montako = ($scope.companyData[0].closingTime - $scope.companyData[0].openingTime) * step + 1;
+        //console.log("montako: " + montako);
+        /*
         var tmp2 = 0;
         var aika = $scope.companyData[0].openingTime;
         var tunnit = "";
-        var minuutit = 
+        var minuutit = 0;
         do{
             if(aika < 10){
                 aikaleima = "0" + aika.toString();
             }
-        }while(stoppi);
+        }while(stoppi);*/
         
     }
     
@@ -152,5 +154,14 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         
     }*/
     
+    function tulostanDatepickerArvon(arvo){
+        console.log('mainController/tulostanDatepickerArvon');
+        console.log("arvo: " + arvo);
+    }
+    
+    function tulostan2DatepickerArvon(arvo){
+        console.log('mainController/tulostan2DatepickerArvon');
+        console.log("arvo: " + arvo);
+    }
 
 });
