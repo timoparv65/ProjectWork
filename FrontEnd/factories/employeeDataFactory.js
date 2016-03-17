@@ -29,12 +29,12 @@ main_module.factory('employeeDataFactory',function($resource){
             
             var resource = $resource('/employees',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
-                
+
                 console.log('employeeDataFactory/getEmployees:success');
                 console.log(data);
 
-              factory.employeeArray = data;
-              callbackFunc(factory.employeeArray);    
+                factory.employeeArray = data;
+                callbackFunc(factory.employeeArray);    
                 
             },function(error){
                 

@@ -7,8 +7,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     $scope.bookingTimes = [];
     
     $scope.selectedDate = null;
-    //console.log("$scope.selectedDate(1)");
-    //console.log($scope.selectedDate);
+
     
     companyDataFactory.getCompanyInformation(dataCallback);
     
@@ -33,10 +32,10 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
                                             var dateAsString = dateText; //the first parameter of this function
                                             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
                                             console.log("dateAsString: " + dateAsString);
-                                        tulostanDatepickerArvon(dateAsString);
+                                            tulostanDatepickerArvon(dateAsString);
                                             console.log("dateAsObject");
                                             console.log(dateAsObject);
-                                        tulostan2DatepickerArvon(dateAsObject);
+                                            tulostan2DatepickerArvon(dateAsObject);
                                         },
                                         dateFormat: "yy-mm-dd",
                                         beforeShowDay: $.datepicker.noWeekends,
@@ -57,8 +56,6 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     
         $scope.companyData = dataArray;
 
-        //var my_address = $scope.companyData.address;
-        //console.log("my_address: " + my_address);
 
         var geocoder = new google.maps.Geocoder();
 
@@ -100,39 +97,6 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
             }
 
         });
-
-        //var step = 60 / $scope.companyData[0].timeRaster;
-        //console.log("step: " + step);
-        /*
-        for (i=0; i < 10; i += step){
-            console.log(i);
-        }*/
-        /*
-        var stoppi = true;
-        var tmp = 0;
-        do{
-            console.log(tmp);
-            console.log(stoppi);
-            tmp += step;
-            console.log(tmp);
-            if (tmp > 27){
-                stoppi = false;
-            }
-            console.log(stoppi);
-        }while(stoppi);
-        */
-        //var montako = ($scope.companyData[0].closingTime - $scope.companyData[0].openingTime) * step + 1;
-        //console.log("montako: " + montako);
-        /*
-        var tmp2 = 0;
-        var aika = $scope.companyData[0].openingTime;
-        var tunnit = "";
-        var minuutit = 0;
-        do{
-            if(aika < 10){
-                aikaleima = "0" + aika.toString();
-            }
-        }while(stoppi);*/
         
         
         
@@ -141,7 +105,9 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         var aikaraster_min = $scope.companyData[0].timeRaster.split(":")[1];
         console.log("aikaraster_min: " + aikaraster_min);
         //uusiAika("10:00","00:15");
-        uusiAika("23:55","00:15");
+        //uusiAika("23:55","00:15");
+        uusiAika("00:50","00:20");
+        createBookingTimes();
     }
     
     
@@ -152,8 +118,6 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     
         $scope.employeeData = dataArray;
         
-        //console.log("$scope.companyData[0]");
-        //console.log($scope.companyData[0]);
     }
     
     /*
@@ -199,6 +163,74 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         
         console.log("(2) uusiaika_tunnit: " + uusiaika_tunnit);
         console.log("(2) uusiaika_minuutit: " + uusiaika_minuutit);
+        
+        var uusiaika = "";
+        if (uusiaika_tunnit < 10){
+            uusiaika += "0";
+        }
+        uusiaika += uusiaika_tunnit.toString() + ":";
+        if(uusiaika_minuutit < 10){
+            uusiaika += "0";
+        }
+        uusiaika += uusiaika_minuutit.toString();
+        console.log("uusiaika: " + uusiaika);
+    }
+    
+    function createBookingTimes(){
+        
+        console.log("mainController/createBookingTimes");
+        
+        var stopGeneration = true;
+        var time_hours = parseInt($scope.companyData[0].openingTime.split(":")[0]);
+        var time_minutes = parseInt($scope.companyData[0].openingTime.split(":")[1]);
+        var increment_hours = parseInt($scope.companyData[0].timeRaster.split(":")[0]);
+        var increment_minutes = parseInt($scope.companyData[0].timeRaster.split(":")[1]);
+        
+        var closing_time_hours = parseInt($scope.companyData[0].closingTime.split(":")[0]);
+        var closing_time_minutes = parseInt($scope.companyData[0].closingTime.split(":")[1]);
+        
+        $scope.bookingTimes.push($scope.companyData[0].openingTime);
+        
+        do{
+            time_hours += increment_hours;
+            time_minutes += increment_minutes;
+            
+            if (time_minutes > 59){
+                time_hours += 1;
+                time_minutes -= 60;
+            }
+            
+            if (time_hours > 23){
+                time_hours = 0;
+            }
+            
+            var newTime = "";
+            if (time_hours < 10){
+                newTime += "0";
+            }
+            
+            newTime += time_hours.toString() + ":";
+            
+            if (time_minutes < 10){
+                newTime += "0";
+            }
+            
+            newTime += time_minutes.toString();
+            
+            var rule_hours = time_hours === closing_time_hours;
+            var rule_minutes = time_minutes <= closing_time_minutes;
+            if (time_hours < closing_time_hours){
+                $scope.bookingTimes.push(newTime);
+            } else if (rule_hours && rule_minutes) {
+                $scope.bookingTimes.push(newTime);
+            } else {
+                stopGeneration = false;
+            }
+            
+        } while(stopGeneration);
+        
+        console.log("$scope.bookingTimes");
+        console.log($scope.bookingTimes);
     }
     
     
