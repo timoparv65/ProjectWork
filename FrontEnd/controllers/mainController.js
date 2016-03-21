@@ -7,11 +7,16 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     $scope.bookingTimes = [];
     
     $scope.selectedDate = null;
-
+    console.log("1) $scope.selectedDate");
+    console.log($scope.selectedDate);
     
-    companyDataFactory.getCompanyInformation(dataCallback);
+    getInitialDate();
+    console.log("2) $scope.selectedDate");
+    console.log($scope.selectedDate);
     
-    employeeDataFactory.getEmployees(data2Callback);
+    companyDataFactory.getCompanyInformation(dataCallbackCompany);
+    
+    employeeDataFactory.getEmployees(dataCallbackEmployee);
     
     $(document).ready(function(){
         
@@ -19,15 +24,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
 
         $("#datepicker").datepicker(
                                     {   onSelect: function(dateText, inst) {
-                                            var date = $(this).val();
-                                            //var time = $('#time').val();
-                                            //alert('on select triggered');
-                                            //$("#start").val(date + time.toString(' HH:mm').toString());
-                                            //$("#start").val(date + time.toString(' HH:mm'));
-                                            //console.log(date + time.toString(' HH:mm').toString());
-                                            $scope.selectedDate = date;
-                                            //console.log("$scope.selectedDate(2)");
-                                            //console.log($scope.selectedDate);
+                                            //var date = $(this).val();
                                      
                                             var dateAsString = dateText; //the first parameter of this function
                                             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
@@ -48,9 +45,9 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     });
 
     
-    function dataCallback(dataArray){
+    function dataCallbackCompany(dataArray){
     
-        console.log('mainController/dataCallback');
+        console.log('mainController/dataCallbackCompany');
         console.log("dataArray[0]");
         console.log(dataArray[0]);
     
@@ -102,18 +99,14 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         
         console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
         
-        var aikaraster_min = $scope.companyData[0].timeRaster.split(":")[1];
-        console.log("aikaraster_min: " + aikaraster_min);
-        //uusiAika("10:00","00:15");
-        //uusiAika("23:55","00:15");
-        uusiAika("00:50","00:20");
+        //uusiAika("00:50","00:20");
         createBookingTimes();
     }
     
     
-    function data2Callback(dataArray){
+    function dataCallbackEmployee(dataArray){
     
-        console.log('mainController/data2Callback');
+        console.log('mainController/dataCallbackEmployee');
         console.log(dataArray);
     
         $scope.employeeData = dataArray;
@@ -129,6 +122,9 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     function tulostanDatepickerArvon(arvo){
         console.log('mainController/tulostanDatepickerArvon');
         console.log("arvo: " + arvo);
+        $scope.selectedDate = arvo;
+        console.log("3) $scope.selectedDate");
+        console.log($scope.selectedDate);
     }
     
     function tulostan2DatepickerArvon(arvo){
@@ -229,10 +225,54 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
             
         } while(stopGeneration);
         
-        console.log("$scope.bookingTimes");
-        console.log($scope.bookingTimes);
+        //console.log("$scope.bookingTimes");
+        //console.log($scope.bookingTimes); 
+       
+        
     }
     
+    
+    function getInitialDate(){
+        
+        console.log("mainController/getInitialDate");
+        
+        var today = new Date();
+        //console.log("today");
+        //console.log(today);
+        var year = today.getFullYear();
+        //console.log("year");
+        //console.log(year);
+        var month = today.getMonth();
+        //console.log("month");
+        //console.log(month);
+        var day = today.getDate();
+        //console.log("day");
+        //console.log(day);
+        
+        var dateStamp = year.toString();
+        month = month + 1;
+        if (month < 10){
+            dateStamp += "-" + "0" + month.toString() + "-";
+        }else{
+            dateStamp += "-" + month.toString() + "-";
+        }
+        dateStamp += day.toString();
+        
+        //console.log("dateStamp " + dateStamp);
+        
+        $scope.selectedDate = dateStamp;
+    }
+    
+    function createReservationTable(){
+        
+        console.log("mainController/createReservationTable");
+        
+        // yksi taulukon rivi sisältää tiedot:
+        // - kellonaika (sarake 1)
+        // - 1. työntekijän vapaa/varattu, työntekijän id (sarake 2)
+        
+        
+    }
     
 
 });

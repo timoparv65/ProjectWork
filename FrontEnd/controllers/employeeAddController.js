@@ -1,4 +1,3 @@
-//main_module.controller('employeeAddController',function($scope,Flash,employeeDataFactory,companyDataFactory,$location){
 main_module.controller('employeeAddController',function($scope,Flash,employeeDataFactory,$location){
     
     console.log('employeeAddController loaded');
@@ -11,20 +10,7 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
         texts:['Poistu','Hallinnointi pääsivu','Työntekijät','Lisää työntekijä'],
         classes:['','','','active']
     }
-    
-    /*
-    companyDataFactory.getCompanyInformation(dataCallback);
-    
-    function dataCallback(dataArray){
-    
-        console.log('employeeAddController/dataCallback');
-        console.log("dataArray");
-        console.log(dataArray);
-    
-        $scope.companyData = dataArray;
-        console.log('$scope.companyData[0]._id: ' + $scope.companyData[0]._id);
-        
-    }*/
+
     
     //Funktiototeutus Save-nappulan painallukselle partial_addEmployeeView.html ikkunassa
     $scope.saveEmployeeClicked = function(){
@@ -40,10 +26,7 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             name:$scope.name,
             password:$scope.passwd,
             email:$scope.emailaddr,
-            //role:$scope.emplrole
             role:$scope.selectedRole
-            //role:$scope.selectedRole,
-            //company:$scope.companyData[0]._id
         };
         
         console.log(temp);
@@ -72,7 +55,6 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             $scope.name = "";
             $scope.passwd = "";
             $scope.emailaddr = "";
-            //$scope.emplrole = "";
             $scope.selectedRole = "";
             
             // sallitaan Save-napin painaminen
