@@ -2,9 +2,11 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
     
     console.log('mainController loaded');
     
+    
     $scope.employeeData = [];
     $scope.companyData = [];
     $scope.bookingTimes = [];
+    $scope.reservationTable = [];
     
     $scope.selectedDate = null;
     console.log("1) $scope.selectedDate");
@@ -99,7 +101,6 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         
         console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
         
-        //uusiAika("00:50","00:20");
         createBookingTimes();
     }
     
@@ -132,45 +133,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         console.log("arvo: " + arvo);
     }
     
-    function uusiAika(alkuaika,lisattavaaika){
-        console.log("mainController/uusiAika");
-        var alkuaika_tunnit = parseInt(alkuaika.split(":")[0]);
-        var alkuaika_minuutit = parseInt(alkuaika.split(":")[1]);
-        var lisattavaaika_tunnit = parseInt(lisattavaaika.split(":")[0]);
-        var lisattavaaika_minuutit = parseInt(lisattavaaika.split(":")[1]);
-        
-        console.log("alkuaika_tunnit: " + alkuaika_tunnit);
-        console.log("alkuaika_minuutit: " + alkuaika_minuutit);
-        console.log("lisattavaaika_tunnit: " + lisattavaaika_tunnit);
-        console.log("lisattavaaika_minuutit: " + lisattavaaika_minuutit);
-        
-        var uusiaika_tunnit = alkuaika_tunnit + lisattavaaika_tunnit;
-        console.log("(1) uusiaika_tunnit: " + uusiaika_tunnit);
-        var uusiaika_minuutit = alkuaika_minuutit + lisattavaaika_minuutit;
-        console.log("(1) uusiaika_minuutit: " + uusiaika_minuutit);
-        if (uusiaika_minuutit > 59){
-            uusiaika_tunnit += 1;
-            uusiaika_minuutit -= 60;
-        }
     
-        if (uusiaika_tunnit > 23){
-            uusiaika_tunnit = 0;
-        }
-        
-        console.log("(2) uusiaika_tunnit: " + uusiaika_tunnit);
-        console.log("(2) uusiaika_minuutit: " + uusiaika_minuutit);
-        
-        var uusiaika = "";
-        if (uusiaika_tunnit < 10){
-            uusiaika += "0";
-        }
-        uusiaika += uusiaika_tunnit.toString() + ":";
-        if(uusiaika_minuutit < 10){
-            uusiaika += "0";
-        }
-        uusiaika += uusiaika_minuutit.toString();
-        console.log("uusiaika: " + uusiaika);
-    }
     
     function createBookingTimes(){
         
@@ -262,7 +225,7 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         
         $scope.selectedDate = dateStamp;
     }
-    
+    /*
     function createReservationTable(){
         
         console.log("mainController/createReservationTable");
@@ -271,8 +234,22 @@ main_module.controller('mainController',function($scope,companyDataFactory,emplo
         // - kellonaika (sarake 1)
         // - 1. työntekijän vapaa/varattu, työntekijän id (sarake 2)
         
+        for (var i = 0; i < $scope.bookingTimes.length; i++){
+            for (var j = 0; j < $scope.employeeData.length; j++) {
+                var employeeInfo = {
+                    bookingTime:$scope.bookingTimes[i],
+                    employeeId:$scope.employeeData[j]._id,
+                    reservationStatus:"Varaa"
+                }
+                //var employeeTmp = new 
+            }
+            
+            
+        }
         
-    }
+        
+        
+    }*/
     
 
 });

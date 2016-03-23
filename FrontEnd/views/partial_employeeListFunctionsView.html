@@ -1,7 +1,10 @@
 <nav-bar navbar-data='navbarData'></nav-bar>
 <div class='table_container'>
-    <!--<h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>-->
     <h3>Työntekijä: {{selectedEmployee.name}}</h3>
-    <h3>- töissä yrityksessä: {{selectedEmployee.company}}</h3>
+    <h4>- sähköpostiosoite: {{selectedEmployee.email}}</h4>
+    <h4>- rooli: {{selectedEmployee.role}}</h4>
+    <h4>- palveluiden lukumäärä: {{selectedEmployee.services.length}}</h4>
+    <h4>- varauksien lukumäärä: {{selectedEmployee.assignments.length}}</h4>
+    <h4>- poissaolojen lukumäärä: {{selectedEmployee.ofDates.length}}</h4>
     
 </div>

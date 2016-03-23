@@ -21,6 +21,7 @@
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
+    "formidable": "^1.0.17",
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.2.3",
     "uuid": "^2.0.1"
