@@ -2,8 +2,6 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
     
     console.log('employeeAddController loaded');
     
-    $scope.companyData = [];
-    
     $scope.navbarData = {
         
         urls:['#/sovelluksen_paasivu','#/sovelluksen_hallinnointi_paasivu','#/tyontekija_paavalikko','#/tyontekija_lisaa'],
@@ -18,8 +16,6 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
         
         // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
         $('#saveEmployee').attr("disabled", true);
-        
-        console.log('$scope.companyData[0]._id: ' + $scope.companyData[0]._id);
         
         // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
         var temp = {
