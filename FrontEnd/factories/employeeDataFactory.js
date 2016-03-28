@@ -1,8 +1,9 @@
 main_module.factory('employeeDataFactory',function($resource){
     
+    factory = {};
+    
     console.log('employeeDataFactory loaded');
     
-    factory = {};
     factory.selected_id = null;
     factory.selected_service_id = null;
     factory.selected_service_choise_id = null;

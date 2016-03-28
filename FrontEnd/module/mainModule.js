@@ -62,8 +62,15 @@ main_module.config(function($routeProvider){
     
     $routeProvider.when('/',{
         
-        templateUrl:'partial_mainView.html',
-        controller:'mainController'
+        //templateUrl:'partial_mainView.html',
+        //controller:'mainController'
+        templateUrl:'partial_mainPageView.html',
+        controller:'mainPageController'
+        
+    }).when('/ajanvaraus',{
+        
+        templateUrl:'partial_reservationView.html',
+        constoller:'reservationController'
         
     }).when('/sisaisille_sivuille',{
         

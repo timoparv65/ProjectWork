@@ -47,7 +47,7 @@ var Employee = mongoose.model('Employee',{
     email:{type:String,unique:true},
     role:String,
     picture:String,
-    ofDates:[{type:mongoose.Schema.Types.ObjectId,ref:'ofDate'}], // milloin on poissa töistä
+    offDays:[{type:mongoose.Schema.Types.ObjectId,ref:'offDay'}], // milloin on poissa töistä
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'employee');
@@ -90,11 +90,11 @@ var ServiceChoise = mongoose.model('ServiceChoise',{
     code:{type:Number,unique:true}
 });
 
-var ofDate = mongoose.model('ofDate',{
+var offDay = mongoose.model('offDay',{
     date:String,
     startingTime:String,
     finnishTime:String
-},'ofDate');
+},'offDay');
 
 //Using exports object you expose the data to other modules
 exports.Employee = Employee;
@@ -105,4 +105,4 @@ exports.RegisterButtonState = RegisterButtonState;
 exports.Service = Service;
 exports.ServiceChoise = ServiceChoise;
 exports.Company = Company;
-exports.ofDate = ofDate;
+exports.offDay = offDay;
