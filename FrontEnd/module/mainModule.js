@@ -70,7 +70,17 @@ main_module.config(function($routeProvider){
     }).when('/ajanvaraus',{
         
         templateUrl:'partial_reservationView.html',
-        constoller:'reservationController'
+        controller:'reservationController'
+    
+    }).when('/palvelut_ja_hinnasto',{
+        
+        templateUrl:'partial_servicesAndPricesView.html',
+        controller:'servicesAndPricesController'
+        
+    }).when('/yhteystiedot',{
+        
+        templateUrl:'partial_contactDetailsView.html',
+        controller:'contactDetailController'
         
     }).when('/sisaisille_sivuille',{
         

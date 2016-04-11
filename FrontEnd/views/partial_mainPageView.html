@@ -6,4 +6,32 @@
             <img src="/FrontEnd/css/images/dia.png">
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <h4 style="color:deeppink" ng-model='companyData'>
+                {{companyData[0].name}} parturi-kampaamo
+            </h4>
+            <h4 ng-model='companyData'>
+                {{companyData[0].address}}, {{companyData[0].postalCode}} {{companyData[0].city}}
+            </h4>
+            <h4 ng-model='companyData'>
+                puh. {{companyData[0].phoneNumber}}
+            </h4><br/>
+            <h4 ng-model='companyData'>
+                Avoinna:<br/>
+                Ma-Pe: {{companyData[0].openingTime}}-{{companyData[0].closingTime}}<br/>
+                La,Su: suljettu
+            </h4>
+        </div>
+        <!--<div class="col-sm-4 col-md-4">
+            <h4 style="color:deeppink">Ajankohtaista</h4>
+            <a href="#/ajanvaraus">Nettiajanvaraus käytössä, kokeile miten helppoa</a>
+        </div>-->
+        <div class="col-sm-8 col-md-8">
+            <div class="map_container">
+                <!--<div id="my_map" style="width:500px;height:380px;"></div>-->
+                <div id="my_map" style="width:400px;height:304px;"></div>
+            </div>
+        </div>
+    </div>
 </div>

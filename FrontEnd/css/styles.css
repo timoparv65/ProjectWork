@@ -36,7 +36,8 @@ html,body{
 
 .map_container{
 	
-	width: 518px;
+	/*width: 518px;*/
+    width:418px;
 	margin: 30px auto;
 	padding: 8px;
 	border: 2px solid gray;
