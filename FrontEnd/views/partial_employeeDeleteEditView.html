@@ -8,7 +8,9 @@
     <label for="emailaddr">Sähköposti</label>
     <input class="form-control" type="email" id="emailaddr" placeholder="sähköposti osoite" ng-model="emailaddr"><br/>
     <label for="emplrole">Käyttäjän rooli</label>
-    <input class="form-control" type="text" id="emplrole" placeholder="käyttäjän rooli" ng-model="emplrole"><br/>
+    <!--<input class="form-control" type="text" id="emplrole" placeholder="käyttäjän rooli" ng-model="emplrole"><br/>-->
+    <select id="emplrole" class="form-control" ng-model="selectedRole" ng-options="role.value as role.name for role in roles">
+    </select><br/>
     <input id="saveEmployee" class="btn btn-default" type="button" value="Muokkaa" ng-click='saveEmployeeClicked()'>
     <input id="deleteEmployee" class="btn btn-default" type="button" value="Poista" ng-click='deleteEmployeeClicked()'>
 </form>

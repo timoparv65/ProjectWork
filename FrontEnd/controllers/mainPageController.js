@@ -12,9 +12,9 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
     
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus'],
-        texts:['Etusivu','Ajanvaraus'],
-        classes:['active','']
+        urls:['#/','#/ajanvaraus','#/sisaisille_sivuille'],
+        texts:['Etusivu','Ajanvaraus','Yrityksen sisäisille sivuille'],
+        classes:['active','','']
     }
     
     $scope.companyData = [];

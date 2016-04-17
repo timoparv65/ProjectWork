@@ -9,6 +9,11 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         classes:['','','active']
     }
     
+    $scope.roles = [
+        {name: 'Työntekijän rooli: Membed', value: 'member'},
+        {name: 'Työntekijän rooli: Admin', value: 'admin'}
+    ];
+    
     $scope.deleteArray = [];
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
@@ -18,7 +23,8 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
     $scope.name = $scope.selectedEmployee.name;
     $scope.passwd = $scope.selectedEmployee.password;
     $scope.emailaddr = $scope.selectedEmployee.email;
-    $scope.emplrole = $scope.selectedEmployee.role;
+    //$scope.emplrole = $scope.selectedEmployee.role;
+    $scope.selectedRole = $scope.selectedEmployee.role;
     
     $scope.saveEmployeeClicked = function(){
         

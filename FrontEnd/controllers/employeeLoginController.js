@@ -2,6 +2,13 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
     
     console.log('employeeLoginController loaded');
     
+    $scope.navbarData = {
+        
+        urls:['#/','#/sisaisille_sivuille'],
+        texts:['Etusivu','Yrityksen sisäisille sivuille'],
+        classes:['','active']
+    }
+    
     $scope.companyData = [];
     
     companyDataFactory.getCompanyInformation(dataCallback);

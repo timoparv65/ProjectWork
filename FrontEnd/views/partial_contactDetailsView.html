@@ -17,6 +17,19 @@
             <h6>>> 4. Vahvistus</h6>
             <h6>>> 5. Valmis</h6>
         </div>
-        <div class="col-sm-8 col-md-8"></div>
+        <div class="col-sm-8 col-md-8">
+            <div ng-model='companyData'>
+                <h4 style="color:deeppink">
+                    {{companyData[0].name}}
+                </h4>
+                <h5>
+                    {{companyData[0].address}}
+                </h5>
+                <h5>
+                    {{companyData[0].postalCode}} {{companyData[0].city}}
+                </h5><br/>
+                <h5>Puh: {{companyData[0].phoneNumber}}</h5>
+            </div>
+        </div>
     </div>
 </div>
