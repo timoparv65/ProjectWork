@@ -36,10 +36,10 @@ app.use(bodyParser.urlencoded());
 
 app.use(function(req,res,next){
     
-    console.log(req.method);
-    console.log(req.path);
-    console.log(__dirname);
-    console.log(req.body);
+    //console.log(req.method);
+    //console.log(req.path);
+    //console.log(__dirname);
+    //console.log(req.body);
     //console.log(req.session);
     //Send request forward in stack
     next();
@@ -67,6 +67,7 @@ app.use('/companies',company);
 //=====================ROUTERS============================
 
 app.get('/logout',function(req,res){
+    console.log('index.js/logout');
     
     req.session.destroy();
     res.redirect('/');
@@ -175,6 +176,13 @@ app.get('/reset_session_admin_id',function(req,res,next){
     res.send(200,[{status:"Ok"}]);
 });
 
+
+// lisätty 25.4.2016
+app.post('/customer_login',function(req,res,next){
+    console.log('index.js/customer_login');
+    console.log(req);
+    res.redirect('/#/ajanvaraus_sisaankirjauduttu');
+});
 
 app.listen(3000);
 

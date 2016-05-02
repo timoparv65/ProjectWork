@@ -3,7 +3,7 @@
     <h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>
     
     <form>
-        <label for="selectService"> Valitse palvelu: </label><br>
+        <label for="selectedService"> Valitse palvelu: </label><br>
         <select name="selectedService" ng-model="selected">
             <option value="">---Valitse ole hyvä---</option>
             <option ng-repeat='choise in serviceChoiseData' value="{{choise._id}}">

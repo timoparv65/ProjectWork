@@ -4,14 +4,6 @@
     <input class="form-control" type="text" placeholder="nimi" ng-model="name"><br/>
     <input class="form-control" type="password" placeholder="salasana" ng-model="passwd"><br/>
     <input class="form-control" type="email" placeholder="sähköposti osoite" ng-model="emailaddr"><br/>
-    <!--
-    <select class="form-control" name="userRole" ng-model="selectedRole">
-        <option value="">Valitse</option>
-        <option value="admin">admin</option>
-        <option value="member" ng-selected>member</option>
-    </select><br/>
-    -->
-    
     <select class="form-control" ng-model="selectedRole" ng-options="role.value as role.name for role in roles" ng-init="selectedRole='member'">
     </select><br/>
     <!--<input type="file" name="userImage"><br/>--> <!-- TÄMÄ LISÄTÄÄN -->

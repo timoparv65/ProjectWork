@@ -71,6 +71,11 @@ main_module.config(function($routeProvider){
         
         templateUrl:'partial_reservationView.html',
         controller:'reservationController'
+        
+    }).when('/ajanvaraus_sisaankirjauduttu',{
+        
+        templateUrl:'partial_loginDoneReservationView.html',
+        controller:'loginDoneReservationController'
     
     }).when('/palvelut_ja_hinnasto',{
         

@@ -5,9 +5,9 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
     /*
     $scope.navbarCustomerData = {
         
-        urls:['/'],
-        texts:['Etusivu'],
-        classes:['active']
+        urls:['#/','#/ajanvaraus','#/sisaisille_sivuille'],
+        texts:['Etusivu','Ajanvaraus','Yrityksen sisäisille sivuille'],
+        classes:['active','','']
     }*/
     
     $scope.navbarData = {

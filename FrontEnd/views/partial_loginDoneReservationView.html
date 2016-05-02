@@ -2,11 +2,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-md-3">
-            <div customer_login></div>
+            <div><h4 style="color:deeppink">Olet sisäänkirjautunut !</h4></div>
             <nav>
-                <a href="#/asiakas_rekisteroi"><h6 style="color:black">Uusi käyttäjä ?</h6></a>
-                <a href="#asiakas_salasana_unohtui"><h6 style="color:black">Unohtuiko salasana ?</h6></a>
-            </nav>
+                <a href="#/asiakas_nayta_varaukset"><h6 style="color:deeppink">Näytä omat varaukset</h6></a>
+                <a href="#/asiakas_tiedot"><h6 style="color:deeppink">Omat tiedot</h6></a>
+                <a href="#/asiakas_kirjaudu_ulos"><h6 style="color:deeppink">Kirjaudu ulos</h6></a>
+            </nav><br><br>
             <div id="ajanvarauksen_vaiheet">
                 <h4 style="color:deeppink"><b></b>Ajanvarauksen vaiheet</h4>
                 <h5 style="color:black"><b>>> 1. Palvelun valinta</b></h5>
@@ -18,10 +19,13 @@
         </div>
         <div class="col-sm-6 col-md-6">
             <form>
-                <label for="emplsel">Valitse työntekijä</label>
-                <select id="emplsel" class="form-control" ng-model="selectedEmpl" ng-options="employee.name for employee in selectedEmployee" >
+                <label for="employees">Valitse työntekijä</label>
+                <select class="form-control" id="employees">
+                    <option value="kuka tahansa" selected>Kuka tahansa</option>
+                    <option value="anu">Anu</option>
+                    <option value="pia">Pia</option>
+                    <option option="kusti">Kusti</option>
                 </select><br/>
-                <!--
                 <label for="services">Valitse palvelu</label>
                 <select class="form-control" id="services">
                     <option value="">Valitse</option>
@@ -29,12 +33,6 @@
                     <option value="hiustenleikkaus_0_20min">Hiusten leikkaus 0-20 min</option>
                     <option option="hiustenleikkaus_20_30min">Hiusten leikkaus 20-30 min</option>
                 </select><br/>
-                -->
-                
-                <label for="givenServices">Valitse palvelu</label>
-                <select class="form-control" ng-model="selectedServ" ng-options="service.name group by service.category for service in services">
-                </select>
-                
                 <input id="saveServiceSelection" class="btn btn-default" type="button" value="Seuraava >>" ng-click='selectServiceClicked()'>
             </form>
             <div>
