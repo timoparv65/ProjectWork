@@ -79,15 +79,17 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 var Service = mongoose.model('Service',{
     category:String,
     description:String,
+    extrainfo:String,
     duration:Number,
-    code:Number
+    price:String
 },'service');
 
 var ServiceChoise = mongoose.model('ServiceChoise',{
     category:String,
-    description:{type:String,unique:true},
+    description:String,
+    extrainfo:String,
     duration:{type:Number,min:0,max:180}, // minimiaika 0 min, maksimiaika 3 tuntia
-    code:{type:Number,unique:true}
+    price:String
 });
 
 var offDay = mongoose.model('offDay',{

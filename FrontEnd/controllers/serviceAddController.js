@@ -9,75 +9,148 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
         classes:['','','','active']
     }
     
+    initialCategoryAndDescription();
+    /*
     $scope.serviceCategories = [
-        {name: 'Hiusten leikkaukset', value: 'Hiusten leikkaukset'},
-        {name: 'Kampaukset', value: 'Kampaukset'},
-        {name: 'Permanentit', value: 'Permanentit'},
-        {name: 'Hiusten värjäys', value: 'Hiusten värjäys'},
-        {name: 'Monisävyvärjäys (kahdella sävyllä)', value: 'Monisävyvärjäys (kahdella sävyllä)'},
-        {name: 'Erikoistyön lisä', value: 'Erikoistyön lisä'},
-        {name: 'Muut', value: 'Muut'},
-        {name: 'Ripset ja kulmat', value: 'Ripset ja kulmat'},
-        {name: 'Paketit', value: 'Paketit'}
+        {name: 'Hiusten leikkaukset'},
+        {name: 'Kampaukset', extra: 'Kampausten hinnat riippuu pohjatyöstä ja käytetystä ajasta! Nimet, ajat ja hinnat ovat suuntaa antavia'},
+        {name: 'Permanentit'},
+        {name: 'Hiusten värjäys'},
+        {name: 'Monisävyvärjäys (kahdella sävyllä)'},
+        {name: 'Erikoistyön lisä', extra: 'Pigmentointi, erikoisrullaus(Spiraali permanentti), värinpoisto'},
+        {name: 'Muut'},
+        {name: 'Ripset ja kulmat'},
+        {name: 'Paketit'},
+        {name: 'Parturi'}
     ];
     
+    $scope.selectedCaterogy = $scope.serviceCategories[0];
+    
     $scope.serviceDescriptions = [
-        {name: 'Hiustenleikkaus 0-20 min', value: 'Hiustenleikkaus 0-20 min'},
-        {name: 'Hiusten leikkaus 20-30 min', value: 'Hiusten leikkaus 20-30 min'},
-        {name: 'Hiusten leikkaus 30-45 min', value: 'Hiusten leikkaus 30-45 min'},
-        {name: 'Hiusten leikkaus 45-60 min', value: 'Hiusten leikkaus 45-60 min'},
-        {name: 'Lapset (alle 7 v)', value: 'Lapset (alle 7 v)'},
-        {name: 'Koneleikkaus, otsa ja niska', value: 'Koneleikkaus, otsa ja niska'},
-        {name: 'Parran muotoilu', value: 'Parran muotoilu'},
-        {name: 'Viiksien muotoilu', value: 'Viiksien muotoilu'},
-        {name: 'Föönikampaus', value: 'Föönikampaus'},
-        {name: 'Nutturakampaus', value: 'Nutturakampaus'},
-        {name: 'Letti / muotoon kuivaus', value: 'Letti / muotoon kuivaus'},
-        {name: 'Juhlanuttura', value: 'Juhlanuttura'},
-        {name: 'Juhla/morsiuskampaus (lyhyet)', value: 'Juhla/morsiuskampaus (lyhyet)'},
-        {name: 'Juhla/morsiuskampaus (pitkät)', value: 'Juhla/morsiuskampaus (pitkät)'},
-        {name: 'Permanentti, lyhyet hiukset', value: 'Permanentti, lyhyet hiukset'},
-        {name: 'Permanentti, puolipitkät hiukset', value: 'Permanentti, puolipitkät hiukset'},
-        {name: 'Permanentti, pitkät hiukset', value: 'Permanentti, pitkät hiukset'},
-        {name: 'Permanentti, erikoispitkät', value: 'Permanentti, erikoispitkät'},
-        {name: 'Osapermanentti', value: 'Osapermanentti'},
-        {name: 'Väri, lyhyet hiukset', value: 'Väri, lyhyet hiukset'},
-        {name: 'Väri, puolipitkät hiukset', value: 'Väri, puolipitkät hiukset'},
-        {name: 'Väri, pitkät hiukset', value: 'Väri, pitkät hiukset'},
-        {name: 'Tyvivärjäys', value: 'Tyvivärjäys'},
-        {name: 'Monisävyväri, lyhyet hiukset', value: 'Monisävyväri, lyhyet hiukset'},
-        {name: 'Monisävyväri, puolipitkät hiukset', value: 'Monisävyväri, puolipitkät hiukset'},
-        {name: 'Monisävyväri, pitkät hiukset', value: 'Monisävyväri, pitkät hiukset'},
-        {name: 'Enemmän kuin kaksi väriä', value: 'Enemmän kuin kaksi väriä'},
-        {name: 'Pigmentointi, erikoisrullaus(Spiraali permanentti), värinpoisto', value: 'Pigmentointi, erikoisrullaus(Spiraali permanentti), värinpoisto'},
-        {name: 'Erikoistyönlisä, lyhyet hiukset', value: 'Erikoistyönlisä, lyhyet hiukset'},
-        {name: 'Erikoistyönlisä, puolipitkät hiukset', value: 'Erikoistyönlisä, puolipitkät hiukset'},
-        {name: 'Erikoistyönlisä, pitkät hiukset', value: 'Erikoistyönlisä, pitkät hiukset'},
-        {name: 'Hiusten pesu/hoito', value: 'Hiusten pesu/hoito'},
-        {name: 'Haudehoito', value: 'Haudehoito'},
-        {name: 'Muotoon kuivatus', value: 'Muotoon kuivatus'},
-        {name: 'Tuntiveloitus', value: 'Tuntiveloitus'},
-        {name: 'Ripsien värjäys', value: 'Ripsien värjäys'},
-        {name: 'Kulmien värjäys', value: 'Kulmien värjäys'},
-        {name: 'Kulmakarvojen muotoilu ja värjäys', value: 'Kulmakarvojen muotoilu ja värjäys'},
-        {name: 'Ripsien ja kulmien värjäys, muotoilu', value: 'Ripsien ja kulmien värjäys, muotoilu'},
-        {name: 'Kulmien muotoilu', value: 'Kulmien muotoilu'},
-        {name: 'Väri + leikkaus (lyhyet hiukset)', value: 'Väri + leikkaus (lyhyet hiukset)'},
-        {name: 'Väri + leikkaus (puolipitkät hiukset)', value: 'Väri + leikkaus (puolipitkät hiukset)'},
-        {name: 'Väri + leikkaus (pitkät hiukset)', value: 'Väri + leikkaus (pitkät hiukset)'},
-        {name: 'Permis + leik (lyhyet hiukset)', value: 'Permis + leik (lyhyet hiukset)'},
-        {name: 'Permis + leik (puolipitkät hiukset)', value: 'Permis + leik (puolipitkät hiukset)'},
-        {name: 'Permis + leik (pitkät hiuket)', value: 'Permis + leik (pitkät hiuket)'},
-        {name: 'Permis + kevytväri + leikkaus (lyhyet hiukset)', value: 'Permis + kevytväri + leikkaus (lyhyet hiukset)'},
-        {name: 'Permis + kevytväri + leikkaus (puolipitkät hiukset)', value: 'Permis + kevytväri + leikkaus (puolipitkät hiukset)'},
-        {name: 'Permis + kevytväri + leikkaus (pitkät hiukset)', value: 'Permis + kevytväri + leikkaus (pitkät hiukset)'},
-        {name: 'Pesu + leikkaus', value: 'Pesu + leikkaus'},
-        {name: 'Pesu + leikkaus + kulmat', value: 'Pesu + leikkaus + kulmat'},
-        {name: 'Pesu + leikkaus + kulmat&ripset', value: 'Pesu + leikkaus + kulmat&ripset'},
-        {name: 'Leikkaus + Kulmat (ja ripset)', value: 'Leikkaus + Kulmat (ja ripset)'},
-        {name: 'Tyviväri + Leikkaus', value: 'Tyviväri + Leikkaus'},
-        {name: 'Väri + Leikkaus + Kulmat ja / tai ripset', value: 'Väri + Leikkaus + Kulmat ja / tai ripset'}
+        {name: 'Hiustenleikkaus 0-20 min'},
+        {name: 'Hiusten leikkaus 20-30 min'},
+        {name: 'Hiusten leikkaus 30-45 min'},
+        {name: 'Hiusten leikkaus 45-60 min'},
+        {name: 'Lapset (alle 7 v)'},
+        {name: 'Koneleikkaus, otsa ja niska'},
+        {name: 'Parran muotoilu'},
+        {name: 'Viiksien muotoilu'}
     ];
+    
+    $scope.selectedDescription = $scope.serviceDescriptions[0];
+    */
+    $scope.selectedCategoryCallback = function(selectedChoise){
+        console.log('serviceAddController/selectedCategoryCallback');
+        
+        selectDescriptionBasedOnCategory(selectedChoise.name);
+        
+        /*
+        switch(selectedChoise.name){
+            case 'Kampaukset':
+                $scope.serviceDescriptions = [
+                    {name: 'Föönikampaus'},
+                    {name: 'Nutturakampaus'},
+                    {name: 'Letti / muotoon kuivaus'},
+                    {name: 'Juhlanuttura'},
+                    {name: 'Juhla/morsiuskampaus (lyhyet)'},
+                    {name: 'Juhla/morsiuskampaus (pitkät)'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Permanentit':
+                $scope.serviceDescriptions = [
+                    {name: 'Permanentti, lyhyet hiukset'},
+                    {name: 'Permanentti, puolipitkät hiukset'},
+                    {name: 'Permanentti, pitkät hiukset'},
+                    {name: 'Permanentti, erikoispitkät'},
+                    {name: 'Osapermanentti'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Hiusten värjäys':
+                $scope.serviceDescriptions = [
+                    {name: 'Väri, lyhyet hiukset'},
+                    {name: 'Väri, puolipitkät hiukset'},
+                    {name: 'Väri, pitkät hiukset'},
+                    {name: 'Tyvivärjäys'},
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Monisävyvärjäys (kahdella sävyllä)':
+                $scope.serviceDescriptions = [
+                    {name: 'Monisävyväri, lyhyet hiukset'},
+                    {name: 'Monisävyväri, puolipitkät hiukset'},
+                    {name: 'Monisävyväri, pitkät hiukset'},
+                    {name: 'Enemmän kuin kaksi väriä'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Erikoistyön lisä':
+                $scope.serviceDescriptions = [
+                    {name: 'Erikoistyönlisä, lyhyet hiukset'},
+                    {name: 'Erikoistyönlisä, puolipitkät hiukset'},
+                    {name: 'Erikoistyönlisä, pitkät hiukset'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Muut':
+                $scope.serviceDescriptions = [
+                    {name: 'Hiusten pesu/hoito'},
+                    {name: 'Haudehoito'},
+                    {name: 'Muotoon kuivatus'},
+                    {name: 'Tuntiveloitus'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Ripset ja kulmat':
+                $scope.serviceDescriptions = [
+                    {name: 'Ripsien värjäys'},
+                    {name: 'Kulmien värjäys'},
+                    {name: 'Kulmakarvojen muotoilu ja värjäys'},
+                    {name: 'Ripsien ja kulmien värjäys, muotoilu'},
+                    {name: 'Kulmien muotoilu'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Paketit':
+                $scope.serviceDescriptions = [
+                    {name: 'Väri + leikkaus (lyhyet hiukset)'},
+                    {name: 'Väri + leikkaus (puolipitkät hiukset)'},
+                    {name: 'Väri + leikkaus (pitkät hiukset)'},
+                    {name: 'Permis + leik (lyhyet hiukset)'},
+                    {name: 'Permis + leik (puolipitkät hiukset)'},
+                    {name: 'Permis + leik (pitkät hiuket)'},
+                    {name: 'Permis + kevytväri + leikkaus (lyhyet hiukset)'},
+                    {name: 'Permis + kevytväri + leikkaus (puolipitkät hiukset)'},
+                    {name: 'Permis + kevytväri + leikkaus (pitkät hiukset)'},
+                    {name: 'Pesu + leikkaus'},
+                    {name: 'Pesu + leikkaus + kulmat'},
+                    {name: 'Pesu + leikkaus + kulmat&ripset'},
+                    {name: 'Leikkaus + Kulmat (ja ripset)'},
+                    {name: 'Tyviväri + Leikkaus'},
+                    {name: 'Väri + Leikkaus + Kulmat ja / tai ripset'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Parturi':
+                $scope.serviceDescriptions = [];
+                break;
+            default:
+                $scope.serviceDescriptions = [
+                    {name: 'Hiustenleikkaus 0-20 min'},
+                    {name: 'Hiusten leikkaus 20-30 min'},
+                    {name: 'Hiusten leikkaus 30-45 min'},
+                    {name: 'Hiusten leikkaus 45-60 min'},
+                    {name: 'Lapset (alle 7 v)'},
+                    {name: 'Koneleikkaus, otsa ja niska'},
+                    {name: 'Parran muotoilu'},
+                    {name: 'Viiksien muotoilu'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+        }
+        */
+    }
     
     //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
@@ -88,10 +161,11 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
         
         // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
         var temp = {
-            category:$scope.category,
-            description:$scope.description,
+            category:$scope.selectedCaterogy.name,
+            description:$scope.selectedDescription.name,
+            extrainfo:$scope.extra,
             duration:$scope.duration,
-            code:$scope.code
+            price:$scope.servicePrice
         };
         
         console.log(temp);
@@ -99,7 +173,7 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
         if (temp.category.length === 0 ||
             temp.description.length === 0 ||
             temp.duration.length === 0 ||
-            temp.code.length === 0){
+            temp.price.length === 0){
             
             alert('Jokin kenttä tyhjä!');
             return;
@@ -117,10 +191,13 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
             // Talletetaan se serviceChoiseArray:hyn
             employeeDataFactory.serviceChoiseArray.push(response.data);
             
-            $scope.category = "";
-            $scope.description = "";
+            initialCategoryAndDescription();
+            
+            $scope.selectedCaterogy = $scope.serviceCategories[0];
+            $scope.selectedDescription = $scope.serviceDescriptions[0];
+            $scope.extra = "";
             $scope.duration = "";
-            $scope.code = "";
+            $scope.servicePrice = "";
             
             Flash.create('success', 'Palvelu lisättiin onnistuneesti!', 'custom-class');
             
@@ -141,4 +218,149 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
         });
         
     }
+    
+    function initialCategoryAndDescription()
+    {
+        console.log('serviceAddController/initialCategoryAndDescription');
+        
+        $scope.serviceCategories = [
+            {name: 'Hiusten leikkaukset'},
+            {name: 'Kampaukset', extra: 'Kampausten hinnat riippuu pohjatyöstä ja käytetystä ajasta! Nimet, ajat ja hinnat ovat suuntaa antavia'},
+            {name: 'Permanentit'},
+            {name: 'Hiusten värjäys'},
+            {name: 'Monisävyvärjäys (kahdella sävyllä)'},
+            {name: 'Erikoistyön lisä', extra: 'Pigmentointi, erikoisrullaus(Spiraali permanentti), värinpoisto'},
+            {name: 'Muut'},
+            {name: 'Ripset ja kulmat'},
+            {name: 'Paketit'},
+            {name: 'Parturi'}
+        ];
+    
+        $scope.selectedCaterogy = $scope.serviceCategories[0];
+
+        $scope.serviceDescriptions = [
+            {name: 'Hiustenleikkaus 0-20 min'},
+            {name: 'Hiusten leikkaus 20-30 min'},
+            {name: 'Hiusten leikkaus 30-45 min'},
+            {name: 'Hiusten leikkaus 45-60 min'},
+            {name: 'Lapset (alle 7 v)'},
+            {name: 'Koneleikkaus, otsa ja niska'},
+            {name: 'Parran muotoilu'},
+            {name: 'Viiksien muotoilu'}
+        ];
+
+        $scope.selectedDescription = $scope.serviceDescriptions[0];
+    }
+    
+    
+    function selectDescriptionBasedOnCategory(choiseName)
+    {
+        console.log('serviceAddController/selectDescriptionBasedOnCategory');
+        
+        switch(choiseName){
+            case 'Kampaukset':
+                $scope.serviceDescriptions = [
+                    {name: 'Föönikampaus'},
+                    {name: 'Nutturakampaus'},
+                    {name: 'Letti / muotoon kuivaus'},
+                    {name: 'Juhlanuttura'},
+                    {name: 'Juhla/morsiuskampaus (lyhyet)'},
+                    {name: 'Juhla/morsiuskampaus (pitkät)'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Permanentit':
+                $scope.serviceDescriptions = [
+                    {name: 'Permanentti, lyhyet hiukset'},
+                    {name: 'Permanentti, puolipitkät hiukset'},
+                    {name: 'Permanentti, pitkät hiukset'},
+                    {name: 'Permanentti, erikoispitkät'},
+                    {name: 'Osapermanentti'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Hiusten värjäys':
+                $scope.serviceDescriptions = [
+                    {name: 'Väri, lyhyet hiukset'},
+                    {name: 'Väri, puolipitkät hiukset'},
+                    {name: 'Väri, pitkät hiukset'},
+                    {name: 'Tyvivärjäys'},
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Monisävyvärjäys (kahdella sävyllä)':
+                $scope.serviceDescriptions = [
+                    {name: 'Monisävyväri, lyhyet hiukset'},
+                    {name: 'Monisävyväri, puolipitkät hiukset'},
+                    {name: 'Monisävyväri, pitkät hiukset'},
+                    {name: 'Enemmän kuin kaksi väriä'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Erikoistyön lisä':
+                $scope.serviceDescriptions = [
+                    {name: 'Erikoistyönlisä, lyhyet hiukset'},
+                    {name: 'Erikoistyönlisä, puolipitkät hiukset'},
+                    {name: 'Erikoistyönlisä, pitkät hiukset'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Muut':
+                $scope.serviceDescriptions = [
+                    {name: 'Hiusten pesu/hoito'},
+                    {name: 'Haudehoito'},
+                    {name: 'Muotoon kuivatus'},
+                    {name: 'Tuntiveloitus'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Ripset ja kulmat':
+                $scope.serviceDescriptions = [
+                    {name: 'Ripsien värjäys'},
+                    {name: 'Kulmien värjäys'},
+                    {name: 'Kulmakarvojen muotoilu ja värjäys'},
+                    {name: 'Ripsien ja kulmien värjäys, muotoilu'},
+                    {name: 'Kulmien muotoilu'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Paketit':
+                $scope.serviceDescriptions = [
+                    {name: 'Väri + leikkaus (lyhyet hiukset)'},
+                    {name: 'Väri + leikkaus (puolipitkät hiukset)'},
+                    {name: 'Väri + leikkaus (pitkät hiukset)'},
+                    {name: 'Permis + leik (lyhyet hiukset)'},
+                    {name: 'Permis + leik (puolipitkät hiukset)'},
+                    {name: 'Permis + leik (pitkät hiuket)'},
+                    {name: 'Permis + kevytväri + leikkaus (lyhyet hiukset)'},
+                    {name: 'Permis + kevytväri + leikkaus (puolipitkät hiukset)'},
+                    {name: 'Permis + kevytväri + leikkaus (pitkät hiukset)'},
+                    {name: 'Pesu + leikkaus'},
+                    {name: 'Pesu + leikkaus + kulmat'},
+                    {name: 'Pesu + leikkaus + kulmat&ripset'},
+                    {name: 'Leikkaus + Kulmat (ja ripset)'},
+                    {name: 'Tyviväri + Leikkaus'},
+                    {name: 'Väri + Leikkaus + Kulmat ja / tai ripset'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+            case 'Parturi':
+                $scope.serviceDescriptions = [];
+                break;
+            default:
+                $scope.serviceDescriptions = [
+                    {name: 'Hiustenleikkaus 0-20 min'},
+                    {name: 'Hiusten leikkaus 20-30 min'},
+                    {name: 'Hiusten leikkaus 30-45 min'},
+                    {name: 'Hiusten leikkaus 45-60 min'},
+                    {name: 'Lapset (alle 7 v)'},
+                    {name: 'Koneleikkaus, otsa ja niska'},
+                    {name: 'Parran muotoilu'},
+                    {name: 'Viiksien muotoilu'}
+                ];
+                $scope.selectedDescription = $scope.serviceDescriptions[0];
+                break;
+        }
+    }
+    
 });

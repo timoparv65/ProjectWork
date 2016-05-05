@@ -18,21 +18,12 @@
         </div>
         <div class="col-sm-6 col-md-6">
             <form>
+                {{message}}<br>
                 <label for="emplsel">Valitse työntekijä</label>
                 <select id="emplsel" class="form-control" ng-model="selectedEmpl" ng-options="employee.name for employee in selectedEmployee" >
                 </select><br/>
-                <!--
-                <label for="services">Valitse palvelu</label>
-                <select class="form-control" id="services">
-                    <option value="">Valitse</option>
-                    <option value="hiustenleikkaukset" disabled><b>Hiusten leikkaukset</b></option>
-                    <option value="hiustenleikkaus_0_20min">Hiusten leikkaus 0-20 min</option>
-                    <option option="hiustenleikkaus_20_30min">Hiusten leikkaus 20-30 min</option>
-                </select><br/>
-                -->
-                
-                <label for="givenServices">Valitse palvelu</label>
-                <select class="form-control" ng-model="selectedServ" ng-options="service.name group by service.category for service in services">
+                <label for="servsel">Valitse palvelu</label>
+                <select id="servsel" class="form-control" ng-model="selectedServ" ng-options="service.name group by service.category for service in services">
                 </select>
                 
                 <input id="saveServiceSelection" class="btn btn-default" type="button" value="Seuraava >>" ng-click='selectServiceClicked()'>

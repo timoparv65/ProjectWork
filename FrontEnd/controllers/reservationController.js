@@ -12,6 +12,8 @@ main_module.controller('reservationController',function($scope,employeeDataFacto
         classes:['','active','','']
     }
     
+    $scope.message = '';
+    
     $scope.services = [
         {name: 'Valitse'},
         {name: 'Hiustenleikkaus 0-20 min', category: 'Hiusten leikkaukset', duration: '20', cost: '24.40', extra: 'Suositetaan miehille'},
@@ -74,10 +76,17 @@ main_module.controller('reservationController',function($scope,employeeDataFacto
     $scope.selectServiceClicked = function(){
         console.log('reservationController/selectServiceClicked');
         
-        console.log('$scope.emplsel');
-        console.log($scope.emplsel);
         console.log('$scope.selectedEmpl');
         console.log($scope.selectedEmpl.name);
+        
+        console.log('$scope.selectedServ.name');
+        console.log($scope.selectedServ.name);
+        
+        if ($scope.selectedServ.name === 'Valitse') {
+            $scope.message = "Valitse palvelu";
+        } else {
+            $scope.message = 'eteenpäin';
+        }
     }
 
 });
