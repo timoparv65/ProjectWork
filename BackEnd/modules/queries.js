@@ -437,6 +437,7 @@ exports.saveNewServiceChoise = function(req,res){
     
     var temp = {
         category: req.body.category,
+        categoryextrainfo: req.body.categoryextrainfo,
         description: req.body.description,
         extrainfo: req.body.extrainfo,
         duration: req.body.duration,
@@ -475,9 +476,11 @@ exports.updateServiceChoise = function(req,res){
     
     var updateData = {
         category:req.body.category,
+        categoryextrainfo:req.body.categoryextrainfo,
         description:req.body.description,
+        extrainfo:req.body.extrainfo,
         duration:req.body.duration,
-        code:req.body.code
+        price:req.body.price
     }
     
     db.ServiceChoise.update({_id:req.body.id},updateData,function(err){

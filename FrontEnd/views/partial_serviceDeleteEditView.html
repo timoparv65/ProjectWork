@@ -2,13 +2,19 @@
 <form class="loginForm">
     <h3>Muokkaa tai poista palvelutiedot</h3>
     <label for="category">Kategoria</label>
-    <input class="form-control" type="text" id="category" placeholder="kategoria" ng-model="category"><br/>
+    <select class="form-control" id="category" ng-model="selectedCaterogy" ng-options="serviceCategory.name for serviceCategory in serviceCategories" ng-change="selectedCategoryCallback(selectedCaterogy)">
+    </select><br/>
+    <label for="categoryextrainfo">Kategorian lisätietoa</label>
+    <input class="form-control" type="text" id="categoryextrainfo" placeholder="kategorian lisätietoa" ng-model="extracategory"><br/>
     <label for="description">Kuvaus</label>
-    <input class="form-control" type="text" id="description" placeholder="kuvaus" ng-model="description"><br/>
+    <select class="form-control" id="description" ng-model="selectedDescription" ng-options="serviceDescription.name for serviceDescription in serviceDescriptions">
+    </select><br/>
+    <label for="extrainfo">Lisätietoa</label>
+    <input class="form-control" type="text" id="extrainfo" placeholder="lisätietoa" ng-model="extra"><br/>
     <label for="duration">Kesto minuutteina</label>
     <input class="form-control" type="number" id="duration" placeholder="kesto minuutteina" ng-model="duration"><br/>
-    <label for="code">Koodi</label>
-    <input class="form-control" type="text" id="code" placeholder="koodi" ng-model="code"><br/>
+    <label for="price">Hinta</label>
+    <input class="form-control" type="text" id="price" placeholder="hinta euroina" ng-model="servicePrice"><br/>
     <input id="saveService" class="btn btn-default" type="button" value="Muokkaa" ng-click='saveServiceClicked()'>
     <input id="deleteService" class="btn btn-default" type="button" value="Poista" ng-click='deleteServiceClicked()'>
 </form>

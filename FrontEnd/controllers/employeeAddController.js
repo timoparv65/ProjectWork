@@ -10,8 +10,8 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
     }
     
     $scope.roles = [
-        {name: 'Työntekijän rooli: Membed', value: 'member'},
-        {name: 'Työntekijän rooli: Admin', value: 'admin'}
+        {name: 'Membed', value: 'member'},
+        {name: 'Admin', value: 'admin'}
     ];
     
     //Funktiototeutus Save-nappulan painallukselle partial_addEmployeeView.html ikkunassa

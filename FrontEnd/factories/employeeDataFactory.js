@@ -32,7 +32,7 @@ main_module.factory('employeeDataFactory',function($resource){
             resource.query().$promise.then(function(data){
 
                 console.log('employeeDataFactory/getEmployees:success');
-                console.log(data);
+                //console.log(data);
 
                 factory.employeeArray = data;
                 callbackFunc(factory.employeeArray);    
@@ -61,8 +61,8 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getSelectedEmployee = function(){
         
         console.log('employeeDataFactory/getSelectedEmployee');
-        console.log('factory.employeeArray.length: ' + factory.employeeArray.length);
-        console.log('factory.selected_id: ' + factory.selected_id);
+        //console.log('factory.employeeArray.length: ' + factory.employeeArray.length);
+        //console.log('factory.selected_id: ' + factory.selected_id);
         
         for (var i = 0; i < factory.employeeArray.length; i++){
             if (factory.employeeArray[i]._id === factory.selected_id){
@@ -76,7 +76,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertData = function(data){
         
         console.log('employeeDataFactory/insertData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objekti
         var resource = $resource('/employees',{},{'post':{method:'POST'}});
@@ -87,7 +87,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.updateData = function(data){
         
         console.log('employeeDataFactory/updateData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/employees',{},{'put':{method:'PUT'}});
@@ -98,7 +98,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.deleteData = function(data){
         
         console.log('employeeDataFactory/deleteData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objekti
         var resource = $resource('/employees',{},{'delete':{method:'DELETE'}});
@@ -110,7 +110,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertServiceData = function(data){
         
         console.log('employeeDataFactory/insertServiceData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/services',{},{'post':{method:'POST'}});
@@ -121,7 +121,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.updateServiceData = function(data){
         
         console.log('employeeDataFactory/updateServiceData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/services',{},{'put':{method:'PUT'}});
@@ -132,7 +132,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.deleteServiceData = function(data){
         
         console.log('employeeDataFactory/deleteServiceData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/services',{},{'delete':{method:'DELETE'}});
@@ -144,8 +144,8 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getServices = function(callbackFunc){
         
         console.log('employeeDataFactory/getServices');
-        console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
-        console.log('factory.selectedEmployee.name: ' + factory.selectedEmployee.name);
+        //console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
+        //console.log('factory.selectedEmployee.name: ' + factory.selectedEmployee.name);
         
         if(factory.serviceArray.length === 0){
             
@@ -154,7 +154,7 @@ main_module.factory('employeeDataFactory',function($resource){
             resource.query().$promise.then(function(data){
                 
                 console.log('employeeDataFactory/getServices:success');
-                console.log(data);
+                //console.log(data);
                 
                 factory.serviceArray = data;
                 callbackFunc(factory.serviceArray);
@@ -176,8 +176,8 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getSelectedService = function(){
         
         console.log('employeeDataFactory/getSelectedService');
-        console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
-        console.log('factory.selected_service_id: ' + factory.selected_service_id);
+        //console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
+        //console.log('factory.selected_service_id: ' + factory.selected_service_id);
         
         for (var i = 0; i < factory.serviceArray.length; i++){
             if (factory.serviceArray[i]._id === factory.selected_service_id){
@@ -192,7 +192,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.insertServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/insertServiceChoiseData');
-        console.log(data);
+       // console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/servicechoises',{},{'post':{method:'POST'}});
@@ -203,7 +203,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.updateServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/updateServiceChoiseData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/servicechoises',{},{'put':{method:'PUT'}});
@@ -214,7 +214,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.deleteServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/deleteServiceChoiseData');
-        console.log(data);
+        //console.log(data);
         
         // luo resurssi objektin
         var resource = $resource('/servicechoises',{},{'delete':{method:'DELETE'}});
@@ -226,7 +226,7 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getServiceChoises = function(callbackFunc){
         
         console.log('employeeDataFactory/getServiceChoises');
-        console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
+        //console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
         
         if(factory.serviceChoiseArray.length === 0){
             
@@ -235,7 +235,7 @@ main_module.factory('employeeDataFactory',function($resource){
             resource.query().$promise.then(function(data){
                 
                 console.log('employeeDataFactory/getServiceChoises:success');
-                console.log(data);
+                //console.log(data);
                 
                 factory.serviceChoiseArray = data;
                 callbackFunc(factory.serviceChoiseArray);
@@ -257,8 +257,8 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getSelectedServiceChoise = function(){
         
         console.log('employeeDataFactory/getSelectedServiceChoise');
-        console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
-        console.log('factory.selected_service_choise_id: ' + factory.selected_service_choise_id);
+        //console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
+        //console.log('factory.selected_service_choise_id: ' + factory.selected_service_choise_id);
         
         for (var i = 0; i < factory.serviceChoiseArray.length; i++){
             if (factory.serviceChoiseArray[i]._id === factory.selected_service_choise_id){

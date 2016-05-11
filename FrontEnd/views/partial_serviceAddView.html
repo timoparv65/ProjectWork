@@ -4,6 +4,8 @@
     <label for="category">Kategoria</label>
     <select class="form-control" id="category" ng-model="selectedCaterogy" ng-options="serviceCategory.name for serviceCategory in serviceCategories" ng-change="selectedCategoryCallback(selectedCaterogy)">
     </select><br/>
+    <label for="categoryextrainfo">Kategorian lisätietoa</label>
+    <input class="form-control" type="text" id="categoryextrainfo" placeholder="kategorian lisätietoa" ng-model="extracategory"><br/>
     <label for="description">Kuvaus</label>
     <select class="form-control" id="description" ng-model="selectedDescription" ng-options="serviceDescription.name for serviceDescription in serviceDescriptions">
     </select><br/>

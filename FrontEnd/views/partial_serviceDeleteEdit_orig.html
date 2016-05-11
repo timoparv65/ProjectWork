@@ -1,0 +1,15 @@
+<nav-bar navbar-data='navbarData'></nav-bar>
+<form class="loginForm">
+    <h3>Muokkaa tai poista palvelutiedot</h3>
+    <label for="category">Kategoria</label>
+    <input class="form-control" type="text" id="category" placeholder="kategoria" ng-model="category"><br/>
+    <label for="description">Kuvaus</label>
+    <input class="form-control" type="text" id="description" placeholder="kuvaus" ng-model="description"><br/>
+    <label for="duration">Kesto minuutteina</label>
+    <input class="form-control" type="number" id="duration" placeholder="kesto minuutteina" ng-model="duration"><br/>
+    <label for="code">Koodi</label>
+    <input class="form-control" type="text" id="code" placeholder="koodi" ng-model="code"><br/>
+    <input id="saveService" class="btn btn-default" type="button" value="Muokkaa" ng-click='saveServiceClicked()'>
+    <input id="deleteService" class="btn btn-default" type="button" value="Poista" ng-click='deleteServiceClicked()'>
+</form>
+<div class="flash-style" flash-message="4000" ></div>
