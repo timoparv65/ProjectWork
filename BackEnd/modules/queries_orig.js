@@ -69,6 +69,9 @@ exports.loginEmployee = function(req,res){
         name:req.body.username,
         password:req.body.password
     }
+    
+    console.log("searchObject");
+    console.log(searchObject);
 
     db.Employee.findOne(searchObject,function(err,data){
         
@@ -429,17 +432,19 @@ exports.deleteService = function(req,res){
  */
 exports.saveNewServiceChoise = function(req,res){
     
-    //console.log('queries/saveNewServiceChoise');
-    //console.log(req.body);
+    console.log('queries/saveNewServiceChoise');
+    console.log(req.body);
     
     var temp = {
         category: req.body.category,
+        categoryextrainfo: req.body.categoryextrainfo,
         description: req.body.description,
+        extrainfo: req.body.extrainfo,
         duration: req.body.duration,
-        code:req.body.code
+        price: req.body.price
     };
     
-    //console.log(temp);
+    console.log(temp);
     //console.log(req.body.name);
     
     var serviceChoiseTemp = new db.ServiceChoise(temp);
@@ -471,9 +476,11 @@ exports.updateServiceChoise = function(req,res){
     
     var updateData = {
         category:req.body.category,
+        categoryextrainfo:req.body.categoryextrainfo,
         description:req.body.description,
+        extrainfo:req.body.extrainfo,
         duration:req.body.duration,
-        code:req.body.code
+        price:req.body.price
     }
     
     db.ServiceChoise.update({_id:req.body.id},updateData,function(err){

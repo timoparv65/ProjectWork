@@ -13,11 +13,11 @@ main_module.factory('companyDataFactory',function($resource){
         console.log("companyDataFactory/getCompanyInformation");
         
         //console.log('factory.companyArray.length: ' + factory.companyArray.length);
-        console.log('factory.selected_id: ' + factory.selected_id);
-        console.log('factory.companyArray:');
-        console.log(factory.companyArray);
-        console.log('factory.selectedCompany:');
-        console.log(factory.selectedCompany);
+        //console.log('factory.selected_id: ' + factory.selected_id);
+        //console.log('factory.companyArray:');
+        //console.log(factory.companyArray);
+        //console.log('factory.selectedCompany:');
+        //console.log(factory.selectedCompany);
         
         //if (factory.companyArray.length === 0){
             
@@ -90,8 +90,8 @@ main_module.factory('companyDataFactory',function($resource){
     factory.getSelectedCompany = function(){
         
         console.log('companyDataFactory/getSelectedCompany');
-        console.log('factory.companyArray.length: ' + factory.companyArray.length);
-        console.log('factory.selected_id: ' + factory.selected_id);
+        //console.log('factory.companyArray.length: ' + factory.companyArray.length);
+        //console.log('factory.selected_id: ' + factory.selected_id);
         
         for (var i = 0; i < factory.companyArray.length; i++){
             if (factory.companyArray[i]._id === factory.selected_id){

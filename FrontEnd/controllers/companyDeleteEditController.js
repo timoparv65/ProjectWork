@@ -1,5 +1,4 @@
-main_module.controller('companyDeleteEditController',function($scope,companyDataFactory,$location,Flash){
-    
+main_module.controller('companyDeleteEditController',function($scope,companyDataFactory,$location,Flash,$timeout){
     
     console.log('companyDeleteEditController loaded');
     
@@ -72,17 +71,24 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
         
         // sallitaan Save-napin painaminen
         $('#saveCompany').attr("disabled", false);
-        //$location.path('yritys_paavalikko').replace();
+        
+        $timeout(function(){
+            $location.path('/yritys_paavalikko').replace();
+        }, 4000);
     }
     
     function error(data){
         
         console.log('companyDeleteEditController/error');
         
-        Flash.create('danger','Yrityksen tietojen muokkaus epäonnistui', 'custom-class');
+        Flash.create('warning','Yrityksen tietojen muokkaus epäonnistui', 'custom-class');
         
         // sallitaan Save-napin painaminen
         $('#saveEmployee').attr("disabled", false);
+        
+        $timeout(function(){
+            $location.path('/yritys_paavalikko').replace();
+        }, 4000);
     }
     
     
@@ -101,11 +107,15 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
         //Nothing to delete
         if($scope.deleteArray.length === 0){
             
-            Flash.create('danger','Ei mitään poistettavaa yritystä!', 'custom-class');
+            Flash.create('info','Ei mitään poistettavaa yritystä!', 'custom-class');
             console.log('nothing to delete');
             
             // sallitaan Delete-napin painaminen
             $('#deleteCompany').attr("disabled", false);
+            
+            $timeout(function(){
+                $location.path('/yritys_paavalikko').replace();
+            }, 4000);
         }
         else{
             
@@ -118,15 +128,24 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
             companyDataFactory.deleteData(data).then(function(data){
 
                 companyDataFactory.companyArray = [];
-                $location.path('/yritys_paavalikko').replace();
+                
+                Flash.create('success','Yrityksen tietojen poisto onnistui!', 'custom-class'); 
+                
+                $timeout(function(){
+                    $location.path('/yritys_paavalikko').replace();
+                }, 4000);
                 
             },function(error){
                 
-                Flash.create('danger','Yrityksen tietojen poisto epäonnistui!', 'custom-class'); 
+                Flash.create('warning','Yrityksen tietojen poisto epäonnistui!', 'custom-class'); 
                 console.log('error in server');
                 
                 // sallitaan Delete-napin painaminen
                 $('#deleteCompany').attr("disabled", false);
+                
+                $timeout(function(){
+                    $location.path('/yritys_paavalikko').replace();
+                }, 4000);
             });
         }
         

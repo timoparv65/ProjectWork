@@ -1,4 +1,4 @@
-main_module.controller('companyAddController',function($scope,companyDataFactory,$location,Flash){
+main_module.controller('companyAddController',function($scope,companyDataFactory,$location,Flash,$timeout){
     
     console.log('companyAddController loaded');
     
@@ -86,7 +86,10 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             // sallitaan Save-napin painaminen
             $('#saveCompany').attr("disabled", false);
             
-            //$location.path('/tyontekija_paavalikko').replace();
+            $timeout(function(){
+                $location.path('/yritys_paavalikko').replace();
+            }, 4000);
+            
         },function(error){
             
             console.log('companyAddController/saveCompanyClicked/waitPromise:fail');
@@ -95,6 +98,10 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             Flash.create('warning', 'Yrityksen tietojen lisäys epäonnistui.', 'custom-class');
             // sallitaan Save-napin painaminen
             $('#saveCompany').attr("disabled", false);
+            
+            $timeout(function(){
+                $location.path('/yritys_paavalikko').replace();
+            }, 4000);
         });
         
     };

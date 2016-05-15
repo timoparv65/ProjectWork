@@ -1,4 +1,4 @@
-main_module.controller('employeeDeleteEditController',function($scope,employeeDataFactory,$location,Flash){
+main_module.controller('employeeDeleteEditController',function($scope,employeeDataFactory,$location,Flash,$timeout){
     
     console.log('employeeDeleteEditController loaded');
     
@@ -10,8 +10,8 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
     }
     
     $scope.roles = [
-        {name: 'Työntekijän rooli: Membed', value: 'member'},
-        {name: 'Työntekijän rooli: Admin', value: 'admin'}
+        {name: 'Membed', value: 'member'},
+        {name: 'Admin', value: 'admin'}
     ];
     
     $scope.deleteArray = [];
@@ -61,17 +61,24 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         
         // sallitaan Save-napin painaminen
         $('#saveEmployee').attr("disabled", false);
-        //$location.path('palvelut_paavalikko').replace();
+        
+        $timeout(function(){
+            $location.path('/tyontekija_paavalikko').replace();
+        }, 4000);
     }
     
     function error(data){
         
         console.log('employeeDeleteEditController/error');
         
-        Flash.create('danger','Palvelun tietojen muokkaus epäonnistui. Koodi oli jo käytössä!', 'custom-class');
+        Flash.create('warning','Työntekijän tietojen muokkaus epäonnistui!', 'custom-class');
         
         // sallitaan Save-napin painaminen
         $('#saveEmployee').attr("disabled", false);
+        
+        $timeout(function(){
+            $location.path('/tyontekija_paavalikko').replace();
+        }, 4000);
     }
     
     
@@ -90,7 +97,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         //Nothing to delete
         if($scope.deleteArray.length === 0){
             
-            Flash.create('danger','Ei mitään poistettavaa työntekijää!', 'custom-class');
+            Flash.create('info','Ei mitään poistettavaa työntekijää!', 'custom-class');
             console.log('nothing to delete');
             
             // sallitaan Delete-napin painaminen
@@ -107,15 +114,24 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
             employeeDataFactory.deleteData(data).then(function(data){
 
                 employeeDataFactory.employeeArray = [];
-                $location.path('/tyontekija_paavalikko').replace();
+                
+                Flash.create('success','Työntekijä poistettu!', 'custom-class');
+                
+                $timeout(function(){
+                    $location.path('/tyontekija_paavalikko').replace();
+                }, 4000);
                 
             },function(error){
                 
-                Flash.create('danger','Työntekijän tietojen poisto epäonnistui!', 'custom-class'); 
+                Flash.create('warning','Työntekijän tietojen poisto epäonnistui!', 'custom-class'); 
                 console.log('error in server');
                 
                 // sallitaan Delete-napin painaminen
                 $('#deleteEmployee').attr("disabled", false);
+                
+                $timeout(function(){
+                    $location.path('/tyontekija_paavalikko').replace();
+                }, 4000);
             });
         }
         

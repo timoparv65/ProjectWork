@@ -1,4 +1,4 @@
-main_module.controller('employeeAddController',function($scope,Flash,employeeDataFactory,$location){
+main_module.controller('employeeAddController',function($scope,Flash,employeeDataFactory,$location,$timeout){
     
     console.log('employeeAddController loaded');
     
@@ -60,7 +60,10 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
             
-            //$location.path('/tyontekija_paavalikko').replace();
+            $timeout(function(){
+                    $location.path('/tyontekija_paavalikko').replace();
+            }, 4000);
+            
         },function(error){
             
             console.log('employeeAddController/saveEmployeeClicked/waitPromise:fail');

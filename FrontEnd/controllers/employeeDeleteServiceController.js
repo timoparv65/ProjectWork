@@ -1,4 +1,4 @@
-main_module.controller('employeeDeleteServiceController',function($scope,employeeDataFactory,Flash,$location){
+main_module.controller('employeeDeleteServiceController',function($scope,employeeDataFactory,Flash,$location,$timeout){
     
     console.log('employeeDeleteServiceController loaded');
     
@@ -70,7 +70,12 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
             
             employeeDataFactory.deleteServiceData(data).then(function(data){
                 employeeDataFactory.serviceArray = [];
-                $location.path('/tyontekijan_palvelut_paavalikko').replace();
+                
+                Flash.create('success', 'Poistettu työntekijän palvelu', 'custom-class');
+                
+                $timeout(function(){
+                    $location.path('/tyontekijan_palvelut_paavalikko').replace();
+                }, 4000);
                 
             },function(error){
                 

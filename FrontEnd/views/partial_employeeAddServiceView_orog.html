@@ -1,13 +1,15 @@
 <nav-bar navbar-data='navbarData'></nav-bar>
 <div class='table_container'>
     <h3 ng-model='selectedEmployee'>Työntekijä: {{selectedEmployee.name}}</h3>
-    <h5 style="color:red"><b>{{message}}</b></h5>
+    
     <form>
         <label for="selectedService"> Valitse palvelu: </label><br>
-        <select class="form-control" id="selectedService" ng-model="selected" ng-options="choise.description group by choise.category for choise in serviceChoiseData" ng-change="updateMessage()">
+        <select name="selectedService" ng-model="selected">
+            <option value="">---Valitse ole hyvä---</option>
+            <option ng-repeat='choise in serviceChoiseData' value="{{choise._id}}">
+                        {{choise.category}} {{choise.description}}
+            </option>
         </select>
         <input id="saveService" class="btn btn-default" type="button" value="Tallenna" ng-click='saveServiceClicked()'>
     </form>
 </div>
-<div class="flash-style" flash-message="4000" ></div>
-                                                                               

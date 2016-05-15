@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th>Nimi</th>
+                <th>Rooli</th>
                 <th>Palveluita</th>
                 <th>Varauksia</th>
             </tr>
@@ -18,6 +19,7 @@
         <tbody>
             <tr ng-repeat='tyontekija in employeeData' ng-click='rowClicked(tyontekija._id)'>
                 <td>{{tyontekija.name}}</td>
+                <td>{{tyontekija.role}}</td>
                 <td>{{tyontekija.services.length}}</td>
                 <td>{{tyontekija.assignments.length}}</td>
             </tr>

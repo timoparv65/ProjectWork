@@ -326,9 +326,11 @@ exports.saveNewService = function(req,res){
     
     var temp = {
         category: req.body.category,
+        categoryextrainfo: req.body.categoryextrainfo,
         description: req.body.description,
+        extrainfo: req.body.extrainfo,
         duration: req.body.duration,
-        code:req.body.code
+        price:req.body.price
     };
     
     //console.log(temp);
