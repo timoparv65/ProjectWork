@@ -11,16 +11,7 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
     
     $scope.companyData = [];
     
-    companyDataFactory.getCompanyInformation(dataCallback);
-    
-    function dataCallback(dataArray){
-    
-        console.log('mainController/dataCallback');
-        console.log("dataArray[0]");
-        console.log(dataArray[0]);
-    
-        $scope.companyData = dataArray[0];
-    }
+    getCompanyData();
     
     //This is called when login button is pressed in partial_login.html
     $scope.loginClicked = function(){
@@ -60,6 +51,21 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
             
             Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');
         });
+    }
+    
+    function getCompanyData(){
+        console.log('mainController/getCompanyData');
+        
+        companyDataFactory.getCompanyInformation(dataCallback);
+    }
+    
+    function dataCallback(dataArray){
+    
+        console.log('mainController/dataCallback');
+        //console.log("dataArray[0]");
+        //console.log(dataArray[0]);
+    
+        $scope.companyData = dataArray[0];
     }
     
     

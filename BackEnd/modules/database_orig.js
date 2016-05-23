@@ -7,7 +7,7 @@
  */
 
 var mongoose = require("mongoose");
-var db_name = "parturikampaamo2";
+var db_name = "parturikampaamo";
 
 var mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
 
@@ -15,6 +15,7 @@ exports.connect = function(callback){
 	var dbconn = mongoose.connect(mongodb_connection_string,function(err,ok){
 
 		if(err){
+
 			console.log(err.message);
 		}else{
 			callback(dbconn);
@@ -53,8 +54,9 @@ var Employee = mongoose.model('Employee',{
 
 
 var Reservation = mongoose.model('Reservation',{
-    startTime: Date,
-    endTime: Date,
+    date:String,
+    startingTime:String,
+    finnishTime:String,
     employee:{type:mongoose.Schema.Types.ObjectId,ref:'Employee'},
     customer:{type:mongoose.Schema.Types.ObjectId,ref:'Customer'}
 },'reservation');
@@ -93,8 +95,9 @@ var ServiceChoise = mongoose.model('ServiceChoise',{
 });
 
 var offDay = mongoose.model('offDay',{
-    startTime: Date,
-    endTime: Date
+    date:String,
+    startingTime:String,
+    finnishTime:String
 },'offDay');
 
 //Using exports object you expose the data to other modules

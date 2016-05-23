@@ -62,15 +62,13 @@ main_module.config(function($routeProvider){
     
     $routeProvider.when('/',{
         
-        //templateUrl:'partial_mainView.html',
-        //controller:'mainController'
         templateUrl:'partial_mainPageView.html',
         controller:'mainPageController'
         
-    }).when('/ajanvaraus',{
+    }).when('/ajanvaraus_palvelun_valinta',{
         
-        templateUrl:'partial_reservationView.html',
-        controller:'reservationController'
+        templateUrl:'partial_reservationSelectServiceView.html',
+        controller:'reservationSelectServiceController'
         
     }).when('/ajanvaraus_ajan_valinta',{
         

@@ -36,6 +36,14 @@ router.post('/admin_login',function(req,res){
 });
 
 /**
+ * Handle POST requets for /employees/service context
+ */
+router.post('/service',function(req,res){
+    console.log('Handle POST requets for /employees/service context');
+    query.getEmployeesByService(req,res);
+});
+
+/**
  * Handle GET requets for /employees context
  */
 router.get('/',function(req,res){

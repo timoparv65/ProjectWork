@@ -11,7 +11,7 @@ var db = require('./database');
  *
  */
 exports.getReservationsByCustomerName = function(req,res){
-    //console.log('queries/getReservationsByCustomerName');
+    console.log('queries/getReservationsByCustomerName');
     
     db.Customer.findOne({username:req.body.username}).
         populate('assignments').exec(function(err,data){
@@ -43,7 +43,7 @@ exports.registerCustomer = function(req,res){
  *
  */
 exports.registerEmployee = function(req,res){
-    //console.log('queries/registerEmployee');
+    console.log('queries/registerEmployee');
     
     var employee = new db.Employee(req.body);
     employee.save(function(err){
@@ -62,7 +62,6 @@ exports.registerEmployee = function(req,res){
  *
  */
 exports.loginEmployee = function(req,res){
-    
     console.log('queries/loginEmployee');
     
     var searchObject = {
@@ -101,7 +100,6 @@ exports.loginEmployee = function(req,res){
  * lisätty 3.3.2016
  */
 exports.loginAdminEmployee = function(req,res){
-    
     console.log('queries/loginAdminEmployee');
     
     var searchObject = {
@@ -138,7 +136,7 @@ exports.loginAdminEmployee = function(req,res){
  *
  */
 exports.getReservationsByEmployeeName = function(req,res){
-    //console.log('queries/getReservationsByEmployeeName');
+    console.log('queries/getReservationsByEmployeeName');
     
     db.Employee.findOne({name:req.body.name}).
         populate('assignments').exec(function(err,data){
@@ -156,7 +154,7 @@ exports.getReservationsByEmployeeName = function(req,res){
  *
  */
 exports.getServicesByEmployeeName = function(req,res){
-    //console.log('queries/getServicesByEmployeeName');
+    console.log('queries/getServicesByEmployeeName');
     //console.log(req.query);
     
     db.Employee.findOne({name:req.query.name}).
@@ -178,7 +176,7 @@ exports.getServicesByEmployeeName = function(req,res){
  *
  */
 exports.getAllEmployees = function(req,res){
-    //console.log('queries/getAllEmployees');
+    console.log('queries/getAllEmployees');
     
     db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
@@ -195,14 +193,41 @@ exports.getAllEmployees = function(req,res){
 }
 
 /**
+ * 18.5.2016
+ */
+exports.getEmployeesByService = function(req,res){
+    console.log('queries/getEmployeesByService');
+    
+    var searchObject = {
+        category:req.body.category,
+        description:req.body.description
+    }
+    
+    console.log('searchObject');
+    console.log(searchObject);
+    
+    db.Employee.find(searchObject, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            console.log('Löydetyt työntekijat');
+            console.log(data);
+            //200 = ok
+            res.status(200).send(data);
+        }
+    });
+}
+
+/**
  *
  */
 exports.getAuthData = function(callback){
+    console.log('queries/getAuthData');
     
     db.Employee.find(function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
-        
         callback(data);
-        
     });
 }
 
@@ -211,8 +236,7 @@ exports.getAuthData = function(callback){
  * employee collection
  */
 exports.saveNewEmployee = function(req,res){
-    
-    //console.log('queries/saveNewEmployee');
+    console.log('queries/saveNewEmployee');
     //console.log('req.body: ' + req.body);
     
     var employeeTemp = new db.Employee(req.body);

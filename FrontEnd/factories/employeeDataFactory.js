@@ -52,6 +52,36 @@ main_module.factory('employeeDataFactory',function($resource){
         }
     }
     
+    factory.getEmployeesByService = function(data, callBackFunc){
+        console.log('employeeDataFactory/getEmployeesByService');
+        
+        //Create a resource for context '/employees/service'
+        var resource = $resource('/employees/service',{},{'post':{method:'POST'}});
+        
+        resource.post(data).$promise.then(function(returnData){
+
+            console.log('employeeDataFactory/getEmployeesByService:success');
+            console.log(returnData);
+
+            factory.employeeArray = returnData;
+            callbackFunc(factory.employeeArray);
+        },function(error){
+
+            console.log('employeeDataFactory/getEmployeesByService:fail');
+            console.log(error.message);
+
+            factory.employeeArray = [];
+            callbackFunc(factory.employeeArray);
+        });
+    }
+    
+    factory.getEmployeesByServiceAndEmployeeInfo = function(data, callBackFunc){
+        console.log('employeeDataFactory/getEmployeesByServiceAndEmployeeInfo');
+        
+        var temp = data;
+        callBackFunc(temp);
+    }
+    
     /**
       *This function searches an employee from array containing an id
       *that was stored when user cliked the row in the partial_employeeDataView
@@ -164,7 +194,6 @@ main_module.factory('employeeDataFactory',function($resource){
             factory.serviceArray = [];
             callbackFunc(factory.serviceArray);
         });
-        
         
     }
     

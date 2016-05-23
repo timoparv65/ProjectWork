@@ -17,6 +17,33 @@
         <div id="datepicker"></div>
     </div>
     <div class="col-sm-6 col-md-6">
-    
+        <div>
+            <p>Valittu palvelu: <b>{{selectedService.description}}</b></p><br/>
+            <input type="button" value="<< Valitse toinen palvelu" ng-click="selectAnotherService()">
+        </div><br/>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <!--
+                        <th ng-repeat='tyontekija in employeeData'>
+                            {{tyontekija.name}}
+                        </th>
+                        -->
+                        <th>Kauko</th>
+                        <th>Unto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='aika in bookingTimes' ng-click="tableClicked($event)">
+                        <td>{{aika}}</td>
+                        <td>Varaa {{ev.pageX}}</td>
+                        <td>Varaa {{ev.pageX}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
-main_module.controller('reservationController',function($scope,$location,employeeDataFactory){
+main_module.controller('reservationSelectServiceController',function($scope,$location,employeeDataFactory){
     
-    console.log('reservationController loaded');
+    console.log('reservationSelectServiceController loaded');
     
     $scope.employeeData = [];
     $scope.selectedEmployee = [];
@@ -13,17 +13,16 @@ main_module.controller('reservationController',function($scope,$location,employe
         classes:['','active','','']
     }
     
-    employeeDataFactory.getServiceChoises(dataCallBack2);
+    employeeDataFactory.getServiceChoises(dataCallBackServices);
     
     employeeDataFactory.getEmployees(dataCallback);
     
     function dataCallback(dataArray){
-    
-        console.log('reservationController/dataCallback');
+        console.log('reservationSelectServiceController/dataCallback');
     
         $scope.employeeData = dataArray;
-        console.log('dataArray');
-        console.log(dataArray);
+        //console.log('dataArray');
+        //console.log(dataArray);
         
         var temp = {
             name: 'Kuka tahansa',
@@ -31,6 +30,7 @@ main_module.controller('reservationController',function($scope,$location,employe
         }
         
         $scope.selectedEmployee.push(temp);
+        
         for(var i = 0; i < dataArray.length; i++)
         {
             var empl = dataArray[i];
@@ -43,36 +43,42 @@ main_module.controller('reservationController',function($scope,$location,employe
         }
         // This one preselected
         $scope.selectedEmpl = $scope.selectedEmployee[0];
-        
+        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
     }
     
     $scope.selectServiceClicked = function(){
-        console.log('reservationController/selectServiceClicked');
+        console.log('reservationSelectServiceController/selectServiceClicked');
         
-        console.log('$scope.selectedEmpl');
-        console.log($scope.selectedEmpl.name);
-        console.log('$scope.selectedServ.description');
-        console.log($scope.selectedServ.description);
+        //console.log('$scope.selectedEmpl');
+        //console.log($scope.selectedEmpl.name);
+        console.log('$scope.selectedServ');
+        console.log($scope.selectedServ);
+        
+        factory.selectedService = $scope.selectedServ;
         
         $location.path('/ajanvaraus_ajan_valinta').replace();
         
     }
     
     $scope.selectServicesByEmployee = function(){
-        console.log('reservationController/selectServicesByEmployee');
+        console.log('reservationSelectServiceController/selectServicesByEmployee');
+        
+        console.log('$scope.selectedEmpl');
+        console.log($scope.selectedEmpl);
+        
+        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
         
         if ($scope.selectedEmpl.name === 'Kuka tahansa'){
-            employeeDataFactory.getServiceChoises(dataCallBack2);
+            employeeDataFactory.getServiceChoises(dataCallBackServices);
         } else {
-            console.log('$scope.selectedEmpl.name');
-            console.log($scope.selectedEmpl.name);
-            employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
-            employeeDataFactory.getServices(dataCallBack2);
+            //console.log('$scope.selectedEmpl.name');
+            //console.log($scope.selectedEmpl.name);
+            employeeDataFactory.getServices(dataCallBackServices);
         }
     }
     
-    function dataCallBack2(dataArray){
-        console.log('reservationController/dataCallBack2');
+    function dataCallBackServices(dataArray){
+        console.log('reservationSelectServiceController/dataCallBackServices');
         
         $scope.serviceChoiseData = dataArray;
         $scope.selectedServ = dataArray[0];

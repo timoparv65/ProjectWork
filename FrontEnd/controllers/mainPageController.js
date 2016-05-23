@@ -12,7 +12,7 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
     
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus','#/sisaisille_sivuille'],
+        urls:['#/','#/ajanvaraus_palvelun_valinta','#/sisaisille_sivuille'],
         texts:['Etusivu','Ajanvaraus','Yrityksen sisäisille sivuille'],
         classes:['active','','']
     }
@@ -34,7 +34,6 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
 
         // kts. GeocoderRequest object specification
         var geoCodeRequest = {
-            //address:my_address
             address:$scope.companyData[0].address + "," + $scope.companyData[0].city
         }
 

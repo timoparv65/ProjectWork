@@ -23,7 +23,7 @@
                 </select><br/>
                 <label for="servsel">Valitse palvelu</label>
                 <select id="servsel" class="form-control" ng-model="selectedServ" ng-options="choise.description group by choise.category for choise in serviceChoiseData">
-                </select>
+                </select><br/>
                 <input id="saveServiceSelection" class="btn btn-default" type="button" value="Seuraava >>" ng-click='selectServiceClicked()'>
             </form>
             <div>
