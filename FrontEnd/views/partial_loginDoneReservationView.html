@@ -19,19 +19,11 @@
         </div>
         <div class="col-sm-6 col-md-6">
             <form>
-                <label for="employees">Valitse työntekijä</label>
-                <select class="form-control" id="employees">
-                    <option value="kuka tahansa" selected>Kuka tahansa</option>
-                    <option value="anu">Anu</option>
-                    <option value="pia">Pia</option>
-                    <option option="kusti">Kusti</option>
+                <label for="emplsel">Valitse työntekijä</label>
+                <select id="emplsel" class="form-control" ng-model="selectedEmpl" ng-options="employee.name for employee in selectedEmployee" ng-change="selectServicesByEmployee()">
                 </select><br/>
-                <label for="services">Valitse palvelu</label>
-                <select class="form-control" id="services">
-                    <option value="">Valitse</option>
-                    <option value="hiustenleikkaukset" disabled><b>Hiusten leikkaukset</b></option>
-                    <option value="hiustenleikkaus_0_20min">Hiusten leikkaus 0-20 min</option>
-                    <option option="hiustenleikkaus_20_30min">Hiusten leikkaus 20-30 min</option>
+                <label for="servsel">Valitse palvelu</label>
+                <select id="servsel" class="form-control" ng-model="selectedServ" ng-options="choise.description group by choise.category for choise in serviceChoiseData">
                 </select><br/>
                 <input id="saveServiceSelection" class="btn btn-default" type="button" value="Seuraava >>" ng-click='selectServiceClicked()'>
             </form>

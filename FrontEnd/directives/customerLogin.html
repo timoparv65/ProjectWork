@@ -1,8 +1,8 @@
 <div>
-    <form action="/customer_login" method="post">
+    <form ng-submit="submit()" ng-controller="reservationSelectServiceController">
         <h4 style="color:deeppink">Kirjaudu sisään</h4>
-        <input type="text" placeholder="Käyttäjätunnus" name="username"><br>
-        <input type="password" placeholder="Salasana" name="passwd"><br>
-        <input type="submit" value="Kirjaudu">
+        <input type="text" ng-model="username" />
+        <input type="password" ng-model="passwd" />
+        <input type="submit" id="submit" value="Kirjaudu" />
     </form>
 </div>

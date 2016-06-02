@@ -26,20 +26,15 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <!--
                         <th ng-repeat='tyontekija in employeeData'>
                             {{tyontekija.name}}
                         </th>
-                        -->
-                        <th>Kauko</th>
-                        <th>Unto</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat='aika in bookingTimes' ng-click="tableClicked($event)">
                         <td>{{aika}}</td>
-                        <td>Varaa {{ev.pageX}}</td>
-                        <td>Varaa {{ev.pageX}}</td>
+                        <td ng-repeat="tyontekija in employeeData">Varaa</td>
                     </tr>
 
                 </tbody>

@@ -177,13 +177,6 @@ app.get('/reset_session_admin_id',function(req,res,next){
 });
 
 
-// lisätty 25.4.2016
-app.post('/customer_login',function(req,res,next){
-    console.log('index.js/customer_login');
-    console.log(req);
-    res.redirect('/#/ajanvaraus_sisaankirjauduttu');
-});
-
 app.listen(3000);
 
 

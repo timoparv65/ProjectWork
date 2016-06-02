@@ -26,7 +26,7 @@ main_module.factory('employeeDataFactory',function($resource){
         //console.log('factory.selectedEmployee:');
         //console.log(factory.selectedEmployee);
         
-        if(factory.employeeArray.length === 0){
+        //if(factory.employeeArray.length === 0){
             
             var resource = $resource('/employees',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
@@ -45,11 +45,11 @@ main_module.factory('employeeDataFactory',function($resource){
                 factory.employeeArray = [];
                 callbackFunc(factory.employeeArray);
             });
-        }else{
+        /*}else{
             
             console.log("companyDataFactory/getCompanyInformation: employeeArray.length != 0");
             callbackFunc(factory.employeeArray);
-        }
+        }*/
     }
     
     factory.getEmployeesByService = function(data, callBackFunc){
@@ -252,7 +252,7 @@ main_module.factory('employeeDataFactory',function($resource){
         console.log('employeeDataFactory/getServiceChoises');
         //console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
         
-        if(factory.serviceChoiseArray.length === 0){
+        //if(factory.serviceChoiseArray.length === 0){
             
             var resource = $resource('/servicechoises',{},{'get':{method:'GET'}});
             
@@ -271,10 +271,10 @@ main_module.factory('employeeDataFactory',function($resource){
                 factory.serviceChoiseArray = [];
                 callbackFunc(factory.serviceChoiseArray);
             });
-        }else{
+        /*}else{
             console.log('employeeDataFactory/getServiceChoises:success, factory.serviceChoiseArray.length != 0');
             callbackFunc(factory.serviceChoiseArray);
-        }
+        }*/
         
     }
     

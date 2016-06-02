@@ -15,6 +15,13 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
     
     employeeDataFactory.getServiceChoises(dataCallBackServices);
     
+    function dataCallBackServices(dataArray){
+        console.log('reservationSelectServiceController/dataCallBackServices');
+        
+        $scope.serviceChoiseData = dataArray;
+        $scope.selectedServ = dataArray[0];
+    }
+    
     employeeDataFactory.getEmployees(dataCallback);
     
     function dataCallback(dataArray){
@@ -54,7 +61,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         console.log('$scope.selectedServ');
         console.log($scope.selectedServ);
         
-        factory.selectedService = $scope.selectedServ;
+        employeeDataFactory.selectedService = $scope.selectedServ;
         
         $location.path('/ajanvaraus_ajan_valinta').replace();
         
@@ -76,12 +83,12 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
             employeeDataFactory.getServices(dataCallBackServices);
         }
     }
-    
-    function dataCallBackServices(dataArray){
-        console.log('reservationSelectServiceController/dataCallBackServices');
+
+    $scope.submit = function(){
+        console.log('reservationSelectServiceController/submit');
         
-        $scope.serviceChoiseData = dataArray;
-        $scope.selectedServ = dataArray[0];
+        console.log('username: ' + $scope.username);
+        console.log('passwd: ' + $scope.passwd);
     }
 
 });

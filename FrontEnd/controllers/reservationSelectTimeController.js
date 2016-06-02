@@ -182,14 +182,14 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     
     $scope.tableClicked = function($event){
-        //console.log("reservationSelectTimeController/rowColumn");
+        console.log("reservationSelectTimeController/tableClicked");
+        //console.log($event.target);
         
-        //$scope.ev = $event;
-        //var myCol = $(this).closest("td").index();
-        //console.log(myCol);
-        console.log($event);
-        console.log($event.target);
-        
+        var $td = $(event.target);
+        var myCol = $td.index();
+        var $tr = $td.closest('tr');
+        var myRow = $tr.index();
+        console.log('column: ' + myCol, 'row: ' + myRow);
     }
                   
     
