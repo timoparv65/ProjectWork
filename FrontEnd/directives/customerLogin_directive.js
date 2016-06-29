@@ -4,24 +4,22 @@ main_module.directive('customerLogin',function(){
     
     //'A' as attribute
     //'E' as element
-    directive.restrict = 'AE';
+    directive.restrict = 'E';
+    //directive.controller = 'CustomerLoginController';
+    //directive.require = 'form';
+    /*
+    directive.scope = {}
     
-    directive.templateUrl = '/FrontEnd/directives/customerLogin.html';
-    /*
-    directive.scope = {
-        
-        navbarData:'=' // two-way binding
-    }*/
-    /*
     directive.link = function(scope,elem,attrs){
-		
-		//$('a').first.addClass('active');
-		$('a').click(function(){
-			console.log('Link cliked');
-			if(!this.hasClass('active'))
-				this.addClass('active');
-		});
-	}*/
+		console.log('customerLogin_directive/link');
+        
+        $(elem).click(function(){
+            console.log('directive clicked');
+            console.log(elem);
+        });
+	}
+    */
+    directive.templateUrl = '/FrontEnd/directives/customerLogin.html';
     
     return directive;
     

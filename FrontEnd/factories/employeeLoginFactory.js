@@ -2,12 +2,12 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     console.log('employeeLoginFactory loaded');
     
-    var factory = {};
+    var factory2 = {};
     
     //This function can be called from ANY controller using this factory
     //implementation
     
-    factory.startLogin = function(data){
+    factory2.startLogin = function(data){
         
         console.log('employeeLoginFactory/startLogin');
         
@@ -19,7 +19,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     // lisätty 3.3.2016
-    factory.startAdminLogin = function(data){
+    factory2.startAdminLogin = function(data){
         
         console.log('employeeLoginFactory/startAdminLogin');
         
@@ -31,7 +31,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     //lisätty 26.2.2016
-    factory.checkRoleForEnteringCompanyInternalPages = function(){
+    factory2.checkRoleForEnteringCompanyInternalPages = function(){
         
          console.log('employeeLoginFactory/checkRoleForEnteringCompanyInternalPages');
         
@@ -41,7 +41,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     
     //lisätty 29.2.2016
-    factory.checkRoleForEnteringCompanyAdminPages = function(){
+    factory2.checkRoleForEnteringCompanyAdminPages = function(){
         
          console.log('employeeLoginFactory/checkRoleForEnteringCompanyAdminPages');
         
@@ -50,7 +50,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     // lisätty 3.3.2016
-    factory.resetSessionAdminId = function(){
+    factory2.resetSessionAdminId = function(){
         
         console.log('employeeLoginFactory/resetSessionAdminId');
         
@@ -60,6 +60,6 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     
     //Factory must always return an object!!!!
-    return factory;
+    return factory2;
     
 });

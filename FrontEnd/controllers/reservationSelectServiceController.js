@@ -1,10 +1,11 @@
-main_module.controller('reservationSelectServiceController',function($scope,$location,employeeDataFactory){
+main_module.controller('reservationSelectServiceController',function($scope,$location,employeeDataFactory,Flash,customerLoginFactory){
     
     console.log('reservationSelectServiceController loaded');
     
     $scope.employeeData = [];
     $scope.selectedEmployee = [];
     $scope.serviceChoiseData = [];
+    $scope.user = {};
 
     $scope.navbarData = {
         
@@ -78,8 +79,13 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         if ($scope.selectedEmpl.name === 'Kuka tahansa'){
             employeeDataFactory.getServiceChoises(dataCallBackServices);
         } else {
+            console.log('$scope.selectedEmpl');
+            console.log($scope.selectedEmpl);
             //console.log('$scope.selectedEmpl.name');
             //console.log($scope.selectedEmpl.name);
+            console.log('employeeDataFactory.selectedEmployee');
+            console.log(employeeDataFactory.selectedEmployee);
+            //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
             employeeDataFactory.getServices(dataCallBackServices);
         }
     }
@@ -87,8 +93,23 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
     $scope.submit = function(){
         console.log('reservationSelectServiceController/submit');
         
-        console.log('username: ' + $scope.username);
-        console.log('passwd: ' + $scope.passwd);
+        console.log($scope.user);
+        
+        var temp = {
+            username:$scope.user.username,
+            password:$scope.user.passwd,
+        }
+        
+        var waitPromise = customerLoginFactory.startLogin(temp);
+        
+        //Wait the response from server
+        waitPromise.then(function(ok1){
+            $location.path('/reservationSelectTimeController');
+            //code inside this block will be called when success response
+            //from server receives
+        },function(err1){
+            Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');            
+        });
     }
 
 });

@@ -60,10 +60,10 @@ var Reservation = mongoose.model('Reservation',{
 },'reservation');
 
 var Customer = mongoose.model('Customer',{
-    name:String,
-    password:String,
     email:{type:String,unique:true},
-    mobileNumber:{type:String,unique:true},
+    name:String,
+    mobileNumber:String,
+    password:String,
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'customer');
 

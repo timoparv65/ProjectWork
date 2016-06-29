@@ -29,14 +29,56 @@ exports.getReservationsByCustomerName = function(req,res){
  *
  */
 exports.loginCustomer = function(req,res){
-    //console.log('queries/loginCustomer');
+    console.log('queries/loginCustomer');
+    
+    var searchObject = {
+        name:req.body.username,
+        password:req.body.password
+    }
+    
+    console.log("searchObject");
+    console.log(searchObject);
+
+    db.Customer.findOne(searchObject,function(err,data){
+        
+        if(err){
+            
+            res.send(502,{status:err.message});
+            
+        }else{
+            console.log(data);
+            //=< 0 means wrong username or password
+            if(data){
+                req.session.customerId = data.name;
+                console.log('req.session.customerId: ' + req.session.customerId);
+                
+                res.send(200,{status:"Ok"});
+            }
+            else{
+                res.status(401).send({status:"Väärä käyttäjänimi tai salasana"});
+            }
+            
+        }
+    });
 }
 
 /**
  *
  */
 exports.registerCustomer = function(req,res){
-    //console.log('queries/registerCustomer');
+    console.log('queries/registerCustomer');
+    
+    var customer = new db.Customer(req.body);
+    customer.save(function(err){
+        
+        if(err){
+            
+            res.status(500).send({status:err.message});
+        }
+        else{
+            res.status(200).send({status:"Ok"});
+        }
+    });
 }
 
 /**
@@ -89,7 +131,7 @@ exports.loginEmployee = function(req,res){
                 res.send(200,{status:"Ok"});
             }
             else{
-                res.status(401).send({status:"Wrong username or password"});
+                res.status(401).send({status:"Väärä käyttäjänimi tai salasana"});
             }
             
         }

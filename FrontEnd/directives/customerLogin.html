@@ -1,8 +1,9 @@
 <div>
-    <form ng-submit="submit()" ng-controller="reservationSelectServiceController">
+    <form novalidate ng-submit="submit()" ng-controller="reservationSelectServiceController">
+    <!--<form ng-submit="submit()">-->
         <h4 style="color:deeppink">Kirjaudu sisään</h4>
-        <input type="text" ng-model="username" />
-        <input type="password" ng-model="passwd" />
-        <input type="submit" id="submit" value="Kirjaudu" />
+        <input type="text" placeholder="Käyttäjänimi" ng-model="user.username"><br>
+        <input type="password" placeholder="Salasana" ng-model="user.passwd"><br>
+        <input type="submit" id="submit" value="Kirjaudu"><br>
     </form>
 </div>

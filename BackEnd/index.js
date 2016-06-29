@@ -13,8 +13,11 @@ var acl = require('acl');
 
 // This is used for creating a secret key value for our session cookie
 var uuid = require('uuid');
+var uuidCustomer = require('uuid');
 // This is used to create a session object for client
 var session = require('express-session');
+// This is used to create a session object for the customer
+var sessionCustomer = require('express-session');
 
 var app = express();
 
@@ -26,6 +29,12 @@ var conn = require('./modules/database').connect(builAuthorization);
 // luo session ja cookien
 app.use(session({
     secret:uuid.v1(),
+    cookie:{maxAge:2400000} // kuinka kauan cookie on valid => 2400'000 ms = 40min
+}));
+
+// luo sessionCustomer ja cookien
+app.use(sessionCustomer({
+    secret:uuidCustomer.v1(),
     cookie:{maxAge:2400000} // kuinka kauan cookie on valid => 2400'000 ms = 40min
 }));
 
@@ -104,6 +113,24 @@ app.get('/isLoggedToCompanyAdminPages',function(req,res){
     if(req.session.adminId){
         // palauttaa send:illä json-objektin arrayna. mainModule:ssa loginRequiredToCompanyAdminPages
         // $resource('/isLoggedToCompanyAdminPages').query()...query vaatii arrayn
+        res.status(200).send([{status:'Ok'}]);
+    }
+    else{
+        res.status(401).send([{status:'Unauthorized'}]);
+    }
+});
+
+// 5.6.2016
+// this router checks if customer is logged in or not
+app.get('isLoggedToCustomerPrivatePages',function(req,res){
+    console.log('index.js/isLoggedToCustomerPrivatePages');
+    
+    console.log('req.session.customerId: ' + req.session.customerId);
+    
+    // Customer is logged in if session contains customerId attribute
+    if(req.session.customerId){
+        // palauttaa send:illä json-objektin arrayna. mainModule:ssa loginRequiredToCustomerPrivatePages
+        // $resource('/isLoggedToCustomerPrivatePages').query()...query vaatii arrayn
         res.status(200).send([{status:'Ok'}]);
     }
     else{

@@ -1,10 +1,10 @@
 main_module.factory('customerDataFactory',function($resource){
     
-    factory = {};
+    factory4 = {};
     
     console.log('customerDataFactory loaded');
     
 
-    return factory;
+    return factory4;
     
 });

@@ -1,0 +1,17 @@
+<div>
+    <form name="form" novalidate ng-submit="submit()" ng-controller="customerRegisterController">
+        <h4 style="color:deeppink">Rekisteröidy ajanvarauspalveluun</h4><br/>
+        <h5>Rekisteröitymällä palveluun varaushistoriasi on aina nähtävilläsi.</h5>
+        <h5>Rekisteröitymisellä estetään myös väärien varausten tekeminen ja</h5>
+        <h5>parannetaan näin asiakaspalvelua kaikkia asiakkaita kohtaan.</h5>
+        <h5><b>Rekisteröityminen suoritetaan vain kerran, tämän jälkeen voit</b></h5>
+        <h5><b>käyttää palvelua ilmaiseksi.</b></h5><br/>
+        <h5><b>Suosittelemme täyttämään myös sähköpostiosoitteesi, sillä mm.</b></h5>
+        <h5><b>salasanan palautukset tulee suoraan sähköpostiisi.</b></h5>
+        <input class="form-control" type="text" placeholder="Käyttäjänimi" name="user.username" ng-model="username"><br/>
+        <input class="form-control" type="email" placeholder="Sähköpostiosoite" ng-model="user.email"><br/>
+        <input class="form-control" type="tel" placeholder="Puhelinnumero" ng-model="user.phone"><br/>
+        <input class="form-control" type="password" placeholder="Salasana" ng-model="user.passwd"><br/>
+        <input type="submit" id="submit" value="Rekisteröidy"><br>
+    </form>
+</div>

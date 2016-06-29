@@ -174,6 +174,8 @@ main_module.factory('employeeDataFactory',function($resource){
     factory.getServices = function(callbackFunc){
         
         console.log('employeeDataFactory/getServices');
+        console.log('factory.selectedEmployee');
+        console.log(factory.selectedEmployee);
         //console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
         //console.log('factory.selectedEmployee.name: ' + factory.selectedEmployee.name);
            

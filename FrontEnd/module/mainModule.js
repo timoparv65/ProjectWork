@@ -57,6 +57,31 @@ function loginRequiredToCompanyAdminPages($q,$resource,$location,$http){
 
 }
 
+function loginRequiredToCustomerPrivatePages($q,$resource,$location,$http){
+    
+    //Create a promise object. Can be in two states: suceed or not
+    var deferred = $q.defer();
+    
+    // promise joko onnistuu tai epäonnistuu
+    // $promise tsekkaa mikä oli statuskoodi vastauksessa
+    $resource('/isLoggedToCustomerPrivatePages').query().$promise.then(
+    // Success function
+    function success(){
+
+        // Mark the promise to be solved (or resolved)
+        deferred.resolve();
+        return deferred; // palauta promise objekti
+    
+    },function fail(){ // Fail function
+
+        //Mark promise to be failed
+        deferred.reject();
+        // Go back to root context
+        $location.path('/ajanvaraus_palvelun_valinta');
+        return deferred;
+    });
+}
+
 
 main_module.config(function($routeProvider){
     
@@ -69,6 +94,16 @@ main_module.config(function($routeProvider){
         
         templateUrl:'partial_reservationSelectServiceView.html',
         controller:'reservationSelectServiceController'
+    
+    }).when('/asiakas_rekisteroi',{
+        
+        templateUrl:'partial_customerRegisterView.html',
+        controller:'customerRegisterController'
+        
+    }).when('/asiakas_salasana_unohtui',{
+        
+        templateUrl:'partial_customerForgotPasswordView.html',
+        controller:'customerForgotPasswordController'
         
     }).when('/ajanvaraus_ajan_valinta',{
         
