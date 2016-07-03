@@ -12,7 +12,7 @@ var express = require("express");
 var router = express.Router();
 
 /**
- *
+ * Handle GET requets for /customers/ context
  */
 router.get('/',function(req,res){
 
@@ -20,7 +20,7 @@ router.get('/',function(req,res){
 });
 
 /**
- *
+ * Handle POST requets for /customers/login context
  */
 router.post('/login',function(req,res){
    
@@ -28,13 +28,12 @@ router.post('/login',function(req,res){
 });
 
 /**
- *
+ * Handle POST requets for /customers/register context
  */
 router.post('/register',function(req,res){
    
     query.registerCustomer(req,res);
 });
-
 
 
 module.exports = router;

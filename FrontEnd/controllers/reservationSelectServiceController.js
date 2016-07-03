@@ -9,8 +9,8 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
 
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus',"#/palvelut_ja_hinnasto",'#/yhteystiedot'],
-        texts:['Etusivu','Ajanvaraus','Palvelut ja hinnasto','Yhteystiedot'],
+        urls:['#/','#/palvelun_valinta',"#/palvelut_ja_hinnasto",'#/yhteystiedot'],
+        texts:['Etusivu','Palvelun valinta','Palvelut ja hinnasto','Yhteystiedot'],
         classes:['','active','','']
     }
     
@@ -104,7 +104,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         
         //Wait the response from server
         waitPromise.then(function(ok1){
-            $location.path('/reservationSelectTimeController');
+            $location.path('/palvelun_valinta');
             //code inside this block will be called when success response
             //from server receives
         },function(err1){

@@ -4,8 +4,8 @@ main_module.controller('servicesAndPricesController',function($scope,employeeDat
     
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus',"#/palvelut_ja_hinnasto",'#/yhteystiedot'],
-        texts:['Etusivu','Ajanvaraus','Palvelut ja hinnasto','Yhteystiedot'],
+        urls:['#/','#/palvelun_valinta',"#/palvelut_ja_hinnasto",'#/yhteystiedot'],
+        texts:['Etusivu','Palvelun valinta','Palvelut ja hinnasto','Yhteystiedot'],
         classes:['','','active','']
     }
     

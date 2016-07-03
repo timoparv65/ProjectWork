@@ -1,11 +1,11 @@
 main_module.factory('customerLoginFactory',function($resource){
     
-    factory_customerLogin = {};
+    factoryCustomerLogin = {};
     
     console.log('customerLoginFactory loaded');
     
     // lisätty 27.3.2016
-    factory_customerLogin.startLogin = function(data){
+    factoryCustomerLogin.startLogin = function(data){
         
         console.log('customerLoginFactory/startLogin');
         
@@ -16,7 +16,7 @@ main_module.factory('customerLoginFactory',function($resource){
         return req.post(data).$promise;
     }
     
-    factory_customerLogin.startRegister = function(data){
+    factoryCustomerLogin.startRegister = function(data){
         
         console.log('customerLoginFactory/startRegister');
         
@@ -24,6 +24,6 @@ main_module.factory('customerLoginFactory',function($resource){
         return req.post(data).$promise;
     }
     
-    return factory_customerLogin;
+    return factoryCustomerLogin;
     
 });

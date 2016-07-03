@@ -8,10 +8,20 @@
         <h5><b>käyttää palvelua ilmaiseksi.</b></h5><br/>
         <h5><b>Suosittelemme täyttämään myös sähköpostiosoitteesi, sillä mm.</b></h5>
         <h5><b>salasanan palautukset tulee suoraan sähköpostiisi.</b></h5>
-        <input class="form-control" type="text" placeholder="Käyttäjänimi" name="user.username" ng-model="username"><br/>
-        <input class="form-control" type="email" placeholder="Sähköpostiosoite" ng-model="user.email"><br/>
-        <input class="form-control" type="tel" placeholder="Puhelinnumero" ng-model="user.phone"><br/>
-        <input class="form-control" type="password" placeholder="Salasana" ng-model="user.passwd"><br/>
+        <input class="form-control" type="text" placeholder="Käyttäjänimi" name="uUsername" ng-model="user.username" required>
+        <div ng-show="form.$submitted || form.uUsername.$touched">
+            <div style="color:red" ng-show="form.uUsername.$error.required">Käyttäjänimi puuttuu.</div>
+        </div>
+        <input class="form-control" type="email" placeholder="Sähköpostiosoite" name="uEmail" ng-model="user.email" required>
+        <div ng-show="form.$submitted || form.uEmail.$touched">
+            <span style="color:red" ng-show="form.uEmail.$error.required">Sähköpostiosoite puuttuu.</span>
+            <span style="color:red" ng-show="form.uEmail.$error.email">Sähköpostiosoite ei ole oikeaa muotoa.</span>
+        </div>
+        <input class="form-control" type="tel" placeholder="Puhelinnumero" ng-model="user.phone">
+        <input class="form-control" type="password" placeholder="Salasana" name="uPasswd" ng-model="user.passwd" required>
+        <div ng-show="form.$submitted || form.uPasswd.$touched">
+            <div style="color:red" ng-show="form.uPasswd.$error.required">Salasana puuttuu.</div>
+        </div>
         <input type="submit" id="submit" value="Rekisteröidy"><br>
     </form>
 </div>

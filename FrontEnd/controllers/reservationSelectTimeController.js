@@ -4,9 +4,9 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     $scope.navbarData = {
         
-        urls:[''],
-        texts:[''],
-        classes:['']
+        urls:['#/','#/palvelun_valinta','#/ajanvaraus_ajan_valinta'],
+        texts:['Etusivu','Palvelun valinta','Ajan valinta'],
+        classes:['','','active']
     }
     
     $scope.selectedDate = null;
@@ -49,7 +49,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     $scope.selectAnotherService = function(){
         console.log('reservationSelectTimeController/selectAnotherService');
         
-        $location.path('/ajanvaraus_palvelun_valinta').replace();
+        $location.path('/palvelun_valinta').replace();
     }
     
     function datePickerValue(arvo){

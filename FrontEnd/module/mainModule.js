@@ -90,7 +90,7 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_mainPageView.html',
         controller:'mainPageController'
         
-    }).when('/ajanvaraus_palvelun_valinta',{
+    }).when('/palvelun_valinta',{
         
         templateUrl:'partial_reservationSelectServiceView.html',
         controller:'reservationSelectServiceController'

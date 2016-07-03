@@ -12,8 +12,8 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
     
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus_palvelun_valinta','#/sisaisille_sivuille'],
-        texts:['Etusivu','Ajanvaraus','Yrityksen sisäisille sivuille'],
+        urls:['#/','#/palvelun_valinta','#/sisaisille_sivuille'],
+        texts:['Etusivu','Palvelun valinta','Yrityksen sisäisille sivuille'],
         classes:['active','','']
     }
     
