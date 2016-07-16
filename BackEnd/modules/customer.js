@@ -15,7 +15,7 @@ var router = express.Router();
  * Handle GET requets for /customers/ context
  */
 router.get('/',function(req,res){
-
+    console.log('customer.js: /');
     query.getReservationsByCustomerName(req,res);
 });
 
@@ -23,7 +23,7 @@ router.get('/',function(req,res){
  * Handle POST requets for /customers/login context
  */
 router.post('/login',function(req,res){
-   
+    console.log('customer.js: /login');
     query.loginCustomer(req,res);
 });
 
@@ -31,7 +31,7 @@ router.post('/login',function(req,res){
  * Handle POST requets for /customers/register context
  */
 router.post('/register',function(req,res){
-   
+    console.log('customer.js: /register');
     query.registerCustomer(req,res);
 });
 

@@ -58,7 +58,7 @@ function loginRequiredToCompanyAdminPages($q,$resource,$location,$http){
 }
 
 function loginRequiredToCustomerPrivatePages($q,$resource,$location,$http){
-    
+    console.log('loginRequiredToCustomerPrivatePages');
     //Create a promise object. Can be in two states: suceed or not
     var deferred = $q.defer();
     
@@ -67,17 +67,17 @@ function loginRequiredToCustomerPrivatePages($q,$resource,$location,$http){
     $resource('/isLoggedToCustomerPrivatePages').query().$promise.then(
     // Success function
     function success(){
-
+        console.log('onnistui');
         // Mark the promise to be solved (or resolved)
         deferred.resolve();
         return deferred; // palauta promise objekti
     
     },function fail(){ // Fail function
-
+        console.log('epäonnistui');
         //Mark promise to be failed
         deferred.reject();
         // Go back to root context
-        $location.path('/ajanvaraus_palvelun_valinta');
+        $location.path('/palvelun_valinta');
         return deferred;
     });
 }
@@ -110,10 +110,11 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_reservationSelectTimeView.html',
         controller:'reservationSelectTimeController'
         
-    }).when('/ajanvaraus_sisaankirjauduttu',{
+    }).when('/palvelun_valinta_sisaankirjauduttu',{
         
-        templateUrl:'partial_loginDoneReservationView.html',
-        controller:'loginDoneReservationController'
+        templateUrl:'partial_loginDoneReservationSelectServiceView.html',
+        controller:'loginDoneReservationSelectServiceController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
         
     }).when('/ajanvaraus_sisaankirjauduttu_ajan_valinta',{
         
@@ -125,10 +126,22 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_servicesAndPricesView.html',
         controller:'servicesAndPricesController'
         
+    }).when('/palvelut_ja_hinnasto_sisaankirjauduttu',{
+        
+        templateUrl:'partial_servicesAndPricesView.html',
+        controller:'loginDoneServicesAndPricesController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
+        
     }).when('/yhteystiedot',{
         
         templateUrl:'partial_contactDetailsView.html',
-        controller:'contactDetailController'
+        controller:'contactDetailsController'
+        
+    }).when('/yhteystiedot_sisaankirjauduttu',{
+        
+        templateUrl:'partial_contactDetailsView.html',
+        controller:'loginDoneContactDetailsController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
         
     }).when('/sisaisille_sivuille',{
         

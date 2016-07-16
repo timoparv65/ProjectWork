@@ -1,32 +1,32 @@
 main_module.factory('employeeDataFactory',function($resource){
     
-    factory = {};
+    factoryEmployeeData = {};
     
     console.log('employeeDataFactory loaded');
     
-    factory.selected_id = null;
-    factory.selected_service_id = null;
-    factory.selected_service_choise_id = null;
+    factoryEmployeeData.selected_id = null;
+    factoryEmployeeData.selected_service_id = null;
+    factoryEmployeeData.selected_service_choise_id = null;
     
-    factory.employeeArray = [];
-    factory.serviceArray = [];
-    factory.serviceChoiseArray = [];
-    factory.selectedEmployee = null;
-    factory.selectedService = null;
-    factory.selectedServiceChoise = null;
+    factoryEmployeeData.employeeArray = [];
+    factoryEmployeeData.serviceArray = [];
+    factoryEmployeeData.serviceChoiseArray = [];
+    factoryEmployeeData.selectedEmployee = null;
+    factoryEmployeeData.selectedService = null;
+    factoryEmployeeData.selectedServiceChoise = null;
     
     
-    factory.getEmployees = function(callbackFunc){
+    factoryEmployeeData.getEmployees = function(callbackFunc){
         
         console.log('employeeDataFactory/getEmployees');
-        //console.log('factory.employeeArray.length: ' + factory.employeeArray.length);
-        //console.log('factory.selected_id: ' + factory.selected_id);
-        //console.log('factory.employeeArray:');
-        //console.log(factory.employeeArray);
-        //console.log('factory.selectedEmployee:');
-        //console.log(factory.selectedEmployee);
+        //console.log('factoryEmployeeData.employeeArray.length: ' + factoryEmployeeData.employeeArray.length);
+        //console.log('factoryEmployeeData.selected_id: ' + factoryEmployeeData.selected_id);
+        //console.log('factoryEmployeeData.employeeArray:');
+        //console.log(factoryEmployeeData.employeeArray);
+        //console.log('factoryEmployeeData.selectedEmployee:');
+        //console.log(factoryEmployeeData.selectedEmployee);
         
-        //if(factory.employeeArray.length === 0){
+        //if(factoryEmployeeData.employeeArray.length === 0){
             
             var resource = $resource('/employees',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
@@ -34,25 +34,25 @@ main_module.factory('employeeDataFactory',function($resource){
                 console.log('employeeDataFactory/getEmployees:success');
                 //console.log(data);
 
-                factory.employeeArray = data;
-                callbackFunc(factory.employeeArray);    
+                factoryEmployeeData.employeeArray = data;
+                callbackFunc(factoryEmployeeData.employeeArray);    
                 
             },function(error){
                 
                 console.log('employeeDataFactory/getEmployees:fail');
                 console.log(error.message);
                 
-                factory.employeeArray = [];
-                callbackFunc(factory.employeeArray);
+                factoryEmployeeData.employeeArray = [];
+                callbackFunc(factoryEmployeeData.employeeArray);
             });
         /*}else{
             
             console.log("companyDataFactory/getCompanyInformation: employeeArray.length != 0");
-            callbackFunc(factory.employeeArray);
+            callbackFunc(factoryEmployeeData.employeeArray);
         }*/
     }
     
-    factory.getEmployeesByService = function(data, callBackFunc){
+    factoryEmployeeData.getEmployeesByService = function(data, callBackFunc){
         console.log('employeeDataFactory/getEmployeesByService');
         
         //Create a resource for context '/employees/service'
@@ -63,19 +63,19 @@ main_module.factory('employeeDataFactory',function($resource){
             console.log('employeeDataFactory/getEmployeesByService:success');
             console.log(returnData);
 
-            factory.employeeArray = returnData;
-            callbackFunc(factory.employeeArray);
+            factoryEmployeeData.employeeArray = returnData;
+            callbackFunc(factoryEmployeeData.employeeArray);
         },function(error){
 
             console.log('employeeDataFactory/getEmployeesByService:fail');
             console.log(error.message);
 
-            factory.employeeArray = [];
-            callbackFunc(factory.employeeArray);
+            factoryEmployeeData.employeeArray = [];
+            callbackFunc(factoryEmployeeData.employeeArray);
         });
     }
     
-    factory.getEmployeesByServiceAndEmployeeInfo = function(data, callBackFunc){
+    factoryEmployeeData.getEmployeesByServiceAndEmployeeInfo = function(data, callBackFunc){
         console.log('employeeDataFactory/getEmployeesByServiceAndEmployeeInfo');
         
         var temp = data;
@@ -88,22 +88,22 @@ main_module.factory('employeeDataFactory',function($resource){
       *page. When it finds the correct one from the array, it returns
       *that object.
       */
-    factory.getSelectedEmployee = function(){
+    factoryEmployeeData.getSelectedEmployee = function(){
         
         console.log('employeeDataFactory/getSelectedEmployee');
-        //console.log('factory.employeeArray.length: ' + factory.employeeArray.length);
-        //console.log('factory.selected_id: ' + factory.selected_id);
+        //console.log('factoryEmployeeData.employeeArray.length: ' + factoryEmployeeData.employeeArray.length);
+        //console.log('factoryEmployeeData.selected_id: ' + factoryEmployeeData.selected_id);
         
-        for (var i = 0; i < factory.employeeArray.length; i++){
-            if (factory.employeeArray[i]._id === factory.selected_id){
-                //console.log(factory.employeeArray[i]);
-                factory.selectedEmployee = factory.employeeArray[i];
-                return factory.employeeArray[i];
+        for (var i = 0; i < factoryEmployeeData.employeeArray.length; i++){
+            if (factoryEmployeeData.employeeArray[i]._id === factoryEmployeeData.selected_id){
+                //console.log(factoryEmployeeData.employeeArray[i]);
+                factoryEmployeeData.selectedEmployee = factoryEmployeeData.employeeArray[i];
+                return factoryEmployeeData.employeeArray[i];
             }
         }
     }
     
-    factory.insertData = function(data){
+    factoryEmployeeData.insertData = function(data){
         
         console.log('employeeDataFactory/insertData');
         //console.log(data);
@@ -114,7 +114,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.post(data).$promise;
     }
     
-    factory.updateData = function(data){
+    factoryEmployeeData.updateData = function(data){
         
         console.log('employeeDataFactory/updateData');
         //console.log(data);
@@ -125,7 +125,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.put(data).$promise;
     }
     
-    factory.deleteData = function(data){
+    factoryEmployeeData.deleteData = function(data){
         
         console.log('employeeDataFactory/deleteData');
         //console.log(data);
@@ -137,7 +137,7 @@ main_module.factory('employeeDataFactory',function($resource){
     }
     
     
-    factory.insertServiceData = function(data){
+    factoryEmployeeData.insertServiceData = function(data){
         
         console.log('employeeDataFactory/insertServiceData');
         //console.log(data);
@@ -148,7 +148,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.post(data).$promise;
     }
     
-    factory.updateServiceData = function(data){
+    factoryEmployeeData.updateServiceData = function(data){
         
         console.log('employeeDataFactory/updateServiceData');
         //console.log(data);
@@ -159,7 +159,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.put(data).$promise;
     }
     
-    factory.deleteServiceData = function(data){
+    factoryEmployeeData.deleteServiceData = function(data){
         
         console.log('employeeDataFactory/deleteServiceData');
         //console.log(data);
@@ -171,51 +171,51 @@ main_module.factory('employeeDataFactory',function($resource){
     }
     
     
-    factory.getServices = function(callbackFunc){
+    factoryEmployeeData.getServices = function(callbackFunc){
         
         console.log('employeeDataFactory/getServices');
         console.log('factory.selectedEmployee');
-        console.log(factory.selectedEmployee);
-        //console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
-        //console.log('factory.selectedEmployee.name: ' + factory.selectedEmployee.name);
+        console.log(factoryEmployeeData.selectedEmployee);
+        //console.log('factoryEmployeeData.serviceArray.length: ' + factoryEmployeeData.serviceArray.length);
+        //console.log('factoryEmployeeData.selectedEmployee.name: ' + factoryEmployeeData.selectedEmployee.name);
            
-        var resource = $resource('/services',{name:factory.selectedEmployee.name},{'get':{method:'GET'}});
+        var resource = $resource('/services',{name:factoryEmployeeData.selectedEmployee.name},{'get':{method:'GET'}});
 
         resource.query().$promise.then(function(data){
 
             console.log('employeeDataFactory/getServices:success');
             console.log(data);
 
-            factory.serviceArray = data;
-            callbackFunc(factory.serviceArray);
+            factoryEmployeeData.serviceArray = data;
+            callbackFunc(factoryEmployeeData.serviceArray);
         },function(error){
 
             console.log('employeeDataFactory/getServices:fail');
             console.log(error.message);
 
-            factory.serviceArray = [];
-            callbackFunc(factory.serviceArray);
+            factoryEmployeeData.serviceArray = [];
+            callbackFunc(factoryEmployeeData.serviceArray);
         });
         
     }
     
-    factory.getSelectedService = function(){
+    factoryEmployeeData.getSelectedService = function(){
         
         console.log('employeeDataFactory/getSelectedService');
-        //console.log('factory.serviceArray.length: ' + factory.serviceArray.length);
-        //console.log('factory.selected_service_id: ' + factory.selected_service_id);
+        //console.log('factoryEmployeeData.serviceArray.length: ' + factoryEmployeeData.serviceArray.length);
+        //console.log('factoryEmployeeData.selected_service_id: ' + factoryEmployeeData.selected_service_id);
         
-        for (var i = 0; i < factory.serviceArray.length; i++){
-            if (factory.serviceArray[i]._id === factory.selected_service_id){
-                factory.selectedService = factory.serviceArray[i];
-                return factory.serviceArray[i];
+        for (var i = 0; i < factoryEmployeeData.serviceArray.length; i++){
+            if (factoryEmployeeData.serviceArray[i]._id === factoryEmployeeData.selected_service_id){
+                factoryEmployeeData.selectedService = factoryEmployeeData.serviceArray[i];
+                return factoryEmployeeData.serviceArray[i];
             }
         }
     }
     
     
         
-    factory.insertServiceChoiseData = function(data){
+    factoryEmployeeData.insertServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/insertServiceChoiseData');
        // console.log(data);
@@ -226,7 +226,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.post(data).$promise;
     }
     
-    factory.updateServiceChoiseData = function(data){
+    factoryEmployeeData.updateServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/updateServiceChoiseData');
         //console.log(data);
@@ -237,7 +237,7 @@ main_module.factory('employeeDataFactory',function($resource){
         return resource.put(data).$promise;
     }
     
-    factory.deleteServiceChoiseData = function(data){
+    factoryEmployeeData.deleteServiceChoiseData = function(data){
         
         console.log('employeeDataFactory/deleteServiceChoiseData');
         //console.log(data);
@@ -249,12 +249,12 @@ main_module.factory('employeeDataFactory',function($resource){
     }
     
     
-    factory.getServiceChoises = function(callbackFunc){
+    factoryEmployeeData.getServiceChoises = function(callbackFunc){
         
         console.log('employeeDataFactory/getServiceChoises');
-        //console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
+        //console.log('factoryEmployeeData.serviceChoiseArray.length: ' + factoryEmployeeData.serviceChoiseArray.length);
         
-        //if(factory.serviceChoiseArray.length === 0){
+        //if(factoryEmployeeData.serviceChoiseArray.length === 0){
             
             var resource = $resource('/servicechoises',{},{'get':{method:'GET'}});
             
@@ -263,38 +263,38 @@ main_module.factory('employeeDataFactory',function($resource){
                 console.log('employeeDataFactory/getServiceChoises:success');
                 //console.log(data);
                 
-                factory.serviceChoiseArray = data;
-                callbackFunc(factory.serviceChoiseArray);
+                factoryEmployeeData.serviceChoiseArray = data;
+                callbackFunc(factoryEmployeeData.serviceChoiseArray);
             },function(error){
                 
                 console.log('employeeDataFactory/getServiceChoises:fail');
                 console.log(error.message);
                 
-                factory.serviceChoiseArray = [];
-                callbackFunc(factory.serviceChoiseArray);
+                factoryEmployeeData.serviceChoiseArray = [];
+                callbackFunc(factoryEmployeeData.serviceChoiseArray);
             });
         /*}else{
             console.log('employeeDataFactory/getServiceChoises:success, factory.serviceChoiseArray.length != 0');
-            callbackFunc(factory.serviceChoiseArray);
+            callbackFunc(factoryEmployeeData.serviceChoiseArray);
         }*/
         
     }
     
-    factory.getSelectedServiceChoise = function(){
+    factoryEmployeeData.getSelectedServiceChoise = function(){
         
         console.log('employeeDataFactory/getSelectedServiceChoise');
-        //console.log('factory.serviceChoiseArray.length: ' + factory.serviceChoiseArray.length);
-        //console.log('factory.selected_service_choise_id: ' + factory.selected_service_choise_id);
+        //console.log('factoryEmployeeData.serviceChoiseArray.length: ' + factoryEmployeeData.serviceChoiseArray.length);
+        //console.log('factoryEmployeeData.selected_service_choise_id: ' + factoryEmployeeData.selected_service_choise_id);
         
-        for (var i = 0; i < factory.serviceChoiseArray.length; i++){
-            if (factory.serviceChoiseArray[i]._id === factory.selected_service_choise_id){
-                factory.selectedServiceChoise = factory.serviceChoiseArray[i];
-                return factory.serviceChoiseArray[i];
+        for (var i = 0; i < factoryEmployeeData.serviceChoiseArray.length; i++){
+            if (factoryEmployeeData.serviceChoiseArray[i]._id === factoryEmployeeData.selected_service_choise_id){
+                factoryEmployeeData.selectedServiceChoise = factoryEmployeeData.serviceChoiseArray[i];
+                return factoryEmployeeData.serviceChoiseArray[i];
             }
         }
     }
     
     
-    return factory;
+    return factoryEmployeeData;
     
 });

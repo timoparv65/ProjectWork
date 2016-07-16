@@ -1,6 +1,6 @@
-main_module.controller('contactDetailController',function($scope,companyDataFactory){
+main_module.controller('contactDetailsController',function($scope,companyDataFactory){
     
-    console.log('contactDetailController loaded');
+    console.log('contactDetailsController loaded');
     
     $scope.navbarData = {
         
@@ -15,7 +15,7 @@ main_module.controller('contactDetailController',function($scope,companyDataFact
     
     function dataCallbackCompany(dataArray){
     
-        console.log('contactDetailController/dataCallbackCompany');
+        console.log('contactDetailsController/dataCallbackCompany');
         //console.log("dataArray[0]");
         //console.log(dataArray[0]);
     

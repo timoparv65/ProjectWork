@@ -42,7 +42,7 @@ exports.loginCustomer = function(req,res){
     db.Customer.findOne(searchObject,function(err,data){
         
         if(err){
-            
+            console.log('error');
             res.send(502,{status:err.message});
             
         }else{

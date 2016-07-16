@@ -2,12 +2,12 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     console.log('employeeLoginFactory loaded');
     
-    var factory2 = {};
+    var factoryEmployeeLogin = {};
     
     //This function can be called from ANY controller using this factory
     //implementation
     
-    factory2.startLogin = function(data){
+    factoryEmployeeLogin.startLogin = function(data){
         
         console.log('employeeLoginFactory/startLogin');
         
@@ -19,7 +19,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     // lisätty 3.3.2016
-    factory2.startAdminLogin = function(data){
+    factoryEmployeeLogin.startAdminLogin = function(data){
         
         console.log('employeeLoginFactory/startAdminLogin');
         
@@ -31,7 +31,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     //lisätty 26.2.2016
-    factory2.checkRoleForEnteringCompanyInternalPages = function(){
+    factoryEmployeeLogin.checkRoleForEnteringCompanyInternalPages = function(){
         
          console.log('employeeLoginFactory/checkRoleForEnteringCompanyInternalPages');
         
@@ -41,7 +41,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     
     //lisätty 29.2.2016
-    factory2.checkRoleForEnteringCompanyAdminPages = function(){
+    factoryEmployeeLogin.checkRoleForEnteringCompanyAdminPages = function(){
         
          console.log('employeeLoginFactory/checkRoleForEnteringCompanyAdminPages');
         
@@ -50,7 +50,7 @@ main_module.factory('employeeLoginFactory',function($resource){
     }
     
     // lisätty 3.3.2016
-    factory2.resetSessionAdminId = function(){
+    factoryEmployeeLogin.resetSessionAdminId = function(){
         
         console.log('employeeLoginFactory/resetSessionAdminId');
         
@@ -60,6 +60,6 @@ main_module.factory('employeeLoginFactory',function($resource){
     
     
     //Factory must always return an object!!!!
-    return factory2;
+    return factoryEmployeeLogin;
     
 });

@@ -1,6 +1,6 @@
-main_module.controller('loginDoneReservationController',function($scope,$location,customerDataFactory,employeeDataFactory){
+main_module.controller('loginDoneReservationSelectServiceController',function($scope,$location,customerDataFactory,employeeDataFactory){
     
-    console.log('loginDoneReservationController loaded');
+    console.log('loginDoneReservationSelectServiceController loaded');
 
     $scope.employeeData = [];
     $scope.selectedEmployee = [];
@@ -8,9 +8,9 @@ main_module.controller('loginDoneReservationController',function($scope,$locatio
     
     $scope.navbarData = {
         
-        urls:['#/','#/ajanvaraus',"#/palvelut_ja_hinnasto",'#/yhteystiedot'],
-        texts:['Etusivu','Ajanvaraus','Palvelut ja hinnasto','Yhteystiedot'],
-        classes:['','active','','']
+        urls:['#/palvelun_valinta_sisaankirjauduttu',"#/palvelut_ja_hinnasto_sisaankirjauduttu",'#/yhteystiedot_sisaankirjauduttu'],
+        texts:['Palvelun valinta','Palvelut ja hinnasto','Yhteystiedot'],
+        classes:['active','','']
     }
     
     //$scope.customer = customerDataFactory.getCustomer();
@@ -20,7 +20,7 @@ main_module.controller('loginDoneReservationController',function($scope,$locatio
     employeeDataFactory.getEmployees(dataCallback);
     
     $scope.selectServiceClicked = function(){
-        console.log('loginDoneReservationController/selectServiceClicked');
+        console.log('loginDoneReservationSelectServiceController/selectServiceClicked');
         
         employeeDataFactory.selectedService = $scope.selectedServ;
         
@@ -28,7 +28,7 @@ main_module.controller('loginDoneReservationController',function($scope,$locatio
     }
     
     function dataCallback(dataArray){
-        console.log('loginDoneReservationController/dataCallback');
+        console.log('loginDoneReservationSelectServiceController/dataCallback');
     
         $scope.employeeData = dataArray;
         //console.log('dataArray');
@@ -57,7 +57,7 @@ main_module.controller('loginDoneReservationController',function($scope,$locatio
     }
     
     function dataCallBackServices(dataArray){
-        console.log('loginDoneReservationController/dataCallBackServices');
+        console.log('loginDoneReservationSelectServiceController/dataCallBackServices');
         
         $scope.serviceChoiseData = dataArray;
         $scope.selectedServ = dataArray[0];

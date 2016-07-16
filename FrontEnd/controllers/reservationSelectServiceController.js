@@ -104,11 +104,15 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         
         //Wait the response from server
         waitPromise.then(function(ok1){
-            $location.path('/palvelun_valinta');
+            console.log('pitäisi vaihtaa sivua');
+            $location.path('/palvelun_valinta_sisaankirjauduttu').replace();
             //code inside this block will be called when success response
             //from server receives
         },function(err1){
-            Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');            
+            Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');
+            
+            $scope.user.username = "";
+            $scope.user.passwd = "";
         });
     }
 

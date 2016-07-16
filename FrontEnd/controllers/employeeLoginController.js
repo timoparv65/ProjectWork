@@ -40,6 +40,9 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
                 console.log('err2');
                 console.log(err2.message);
                 Flash.create('danger', 'Käyttäjällä ei ole oikeutta palveluun', 'custom-class');
+                
+                $scope.user = "";
+                $scope.passwd = "";
             });
             
             //$location.path('/sovelluksen_paasivu');
