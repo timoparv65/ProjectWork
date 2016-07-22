@@ -55,31 +55,28 @@ main_module.factory('employeeDataFactory',function($resource){
     factoryEmployeeData.getEmployeesByService = function(data, callBackFunc){
         console.log('employeeDataFactory/getEmployeesByService');
         
-        //Create a resource for context '/employees/service'
-        var resource = $resource('/employees/service',{},{'post':{method:'POST'}});
+        console.log('data');
+        console.log(data);
         
-        resource.post(data).$promise.then(function(returnData){
+        //Create a resource for context '/employees/service'
+        var resource = $resource('/employees/service',{id:data.id},{'get':{method:'GET'}});
+        
+        resource.query().$promise.then(function(returnData){
 
             console.log('employeeDataFactory/getEmployeesByService:success');
             console.log(returnData);
 
             factoryEmployeeData.employeeArray = returnData;
-            callbackFunc(factoryEmployeeData.employeeArray);
+            callBackFunc(factoryEmployeeData.employeeArray);
         },function(error){
 
             console.log('employeeDataFactory/getEmployeesByService:fail');
             console.log(error.message);
 
             factoryEmployeeData.employeeArray = [];
-            callbackFunc(factoryEmployeeData.employeeArray);
+            callBackFunc(factoryEmployeeData.employeeArray);
         });
-    }
-    
-    factoryEmployeeData.getEmployeesByServiceAndEmployeeInfo = function(data, callBackFunc){
-        console.log('employeeDataFactory/getEmployeesByServiceAndEmployeeInfo');
         
-        var temp = data;
-        callBackFunc(temp);
     }
     
     /**

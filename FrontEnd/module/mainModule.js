@@ -105,7 +105,7 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_customerForgotPasswordView.html',
         controller:'customerForgotPasswordController'
         
-    }).when('/ajanvaraus_ajan_valinta',{
+    }).when('/ajanvaraus',{
         
         templateUrl:'partial_reservationSelectTimeView.html',
         controller:'reservationSelectTimeController'
@@ -116,7 +116,7 @@ main_module.config(function($routeProvider){
         controller:'loginDoneReservationSelectServiceController',
         resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
         
-    }).when('/ajanvaraus_sisaankirjauduttu_ajan_valinta',{
+    }).when('/ajanvaraus_sisaankirjauduttu',{
         
         templateUrl:'partial_loginDoneReservationSelectTimeView.html',
         controller:'loginDoneReservationSelectTimeController'

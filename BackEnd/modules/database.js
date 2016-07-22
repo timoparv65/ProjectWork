@@ -7,7 +7,7 @@
  */
 
 var mongoose = require("mongoose");
-var db_name = "parturikampaamo2";
+var db_name = "parturikampaamo3";
 
 var mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
 
@@ -75,12 +75,13 @@ var GenerateOpeningHoursTableInfo = mongoose.model('GenerateOpeningHoursTableInf
 },'generateopeninghourstableinfo');
 
 var Service = mongoose.model('Service',{
+    id:{type:mongoose.Schema.Types.ObjectId,ref:'ServiceChoise'},
     category:String,
     categoryextrainfo:String,
     description:String,
     extrainfo:String,
     duration:Number,
-    price:String,
+    price:String
 },'service');
 
 var ServiceChoise = mongoose.model('ServiceChoise',{
@@ -90,7 +91,7 @@ var ServiceChoise = mongoose.model('ServiceChoise',{
     extrainfo:String,
     duration:{type:Number,min:0,max:180}, // minimiaika 0 min, maksimiaika 3 tuntia
     price:String
-});
+},'servicechoise');
 
 var offDay = mongoose.model('offDay',{
     startTime: Date,

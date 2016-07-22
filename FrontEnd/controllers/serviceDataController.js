@@ -1,4 +1,4 @@
-main_module.controller('serviceDataController',function($scope,employeeDataFactory,$location){
+main_module.controller('serviceDataController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location){
     
     console.log('serviceDataController loaded');
     
@@ -11,7 +11,8 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
         classes:['','','active','']
     }
     
-    employeeDataFactory.getServiceChoises(dataCallback);
+    //employeeDataFactory.getServiceChoises(dataCallback);
+    serviceChoiseDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
     
@@ -26,10 +27,11 @@ main_module.controller('serviceDataController',function($scope,employeeDataFacto
         
         console.log('serviceDataController/rowClicked');
         
-        employeeDataFactory.selected_service_choise_id = id;
-        console.log('employeeDataFactory.selected_service_choise_id: ' + employeeDataFactory.selected_service_choise_id);
+        //employeeDataFactory.selected_service_choise_id = id;
+        serviceChoiseDataFactory.selected_id = id;
+        //console.log('employeeDataFactory.selected_id: ' + employeeDataFactory.selected_id);
+        console.log('serviceChoiseDataFactory.selected_id: ' + serviceChoiseDataFactory.selected_id);
         
-        //$location.path('/palvelu_muokkaa_poista').replace();
         $location.path('/palvelu_muokkaa_poista').replace();
 
     }

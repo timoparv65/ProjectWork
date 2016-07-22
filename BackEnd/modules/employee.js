@@ -38,8 +38,8 @@ router.post('/admin_login',function(req,res){
 /**
  * Handle POST requets for /employees/service context
  */
-router.post('/service',function(req,res){
-    console.log('Handle POST requets for /employees/service context');
+router.get('/service',function(req,res){
+    console.log('Handle GET requets for /employees/service context');
     query.getEmployeesByService(req,res);
 });
 

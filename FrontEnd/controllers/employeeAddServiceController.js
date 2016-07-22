@@ -1,4 +1,4 @@
-main_module.controller('employeeAddServiceController',function($scope,employeeDataFactory,$location,Flash,$timeout){
+main_module.controller('employeeAddServiceController',function($scope,employeeDataFactory,serviceDataFactory,serviceChoiseDataFactory,$location,Flash,$timeout){
     
     console.log('employeeAddServiceController loaded');
     
@@ -16,7 +16,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
     console.log('selectedEmployee:');
     console.log($scope.selectedEmployee);
     
-    employeeDataFactory.getServiceChoises(dataCallback);
+    //employeeDataFactory.getServiceChoises(dataCallback);
+    serviceChoiseDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
     
@@ -28,7 +29,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
     }
     
     
-    //Funktiototeutus Save-nappulan painallukselle partial_addServiceView.html ikkunassa
+    //Funktiototeutus Save-nappulan painallukselle partial_employeeAddServiceView.html ikkunassa
     $scope.saveServiceClicked = function(){
         console.log('employeeAddServiceController/saveServiceClicked');
         
@@ -40,10 +41,14 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
         } else {
             // estetään Save-napin painaminen sillä välin kun tiedot tallennetaan tietokantaan
             $('#saveService').attr("disabled", true);
+            
+            console.log('$scope.selected._id');
+            console.log($scope.selected._id);
 
             // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
             var temp = {
                 name:$scope.selectedEmployee.name,
+                id:$scope.selected._id,
                 category:$scope.selected.category,
                 categoryextrainfo:$scope.selected.categoryextrainfo,
                 description:$scope.selected.description,
@@ -52,7 +57,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
                 price:$scope.selected.price
             };
 
-            //console.log(temp);
+            console.log(temp);
 
             if (temp.category.length === 0 ||
                 temp.name.length === 0){
@@ -61,7 +66,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
                 return;
             }
 
-            var waitPromise = employeeDataFactory.insertServiceData(temp);
+            //var waitPromise = employeeDataFactory.insertServiceData(temp);
+            var waitPromise = serviceDataFactory.insertData(temp);
 
             waitPromise.then(function(response){
 
@@ -71,7 +77,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
 
                 // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
                 // Talletetaan se serviceArray:hyn
-                employeeDataFactory.serviceArray.push(response.data);
+                //employeeDataFactory.serviceArray.push(response.data);
+                serviceDataFactory.array.push(response.data);
 
                 Flash.create('success', 'Lisätty uusi palvelu työntekijälle', 'custom-class');
 

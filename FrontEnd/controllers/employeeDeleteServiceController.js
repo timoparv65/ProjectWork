@@ -1,4 +1,4 @@
-main_module.controller('employeeDeleteServiceController',function($scope,employeeDataFactory,Flash,$location,$timeout){
+main_module.controller('employeeDeleteServiceController',function($scope,employeeDataFactory,serviceDataFactory,Flash,$location,$timeout){
     
     console.log('employeeDeleteServiceController loaded');
     
@@ -14,8 +14,8 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
     
     $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
     
-    employeeDataFactory.getServices(dataCallback);
-    
+    //employeeDataFactory.getServices(dataCallback);
+    serviceDataFactory.getAll($scope.selectedEmployee, dataCallback);
     
     function dataCallback(dataArray){
     
@@ -68,8 +68,10 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
             
             console.log(data);
             
-            employeeDataFactory.deleteServiceData(data).then(function(data){
-                employeeDataFactory.serviceArray = [];
+            //employeeDataFactory.deleteServiceData(data).then(function(data){
+            serviceDataFactory.deleteData(data).then(function(data){
+                //employeeDataFactory.serviceArray = [];
+                serviceDataFactory.array = [];
                 
                 Flash.create('success', 'Poistettu työntekijän palvelu', 'custom-class');
                 

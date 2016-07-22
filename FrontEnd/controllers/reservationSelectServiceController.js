@@ -57,14 +57,12 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
     $scope.selectServiceClicked = function(){
         console.log('reservationSelectServiceController/selectServiceClicked');
         
-        //console.log('$scope.selectedEmpl');
-        //console.log($scope.selectedEmpl.name);
         console.log('$scope.selectedServ');
         console.log($scope.selectedServ);
         
         employeeDataFactory.selectedService = $scope.selectedServ;
         
-        $location.path('/ajanvaraus_ajan_valinta').replace();
+        $location.path('/ajanvaraus').replace();
         
     }
     
@@ -81,8 +79,6 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         } else {
             console.log('$scope.selectedEmpl');
             console.log($scope.selectedEmpl);
-            //console.log('$scope.selectedEmpl.name');
-            //console.log($scope.selectedEmpl.name);
             console.log('employeeDataFactory.selectedEmployee');
             console.log(employeeDataFactory.selectedEmployee);
             //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
@@ -104,7 +100,6 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         
         //Wait the response from server
         waitPromise.then(function(ok1){
-            console.log('pitäisi vaihtaa sivua');
             $location.path('/palvelun_valinta_sisaankirjauduttu').replace();
             //code inside this block will be called when success response
             //from server receives

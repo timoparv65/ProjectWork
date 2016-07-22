@@ -1,4 +1,4 @@
-main_module.controller('serviceDeleteEditController',function($scope,employeeDataFactory,$location,Flash){
+main_module.controller('serviceDeleteEditController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,Flash){
     
     console.log('serviceDeleteEditController loaded');
     
@@ -14,7 +14,8 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
     $scope.serviceCategories = [];
     
     // Haetaan palvelun tiedot
-    $scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
+    //$scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
+    $scope.selectedService = serviceChoiseDataFactory.getSelectedChoise();
     //console.log($scope.selectedService);
     
     // Etsi kategoriaa vastaava kategoriataulukon indeksi
@@ -48,7 +49,8 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         //console.log(temp);
         
-        employeeDataFactory.updateServiceChoiseData(temp).then(success,error);
+        //employeeDataFactory.updateServiceChoiseData(temp).then(success,error);
+        serviceChoiseDataFactory.updateData(temp).then(success,error);
         
     }
     
@@ -56,7 +58,8 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         console.log('serviceDeleteEditController/success');
         
-        employeeDataFactory.serviceChoiseArray = [];
+        //employeeDataFactory.serviceChoiseArray = [];
+        serviceChoiseDataFactory.array = [];
         $scope.selectedCaterogy = $scope.serviceCategories[0];
         $scope.extracategory = "";
         $scope.selectedDescription = $scope.serviceDescriptions[0];
@@ -104,9 +107,11 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
             }
             //console.log(data);
             
-            employeeDataFactory.deleteServiceChoiseData(data).then(function(data){
+            //employeeDataFactory.deleteServiceChoiseData(data).then(function(data){
+            serviceChoiseDataFactory.deleteData(data).then(function(data){
 
-                employeeDataFactory.serviceChoiseArray = [];
+                //employeeDataFactory.serviceChoiseArray = [];
+                serviceChoiseDataFactory.array = [];
                 $location.path('/palvelut_paavalikko').replace();
                 
             },function(error){

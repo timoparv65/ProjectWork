@@ -24,7 +24,7 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         
         employeeDataFactory.selectedService = $scope.selectedServ;
         
-        $location.path('/ajanvaraus_sisaankirjauduttu_ajan_valinta').replace();
+        $location.path('/ajanvaraus_sisaankirjauduttu').replace();
     }
     
     function dataCallback(dataArray){

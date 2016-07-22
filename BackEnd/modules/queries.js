@@ -197,12 +197,13 @@ exports.getReservationsByEmployeeName = function(req,res){
  */
 exports.getServicesByEmployeeName = function(req,res){
     console.log('queries/getServicesByEmployeeName');
-    //console.log(req.query);
+    console.log(req.query);
     
     db.Employee.findOne({name:req.query.name}).
         populate('services').exec(function(err,data){
         
-        //console.log(data);
+        console.log('data');
+        console.log(data);
         //console.log(data.services);
         
         if(data){
@@ -241,15 +242,15 @@ exports.getEmployeesByService = function(req,res){
     console.log('queries/getEmployeesByService');
     
     var searchObject = {
-        category:req.body.category,
-        description:req.body.description
+        _id:req.query.id
     }
     
     console.log('searchObject');
     console.log(searchObject);
-    
+    /*
     db.Employee.find(searchObject, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
+            console.log('Virhe haussa');
             //500 = Internal Server Error
             res.status(500).send({status:err.message});
         }
@@ -260,6 +261,35 @@ exports.getEmployeesByService = function(req,res){
             res.status(200).send(data);
         }
     });
+    */
+    
+    db.Employee.find({services:searchObject}, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+        if(err){
+            console.log('Virhe haussa');
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            console.log('Löydetyt työntekijat');
+            console.log(data);
+            //200 = ok
+            res.status(200).send(data);
+        }
+    });
+    
+    /*
+    
+    db.Employee.findOne({name:req.body.name}).
+        populate('assignments').exec(function(err,data){
+        
+        if(data){
+            res.send(data.assignments);
+        }else{
+            res.redirect('/');
+        }
+    });
+    
+    */
 }
 
 /**
@@ -391,6 +421,7 @@ exports.saveNewService = function(req,res){
     console.log(req.body);
     
     var temp = {
+        id: req.body.id,
         category: req.body.category,
         categoryextrainfo: req.body.categoryextrainfo,
         description: req.body.description,
@@ -399,7 +430,7 @@ exports.saveNewService = function(req,res){
         price:req.body.price
     };
     
-    //console.log(temp);
+    console.log(temp);
     //console.log(req.body.name);
     
     //var serviceTemp = new db.Service(req.body);

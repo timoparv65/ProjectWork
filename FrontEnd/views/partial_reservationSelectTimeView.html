@@ -1,31 +1,42 @@
 <nav-bar navbar-data='navbarData'></nav-bar>
 <div class="container">
-    <div class="col-sm-3 col-md-3">
-        <div id="datepicker"></div>
-    </div>
-    <div class="col-sm-6 col-md-6">
-        <div>
-            <p>Valittu palvelu: <b>{{selectedService.description}}</b></p><br/>
-            <input type="button" value="<< Valitse toinen palvelu" ng-click="selectAnotherService()">
-        </div><br/>
-        <div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th ng-repeat='tyontekija in employeeData'>
-                            {{tyontekija.name}}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat='aika in bookingTimes' ng-click="tableClicked($event)">
-                        <td>{{aika}}</td>
-                        <td ng-repeat="tyontekija in employeeData">Varaa</td>
-                    </tr>
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div id="ajanvarauksen_vaiheet">
+                <h4 style="color:deeppink"><b></b>Ajanvarauksen vaiheet</h4>
+                <h5 style="color:black">>> 1. Palvelun valinta</h5>
+                <h5 style="color:black"><b>>> 2. Ajan valinta</b></h5>
+                <h5 style="color:black">>> 3. Varauksen tekeminen</h5>
+                <h5 style="color:black">>> 4. Vahvistus</h5>
+                <h5 style="color:black">>> 5. Valmis</h5>
+            </div><br/>
+            <div id="datepicker"></div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div>
+                <p>Valittu palvelu: <b>{{selectedService.description}}</b></p><br/>
+                <input type="button" value="<< Valitse toinen palvelu" ng-click="selectAnotherService()">
+            </div><br/>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat='tyontekija in employeeData'>
+                                {{tyontekija.name}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='aika in bookingTimes' ng-click="tableClicked($event)">
+                            <td>{{aika}}</td>
+                            <td ng-repeat="tyontekija in employeeData">Varaa</td>
+                        </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+<div class="flash-style" flash-message="4000"></div>
