@@ -81,7 +81,7 @@ main_module.factory('serviceChoiseDataFactory',function($resource){
         
         for (var i = 0; i < factoryServiceChoiseData.array.length; i++){
             if (factoryServiceChoiseData.array[i]._id === factoryServiceChoiseData.selected_id){
-                factoryServiceChoiseData.selected = factoryServiceChoiseData.rray[i];
+                factoryServiceChoiseData.selected = factoryServiceChoiseData.array[i];
                 return factoryServiceChoiseData.array[i];
             }
         }

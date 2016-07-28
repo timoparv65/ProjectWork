@@ -4,6 +4,8 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
     
     $scope.serviceChoiseData = [];
     $scope.message = "";
+    $scope.selected = null;
+    $scope.selectedEmployee = null;
     
     $scope.navbarData = {
         
@@ -44,7 +46,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
             
             console.log('$scope.selected._id');
             console.log($scope.selected._id);
-
+/*
             // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
             var temp = {
                 name:$scope.selectedEmployee.name,
@@ -65,7 +67,13 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
                 alert('Jokin kenttä tyhjä!');
                 return;
             }
-
+*/
+            
+            var temp = {
+                name:$scope.selectedEmployee.name,
+                id:$scope.selected._id
+            };
+            
             //var waitPromise = employeeDataFactory.insertServiceData(temp);
             var waitPromise = serviceDataFactory.insertData(temp);
 
@@ -78,7 +86,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
                 // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
                 // Talletetaan se serviceArray:hyn
                 //employeeDataFactory.serviceArray.push(response.data);
-                serviceDataFactory.array.push(response.data);
+                //serviceDataFactory.array.push(response.data);
 
                 Flash.create('success', 'Lisätty uusi palvelu työntekijälle', 'custom-class');
 
@@ -89,7 +97,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
 
                 $timeout(function(){
                     $location.path('/tyontekijan_palvelut_paavalikko').replace();
-                }, 4000);
+                }, 2000);
 
             },function(error){
 
@@ -100,6 +108,10 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
 
                 // sallitaan Save-napin painaminen
                 $('#saveService').attr("disabled", false);
+                
+                $timeout(function(){
+                    $location.path('/tyontekijan_palvelut_paavalikko').replace();
+                }, 2000);
             });
         }
         

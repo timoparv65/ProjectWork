@@ -38,7 +38,8 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
             name:$scope.name,
             password:$scope.passwd,
             email:$scope.emailaddr,
-            role:$scope.emplrole
+            //role:$scope.emplrole
+            role:$scope.selectedRole
         }
         
         console.log(temp);
@@ -55,7 +56,8 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         $scope.name = "";
         $scope.passwd = "";
         $scope.emailaddr = "";
-        $scope.emplrole = "";
+        //$scope.emplrole = "";
+        $scope.selectedRole = "";
         
         Flash.create('success', 'Työntekijän tietoja muokattu onnistuneesti!', 'custom-class');
         
@@ -64,7 +66,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         
         $timeout(function(){
             $location.path('/tyontekija_paavalikko').replace();
-        }, 4000);
+        }, 2000);
     }
     
     function error(data){
@@ -78,7 +80,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         
         $timeout(function(){
             $location.path('/tyontekija_paavalikko').replace();
-        }, 4000);
+        }, 2000);
     }
     
     
@@ -102,6 +104,10 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
             
             // sallitaan Delete-napin painaminen
             $('#deleteEmployee').attr("disabled", false);
+            
+            $timeout(function(){
+                $location.path('/tyontekija_paavalikko').replace();
+            }, 2000);
         }
         else{
             
@@ -119,7 +125,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
                 
                 $timeout(function(){
                     $location.path('/tyontekija_paavalikko').replace();
-                }, 4000);
+                }, 2000);
                 
             },function(error){
                 
@@ -131,7 +137,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
                 
                 $timeout(function(){
                     $location.path('/tyontekija_paavalikko').replace();
-                }, 4000);
+                }, 2000);
             });
         }
         

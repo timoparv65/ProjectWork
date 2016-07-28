@@ -412,6 +412,37 @@ exports.deleteEmployee = function(req,res){
 }
 
 /**
+ * This function deletes employee information from our
+ * employee collection
+ => lisätty 25.7.2016
+ */
+exports.deleteEmployee2 = function(req,res){
+    console.log('queries/deleteEmployee2');
+    
+    var toDelete = []; // tuhottavien työntekijöiden _id
+    
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    
+    //console.log(toDelete[0]);
+    
+   db.Employee.remove({_id:toDelete[0]},function(err,data){
+        if(err){
+            //console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            //console.log('Employee removed');
+            res.status(200).send({message:'Delete success'});
+        }
+    });
+
+}
+
+/**
  * This function saves new service information to our
  * service collection
  */
@@ -454,6 +485,28 @@ exports.saveNewService = function(req,res){
         });
     });
     
+}
+
+/**
+ * This function saves service information to our
+ * emplyee collection's services field
+ * => lisätty 25.7.2016
+ */
+exports.saveNewService2 = function(req,res){
+    
+    console.log('queries/saveNewService2');
+    console.log(req.body);
+    
+    db.Employee.update({name:req.body.name},
+                       {$push:{'services':req.body.id}},
+                       function(err,updatedData){
+            if (err){
+                res.status(500).json({message:'Fail'});
+            } else {
+                res.status(200).json({data:updatedData});
+            }
+        }
+    );
 }
 
 /**
@@ -520,6 +573,30 @@ exports.deleteService = function(req,res){
                     res.status(200).send({message:'Delete success'});
                 }
             });
+        }
+    });
+}
+
+// lisätty 25.7.2016
+exports.deleteService2 = function(req,res){
+    
+    console.log('queries/deleteService2');
+    
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    //console.log('toDelete: ' + toDelete);
+    
+    db.Employee.update({name:req.query.name},{$pull:{'services':{$in:toDelete}}},function(err,data){
+        if(err){
+            //console.log('err: ' + err);
+            res.status(500).send({message:err.message});
+        }else{
+            res.status(200).send({message:'Delete success'});
         }
     });
 }

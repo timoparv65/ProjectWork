@@ -55,7 +55,11 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
         //Nothing to delete
         if($scope.deleteArray.length === 0){
             
-            Flash.create('warning', 'Nothing to delete!', 'custom-class');
+            Flash.create('warning', 'Ei poistettavaa!', 'custom-class');
+            
+            $timeout(function(){
+                $location.path('/tyontekijan_palvelut_paavalikko').replace();
+            }, 2000);
         }
         else{
             
@@ -77,11 +81,15 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
                 
                 $timeout(function(){
                     $location.path('/tyontekijan_palvelut_paavalikko').replace();
-                }, 4000);
+                }, 2000);
                 
             },function(error){
                 
-                Flash.create('warning', 'Error in server!', 'custom-class');
+                Flash.create('warning', 'Virhe palvelimessa!', 'custom-class');
+                
+                $timeout(function(){
+                    $location.path('/tyontekijan_palvelut_paavalikko').replace();
+                }, 2000);
             });
         }
     }

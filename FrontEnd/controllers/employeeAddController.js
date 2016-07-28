@@ -61,8 +61,8 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             $('#saveEmployee').attr("disabled", false);
             
             $timeout(function(){
-                    $location.path('/tyontekija_paavalikko').replace();
-            }, 4000);
+                $location.path('/tyontekija_paavalikko').replace();
+            }, 2000);
             
         },function(error){
             
@@ -72,6 +72,10 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
             Flash.create('warning', 'Työntekijän lisäys epäonnistui. Sähköpostiosoite oli jo käytössä!', 'custom-class');
             // sallitaan Save-napin painaminen
             $('#saveEmployee').attr("disabled", false);
+            
+            $timeout(function(){
+                $location.path('/tyontekija_paavalikko').replace();
+            }, 2000);
         });
         
     };

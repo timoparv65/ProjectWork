@@ -1,4 +1,4 @@
-main_module.controller('serviceAddController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,Flash){
+main_module.controller('serviceAddController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,$timeout,Flash){
     
     console.log('serviceAddController loaded');
     
@@ -73,7 +73,9 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
             
-            //$location.path('/palvelut_paavalikko').replace();
+            $timeout(function(){
+                $location.path('/palvelut_paavalikko').replace();
+            }, 4000);
             
         },function(error){
             
@@ -84,6 +86,10 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
             
             // sallitaan Save-napin painaminen
             $('#saveService').attr("disabled", false);
+            
+            $timeout(function(){
+                $location.path('/palvelut_paavalikko').replace();
+            }, 4000);
         });
         
     }

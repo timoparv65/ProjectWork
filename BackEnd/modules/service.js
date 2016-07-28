@@ -16,7 +16,8 @@ var router = express.Router();
  */
 router.post('/',function(req,res){
     console.log('Handle POST requets for /services context');
-    query.saveNewService(req,res);
+    //query.saveNewService(req,res);
+    query.saveNewService2(req,res);
 });
 
 /**

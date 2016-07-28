@@ -1,4 +1,4 @@
-main_module.controller('serviceDeleteEditController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,Flash){
+main_module.controller('serviceDeleteEditController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,$timeout,Flash){
     
     console.log('serviceDeleteEditController loaded');
     
@@ -15,7 +15,7 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
     
     // Haetaan palvelun tiedot
     //$scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
-    $scope.selectedService = serviceChoiseDataFactory.getSelectedChoise();
+    $scope.selectedService = serviceChoiseDataFactory.getSelected();
     //console.log($scope.selectedService);
     
     // Etsi kategoriaa vastaava kategoriataulukon indeksi
@@ -71,7 +71,10 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         // sallitaan Save-napin painaminen
         $('#saveService').attr("disabled", false);
-        //$location.path('palvelut_paavalikko').replace();
+        
+        $timeout(function(){
+            $location.path('/palvelut_paavalikko').replace();
+        }, 4000);
     }
     
     function error(data){
@@ -82,6 +85,10 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         // sallitaan Save-napin painaminen
         $('#saveService').attr("disabled", false);
+        
+        $timeout(function(){
+            $location.path('/palvelut_paavalikko').replace();
+        }, 4000);
     }
     
     $scope.deleteServiceClicked = function(){
@@ -98,6 +105,10 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
             
             Flash.create('danger','Ei mitään poistettavaa palvelua!', 'custom-class');
             console.log('nothing to delete');
+            
+            $timeout(function(){
+                $location.path('/palvelut_paavalikko').replace();
+            }, 4000);
         }
         else{
             
@@ -118,6 +129,10 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
                 
                 Flash.create('danger','Palvelun tietojen poisto epäonnistui!', 'custom-class'); 
                 console.log('error in server');
+                
+                $timeout(function(){
+                    $location.path('/palvelut_paavalikko').replace();
+                }, 4000);
             });
         }
         
