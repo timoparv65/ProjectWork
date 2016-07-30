@@ -12,7 +12,7 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
     }
     
     
-    companyDataFactory.getCompanyInformation(dataCallback);
+    companyDataFactory.getInformation(dataCallback);
     
     function dataCallback(dataArray){
     
@@ -65,12 +65,12 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
         
         waitPromise.then(function(response){
             // queries.js/exports.saveNewCompany: palauttaa data nimisen muuttujan responsessa.
-            // Talletetaan se companyArray:hyn
+            // Talletetaan se array:hyn
             
             console.log('companyAddController/saveCompanyClicked/waitPromise:success');
             console.log(response.data);
             
-            companyDataFactory.companyArray.push(response.data);
+            companyDataFactory.array.push(response.data);
             Flash.create('success', 'Uusi yritys lisätty', 'custom-class');
             
             $scope.name = "";
@@ -88,7 +88,7 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             
             $timeout(function(){
                 $location.path('/yritys_paavalikko').replace();
-            }, 4000);
+            }, 2000);
             
         },function(error){
             
@@ -101,7 +101,7 @@ main_module.controller('companyAddController',function($scope,companyDataFactory
             
             $timeout(function(){
                 $location.path('/yritys_paavalikko').replace();
-            }, 4000);
+            }, 2000);
         });
         
     };

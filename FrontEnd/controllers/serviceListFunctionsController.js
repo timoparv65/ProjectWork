@@ -1,4 +1,4 @@
-main_module.controller('serviceListFunctionsController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location){
+main_module.controller('serviceListFunctionsController',function($scope,serviceChoiseDataFactory,$location){
 
     console.log('serviceListFunctionsController loaded');
     
@@ -9,8 +9,7 @@ main_module.controller('serviceListFunctionsController',function($scope,employee
         classes:[]
     }
 
-    //$scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
-    $scope.selectedService = serviceChoiseDataFactory.getSelectedChoise();
+    $scope.selectedService = serviceChoiseDataFactory.getSelected();
     console.log('$scope.selectedService');
     console.log($scope.selectedService);
     

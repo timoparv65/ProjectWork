@@ -11,7 +11,7 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
     
     $scope.deleteArray = [];
     
-    $scope.selectedCompany = companyDataFactory.getSelectedCompany();
+    $scope.selectedCompany = companyDataFactory.getSelected();
     console.log('$scope.selectedCompany');
     console.log($scope.selectedCompany);
     
@@ -56,7 +56,7 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
         
         console.log('companyDeleteEditController/success');
         
-        companyDataFactory.companyArray = [];
+        companyDataFactory.array = [];
         $scope.name = "";
         $scope.address = "";
         $scope.postalcode = "";
@@ -127,7 +127,7 @@ main_module.controller('companyDeleteEditController',function($scope,companyData
             
             companyDataFactory.deleteData(data).then(function(data){
 
-                companyDataFactory.companyArray = [];
+                companyDataFactory.array = [];
                 
                 Flash.create('success','Yrityksen tietojen poisto onnistui!', 'custom-class'); 
                 

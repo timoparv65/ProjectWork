@@ -5,44 +5,44 @@ main_module.factory('companyDataFactory',function($resource){
     factoryCompanyData = {};
     
     factoryCompanyData.selected_id = null;
-    factoryCompanyData.selectedCompany = null;
-    factoryCompanyData.companyArray = [];
+    factoryCompanyData.selected = null;
+    factoryCompanyData.array = [];
     
-    factoryCompanyData.getCompanyInformation = function(callbackFunc){
+    factoryCompanyData.getInformation = function(callbackFunc){
         
-        console.log("companyDataFactory/getCompanyInformation");
+        console.log("companyDataFactory/getInformation");
         
-        //console.log('factoryCompanyData.companyArray.length: ' + factoryCompanyData.companyArray.length);
+        //console.log('factoryCompanyData.array.length: ' + factoryCompanyData.array.length);
         //console.log('factoryCompanyData.selected_id: ' + factoryCompanyData.selected_id);
-        //console.log('factoryCompanyData.companyArray:');
-        //console.log(factoryCompanyData.companyArray);
-        //console.log('factoryCompanyData.selectedCompany:');
-        //console.log(factoryCompanyData.selectedCompany);
+        //console.log('factoryCompanyData.array:');
+        //console.log(factoryCompanyData.array);
+        //console.log('factoryCompanyData.selected:');
+        //console.log(factoryCompanyData.selected);
         
-        //if (factoryCompanyData.companyArray.length === 0){
+        //if (factoryCompanyData.array.length === 0){
             
             var resource = $resource('/companies',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
                 
-                console.log('companyDataFactory/getCompanyInformation:success');
+                console.log('companyDataFactory/getInformation:success');
                 console.log(data);
 
-              factoryCompanyData.companyArray = data;
-              callbackFunc(factoryCompanyData.companyArray);    
+              factoryCompanyData.array = data;
+              callbackFunc(factoryCompanyData.array);    
                 
             },function(error){
                 
-                console.log('companyDataFactory/getCompanyInformation:fail');
+                console.log('companyDataFactory/getInformation:fail');
                 console.log(error.message);
                 
-                factoryCompanyData.companyArray = [];
-                callbackFunc(factoryCompanyData.companyArray);
+                factoryCompanyData.array = [];
+                callbackFunc(factoryCompanyData.array);
             });
             /*
         } else {
             
-            console.log("companyDataFactory/getCompanyInformation: companyArray.length != 0");
-            callbackFunc(factoryCompanyData.companyArray);
+            console.log("companyDataFactory/getCompanyInformation: array.length != 0");
+            callbackFunc(factoryCompanyData.array);
         }*/
     }
     
@@ -87,17 +87,17 @@ main_module.factory('companyDataFactory',function($resource){
       *page. When it finds the correct one from the array, it returns
       *that object.
       */
-    factoryCompanyData.getSelectedCompany = function(){
+    factoryCompanyData.getSelected = function(){
         
-        console.log('companyDataFactory/getSelectedCompany');
-        //console.log('factory5.companyArray.length: ' + factory5.companyArray.length);
+        console.log('companyDataFactory/getSelected');
+        //console.log('factory5.array.length: ' + factory5.array.length);
         //console.log('factory5.selected_id: ' + factory5.selected_id);
         
-        for (var i = 0; i < factoryCompanyData.companyArray.length; i++){
-            if (factoryCompanyData.companyArray[i]._id === factoryCompanyData.selected_id){
-                //console.log(factory5.companyArray[i]);
-                factoryCompanyData.selectedCompany = factoryCompanyData.companyArray[i];
-                return factoryCompanyData.companyArray[i];
+        for (var i = 0; i < factoryCompanyData.array.length; i++){
+            if (factoryCompanyData.array[i]._id === factoryCompanyData.selected_id){
+                //console.log(factory5.array[i]);
+                factoryCompanyData.selected = factoryCompanyData.array[i];
+                return factoryCompanyData.array[i];
             }
         }
     }

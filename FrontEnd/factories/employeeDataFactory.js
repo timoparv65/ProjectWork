@@ -47,7 +47,7 @@ main_module.factory('employeeDataFactory',function($resource){
             });
         /*}else{
             
-            console.log("companyDataFactory/getCompanyInformation: employeeArray.length != 0");
+            console.log("employeeDataFactory/getEmployees: employeeArray.length != 0");
             callbackFunc(factoryEmployeeData.employeeArray);
         }*/
     }
@@ -98,6 +98,33 @@ main_module.factory('employeeDataFactory',function($resource){
                 return factoryEmployeeData.employeeArray[i];
             }
         }
+    }
+    
+    factoryEmployeeData.getEmployee = function(data, callBackFunc){
+        
+        console.log('employeeDataFactory/getEmployee');
+        
+        console.log('data');
+        console.log(data);
+        
+        //Create a resource for context '/employees/single'
+        var resource = $resource('/employees/single',{email:data.email},{'get':{method:'GET'}});
+        
+        resource.query().$promise.then(function(returnData){
+
+            console.log('employeeDataFactory/getEmployee:success');
+            console.log(returnData);
+
+            factoryEmployeeData.employeeArray = returnData;
+            callBackFunc(factoryEmployeeData.employeeArray);
+        },function(error){
+
+            console.log('employeeDataFactory/getEmployee:fail');
+            console.log(error.message);
+
+            factoryEmployeeData.employeeArray = [];
+            callBackFunc(factoryEmployeeData.employeeArray);
+        });
     }
     
     factoryEmployeeData.insertData = function(data){
@@ -275,20 +302,6 @@ main_module.factory('employeeDataFactory',function($resource){
             callbackFunc(factoryEmployeeData.serviceChoiseArray);
         }*/
         
-    }
-    
-    factoryEmployeeData.getSelectedServiceChoise = function(){
-        
-        console.log('employeeDataFactory/getSelectedServiceChoise');
-        //console.log('factoryEmployeeData.serviceChoiseArray.length: ' + factoryEmployeeData.serviceChoiseArray.length);
-        //console.log('factoryEmployeeData.selected_service_choise_id: ' + factoryEmployeeData.selected_service_choise_id);
-        
-        for (var i = 0; i < factoryEmployeeData.serviceChoiseArray.length; i++){
-            if (factoryEmployeeData.serviceChoiseArray[i]._id === factoryEmployeeData.selected_service_choise_id){
-                factoryEmployeeData.selectedServiceChoise = factoryEmployeeData.serviceChoiseArray[i];
-                return factoryEmployeeData.serviceChoiseArray[i];
-            }
-        }
     }
     
     

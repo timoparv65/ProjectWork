@@ -67,7 +67,7 @@ main_module.factory('serviceChoiseDataFactory',function($resource){
                 callbackFunc(factoryServiceChoiseData.array);
             });
         /*}else{
-            console.log('factoryServiceChoiseData/getChoises:success, factoryServiceChoiseData.array.length != 0');
+            console.log('factoryServiceChoiseData/getAll:success, factoryServiceChoiseData.array.length != 0');
             callbackFunc(factoryServiceChoiseData.array);
         }*/
         

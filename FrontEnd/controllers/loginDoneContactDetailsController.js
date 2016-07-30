@@ -11,7 +11,7 @@ main_module.controller('loginDoneContactDetailsController',function($scope,compa
     
     $scope.companyData = [];
     
-    companyDataFactory.getCompanyInformation(dataCallbackCompany);
+    companyDataFactory.getInformation(dataCallbackCompany);
     
     function dataCallbackCompany(dataArray){
     

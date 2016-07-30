@@ -19,7 +19,7 @@ main_module.controller('mainPageController',function($scope,companyDataFactory){
     
     $scope.companyData = [];
     
-    companyDataFactory.getCompanyInformation(dataCallbackCompany);
+    companyDataFactory.getInformation(dataCallbackCompany);
     
     function dataCallbackCompany(dataArray){
     

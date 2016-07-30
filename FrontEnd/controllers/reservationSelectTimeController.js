@@ -1,4 +1,4 @@
-main_module.controller('reservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,Flash,$timeout){
+main_module.controller('reservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,$timeout, Flash){
     
     console.log('reservationSelectTimeController loaded');
     
@@ -22,8 +22,8 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     $scope.bookingTimes = [];
     $scope.ev = null;
     
-    companyDataFactory.getCompanyInformation(dataCallbackCompany);
-    //employeeDataFactory.getEmployees(dataCallBackEmployees);
+    companyDataFactory.getInformation(dataCallbackCompany);
+    employeeDataFactory.getEmployees(dataCallBackEmployees);
     
     initialDate();
     getInformation();
@@ -75,8 +75,10 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     function getInformation(){
         console.log('reservationSelectTimeController/getInformation');
         
-        $scope.selectedService = employeeDataFactory.selectedService;
-        console.log('employeeDataFactory.selectedService');
+        //$scope.selectedService = employeeDataFactory.selectedService;
+        //console.log('employeeDataFactory.selectedService');
+        $scope.selectedService = serviceDataFactory.selectedService;
+        console.log('serviceDataFactory.selectedService');
         console.log($scope.selectedService);
     
         $scope.selectedEmployee = employeeDataFactory.selectedEmployee;
@@ -88,6 +90,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
                 id: $scope.selectedService._id
             }
             
+            console.log('työntekijä: kuka tahansa');
             console.log('temp');
             console.log(temp);
             
@@ -95,7 +98,17 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
             
         } else{
             
+            //$scope.employeeData = $scope.selectedEmployee;
             
+            var temp = {
+                email: $scope.selectedEmployee.email
+            }
+            
+            console.log('työntekijä: ' + $scope.selectedEmployee.name);
+            console.log('temp');
+            console.log(temp);
+            
+            employeeDataFactory.getEmployee(temp, dataCallBackService);
         }
     }
     
@@ -104,7 +117,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
         console.log("dataArray");
         console.log(dataArray);
     
-        $scope.employeeData = dataArray;
+        //$scope.employeeData = dataArray;
     }
     
     function dataCallbackCompany(dataArray){
@@ -208,7 +221,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
         
             $timeout(function(){
                 $location.path('/palvelun_valinta').replace();
-            }, 3000);
+            }, 2000);
         }
         
     }

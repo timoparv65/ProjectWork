@@ -1,4 +1,4 @@
-main_module.controller('serviceDeleteEditController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,$timeout,Flash){
+main_module.controller('serviceDeleteEditController',function($scope,serviceChoiseDataFactory,$location,$timeout,Flash){
     
     console.log('serviceDeleteEditController loaded');
     
@@ -14,7 +14,6 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
     $scope.serviceCategories = [];
     
     // Haetaan palvelun tiedot
-    //$scope.selectedService = employeeDataFactory.getSelectedServiceChoise();
     $scope.selectedService = serviceChoiseDataFactory.getSelected();
     //console.log($scope.selectedService);
     
@@ -49,7 +48,7 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         //console.log(temp);
         
-        //employeeDataFactory.updateServiceChoiseData(temp).then(success,error);
+        
         serviceChoiseDataFactory.updateData(temp).then(success,error);
         
     }
@@ -58,7 +57,7 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
         
         console.log('serviceDeleteEditController/success');
         
-        //employeeDataFactory.serviceChoiseArray = [];
+        
         serviceChoiseDataFactory.array = [];
         $scope.selectedCaterogy = $scope.serviceCategories[0];
         $scope.extracategory = "";
@@ -118,10 +117,9 @@ main_module.controller('serviceDeleteEditController',function($scope,employeeDat
             }
             //console.log(data);
             
-            //employeeDataFactory.deleteServiceChoiseData(data).then(function(data){
+            
             serviceChoiseDataFactory.deleteData(data).then(function(data){
 
-                //employeeDataFactory.serviceChoiseArray = [];
                 serviceChoiseDataFactory.array = [];
                 $location.path('/palvelut_paavalikko').replace();
                 

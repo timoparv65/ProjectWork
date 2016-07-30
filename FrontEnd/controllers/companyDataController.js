@@ -11,7 +11,7 @@ main_module.controller('companyDataController',function($scope,companyDataFactor
         classes:['','','active','','']
     }
     
-    companyDataFactory.getCompanyInformation(dataCallback);
+    companyDataFactory.getInformation(dataCallback);
     
     function dataCallback(dataArray){
     

@@ -1,4 +1,4 @@
-main_module.controller('reservationSelectServiceController',function($scope,$location,employeeDataFactory,Flash,customerLoginFactory){
+main_module.controller('reservationSelectServiceController',function($scope,$location,employeeDataFactory,serviceChoiseDataFactory,serviceDataFactory,customerLoginFactory,$timeout,Flash){
     
     console.log('reservationSelectServiceController loaded');
     
@@ -14,7 +14,8 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         classes:['','active','','']
     }
     
-    employeeDataFactory.getServiceChoises(dataCallBackServices);
+    //employeeDataFactory.getServiceChoises(dataCallBackServices);
+    serviceChoiseDataFactory.getAll(dataCallBackServices);
     
     function dataCallBackServices(dataArray){
         console.log('reservationSelectServiceController/dataCallBackServices');
@@ -34,7 +35,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         
         var temp = {
             name: 'Kuka tahansa',
-            email:'kukatahansa@tukkapolly.fi',
+            email:'kukatahansa@tukkapolly.fi'
         }
         
         $scope.selectedEmployee.push(temp);
@@ -54,18 +55,19 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
     }
     
+    // kun painetaan "seuraava"-nappia
     $scope.selectServiceClicked = function(){
         console.log('reservationSelectServiceController/selectServiceClicked');
         
         console.log('$scope.selectedServ');
         console.log($scope.selectedServ);
         
-        employeeDataFactory.selectedService = $scope.selectedServ;
+        serviceDataFactory.selectedService = $scope.selectedServ;
         
         $location.path('/ajanvaraus').replace();
-        
     }
     
+    // kun valitaan työntekijä
     $scope.selectServicesByEmployee = function(){
         console.log('reservationSelectServiceController/selectServicesByEmployee');
         
@@ -75,17 +77,20 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
         
         if ($scope.selectedEmpl.name === 'Kuka tahansa'){
-            employeeDataFactory.getServiceChoises(dataCallBackServices);
+            //employeeDataFactory.getServiceChoises(dataCallBackServices);
+            serviceChoiseDataFactory.getAll(dataCallBackServices);
         } else {
             console.log('$scope.selectedEmpl');
             console.log($scope.selectedEmpl);
             console.log('employeeDataFactory.selectedEmployee');
             console.log(employeeDataFactory.selectedEmployee);
             //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
-            employeeDataFactory.getServices(dataCallBackServices);
+            //employeeDataFactory.getServices(dataCallBackServices);
+            serviceDataFactory.getAll(employeeDataFactory.selectedEmployee, dataCallBackServices);
         }
     }
 
+    // liittyy customer_login-direktiiviin
     $scope.submit = function(){
         console.log('reservationSelectServiceController/submit');
         
@@ -108,6 +113,10 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
             
             $scope.user.username = "";
             $scope.user.passwd = "";
+            
+            $timeout(function(){
+                $location.path('/palvelun_valinta_sisaankirjauduttu').replace();
+            }, 2000);
         });
     }
 

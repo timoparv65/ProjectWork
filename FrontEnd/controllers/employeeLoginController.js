@@ -1,4 +1,4 @@
-main_module.controller('employeeLoginController',function($scope,employeeLoginFactory,$location,Flash,companyDataFactory){
+main_module.controller('employeeLoginController',function($scope,$location,$timeout,employeeLoginFactory,companyDataFactory,Flash){
     
     console.log('employeeLoginController loaded');
     
@@ -43,9 +43,13 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
                 
                 $scope.user = "";
                 $scope.passwd = "";
+                
+                $timeout(function(){
+                    $location.path('/').replace();
+                }, 2000);
             });
             
-            //$location.path('/sovelluksen_paasivu');
+            
             //code inside this block will be called when success response
             //from server receives
         },function(err1){
@@ -53,13 +57,17 @@ main_module.controller('employeeLoginController',function($scope,employeeLoginFa
             console.log(err1.message);
             
             Flash.create('danger', 'Annettu väärä käyttäjänimi tai salasana', 'custom-class');
+            
+            $timeout(function(){
+                $location.path('/').replace();
+            }, 2000);
         });
     }
     
     function getCompanyData(){
         console.log('mainController/getCompanyData');
         
-        companyDataFactory.getCompanyInformation(dataCallback);
+        companyDataFactory.getInformation(dataCallback);
     }
     
     function dataCallback(dataArray){

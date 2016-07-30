@@ -44,6 +44,15 @@ router.get('/service',function(req,res){
 });
 
 /**
+ * Handle POST requets for /employees/single context
+ * => 29.7.2016
+ */
+router.get('/single',function(req,res){
+    console.log('Handle GET requets for /employees/single context');
+    query.getSingleEmployee(req,res);
+});
+
+/**
  * Handle GET requets for /employees context
  */
 router.get('/',function(req,res){
