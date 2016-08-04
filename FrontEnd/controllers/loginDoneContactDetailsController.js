@@ -4,7 +4,7 @@ main_module.controller('loginDoneContactDetailsController',function($scope,compa
     
     $scope.navbarData = {
         
-        urls:['#/palvelun_valintaa_sisaankirjauduttu','#/palvelut_ja_hinnasto_sisaankirjauduttu','#/yhteystiedot_sisaankirjauduttu'],
+        urls:['#/palvelun_valinta_sisaankirjauduttu','#/palvelut_ja_hinnasto_sisaankirjauduttu','#/yhteystiedot_sisaankirjauduttu'],
         texts:['Palvelun valinta','Palvelut ja hinnasto','Yhteystiedot'],
         classes:['','','active']
     }

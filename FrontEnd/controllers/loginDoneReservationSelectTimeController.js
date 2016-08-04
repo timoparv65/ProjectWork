@@ -1,6 +1,6 @@
-main_module.controller('reservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,reservationDataFactory,$timeout, Flash){
+main_module.controller('loginDoneReservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,reservationDataFactory,$timeout, Flash){
     
-    console.log('reservationSelectTimeController loaded');
+    console.log('loginDoneReservationSelectTimeController loaded');
     
     //console.log('employeeDataFactory.selectedService');
     //console.log(employeeDataFactory.selectedService);
@@ -9,8 +9,8 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     $scope.navbarData = {
         
-        urls:['#/','#/palvelun_valinta','#/ajanvaraus'],
-        texts:['Etusivu','Palvelun valinta','Ajan valinta'],
+        urls:['/logout','#/palvelun_valinta_sisaankirjauduttu','#/ajanvaraus_sisaankirjauduttu'],
+        texts:['Poistu','Palvelun valinta','Ajan valinta'],
         classes:['','','active']
     }
     
@@ -31,7 +31,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     $(document).ready(function(){
         
-        console.log("reservationSelectTimeController/$(document).ready");
+        console.log("loginDoneReservationSelectTimeController/$(document).ready");
 
         $("#datepicker").datepicker(
                                     {   onSelect: function(dateText, inst) {
@@ -52,20 +52,20 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     
     $scope.selectAnotherService = function(){
-        console.log('reservationSelectTimeController/selectAnotherService');
+        console.log('loginDoneReservationSelectTimeController/selectAnotherService');
         
-        $location.path('/palvelun_valinta').replace();
+        $location.path('/palvelun_valinta_sisaankirjauduttu').replace();
     }
     
     function datePickerValue(arvo){
-        console.log('reservationSelectTimeController/datePickerValue');
+        console.log('loginDoneReservationSelectTimeController/datePickerValue');
         
         $scope.selectedDate = arvo;
         console.log($scope.selectedDate);
     }
     
     function initialDate(){
-        console.log('reservationSelectTimeController/initialDate');
+        console.log('loginDoneReservationSelectTimeController/initialDate');
         
         var date = new Date();
         $scope.selectedDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
@@ -73,7 +73,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function getInformation(){
-        console.log('reservationSelectTimeController/getInformation');
+        console.log('loginDoneReservationSelectTimeController/getInformation');
         
         //$scope.selectedService = employeeDataFactory.selectedService;
         //console.log('employeeDataFactory.selectedService');
@@ -116,7 +116,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function dataCallBackEmployees(dataArray){
-        console.log('reservationSelectTimeController/dataCallBackEmployees');
+        console.log('loginDoneReservationSelectTimeController/dataCallBackEmployees');
         console.log("dataArray");
         console.log(dataArray);
     
@@ -124,7 +124,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function dataCallbackCompany(dataArray){
-        console.log('reservationSelectTimeController/dataCallbackCompany');
+        console.log('loginDoneReservationSelectTimeController/dataCallbackCompany');
         console.log("dataArray[0]");
         console.log(dataArray[0]);
     
@@ -135,7 +135,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function dataCallBackService(dataArray){
-        console.log('reservationSelectTimeController/dataCallBackService');
+        console.log('loginDoneReservationSelectTimeController/dataCallBackService');
         console.log("dataArray");
         console.log(dataArray);
         
@@ -143,7 +143,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function createBookingTimes(companyData){
-        console.log("reservationSelectTimeController/createBookingTimes");
+        console.log("loginDoneReservationSelectTimeController/createBookingTimes");
         
         var stopGeneration = true;
         //var time_hours = parseInt(companyData.openingTime.split(":")[0]);
@@ -209,7 +209,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     
     $scope.tableClicked = function($event){
-        console.log("reservationSelectTimeController/tableClicked");
+        console.log("loginDoneReservationSelectTimeController/tableClicked");
         //console.log($event.target);
         
         var $td = $(event.target);
@@ -288,7 +288,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     }
     
     function createTimeStamp(date, time){
-        console.log("reservationSelectTimeController/createTimeStamp");
+        console.log("loginDoneReservationSelectTimeController/createTimeStamp");
         
         var timeStamp = "" + date + "T" + time + ":00Z";
         return timeStamp;

@@ -47,7 +47,6 @@ var Employee = mongoose.model('Employee',{
     role:String,
     picture:String,
     offDays:[{type:mongoose.Schema.Types.ObjectId,ref:'offDay'}], // milloin on poissa töistä
-    //services:[{type:mongoose.Schema.Types.ObjectId,ref:'Service'}], // mitä töitä tekee
     services:[{type:mongoose.Schema.Types.ObjectId,ref:'ServiceChoise'}], // mitä töitä tekee
     assignments:[{type:mongoose.Schema.Types.ObjectId,ref:'Reservation'}] // varaukset
 },'employee');

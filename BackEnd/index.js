@@ -8,6 +8,7 @@ var customer = require('./modules/customer');
 var service = require('./modules/service');
 var servicechoise = require('./modules/servicechoise');
 var company = require('./modules/company');
+var reservation = require('./modules/reservation');
 var acl = require('acl');
 
 
@@ -62,6 +63,7 @@ app.use('/customers',customer);
 app.use('/services',service);
 app.use('/servicechoises',servicechoise);
 app.use('/companies',company);
+app.use('/reservations',reservation);
 
 
 //=====================ROUTERS============================

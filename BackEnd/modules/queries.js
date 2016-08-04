@@ -243,13 +243,15 @@ exports.getEmployeesByService = function(req,res){
     console.log('queries/getEmployeesByService');
     
     var searchObject = {
-        _id:req.query.id
+        services:req.query.id
     }
     
     console.log('searchObject');
     console.log(searchObject);
     
-    db.Employee.find({services:searchObject}, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+    //db.Employee.find({services:searchObject}, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+    //db.Employee.find({services:req.query.id}, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+    db.Employee.find(searchObject, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
         if(err){
             console.log('Virhe haussa');
             //500 = Internal Server Error
@@ -272,8 +274,8 @@ exports.getSingleEmployee = function(req,res){
     console.log('queries/getSingleEmployee');
     
     var searchObject = {
-        email:req.query.email
-    };
+        email:req.query.email,
+    }
     
     // email on unique ominaisuus tietokannassa
     db.Employee.find(searchObject, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
@@ -841,3 +843,26 @@ exports.deleteCompany = function(req,res){
     });
 }
 
+/**
+ * This function saves new reservation information to our
+ * reservation collection
+ * => 31.7.2016
+ */
+exports.saveNewReservation = function(req,res){
+    console.log('queries/saveNewReservation');
+    //console.log('req.body: ' + req.body);
+    
+    var reservationTemp = new db.Reservation(req.body);
+    
+    // save it to database
+    reservationTemp.save(function(err,newData){
+        
+        if(err){
+            //500 = Internal Server Error
+            res.status(500).json({message:'Fail'});
+        }else{
+            //200 = ok
+            res.status(200).json({data:newData});
+        }
+    });
+}

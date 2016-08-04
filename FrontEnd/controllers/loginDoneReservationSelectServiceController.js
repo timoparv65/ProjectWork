@@ -1,10 +1,12 @@
-main_module.controller('loginDoneReservationSelectServiceController',function($scope,$location,customerDataFactory,employeeDataFactory){
+main_module.controller('loginDoneReservationSelectServiceController',function($scope,$location,customerDataFactory,employeeDataFactory,serviceChoiseDataFactory,serviceDataFactory){
     
     console.log('loginDoneReservationSelectServiceController loaded');
 
     $scope.employeeData = [];
     $scope.selectedEmployee = [];
     $scope.serviceChoiseData = [];
+    $scope.selectedServ = null;
+    $scope.selectedEmpl = null;
     
     $scope.navbarData = {
         
@@ -15,17 +17,17 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
     
     //$scope.customer = customerDataFactory.getCustomer();
     
-    employeeDataFactory.getServiceChoises(dataCallBackServices);
+    //employeeDataFactory.getServiceChoises(dataCallBackServices);
+    serviceChoiseDataFactory.getAll(dataCallBackServices);
+    
+    function dataCallBackServices(dataArray){
+        console.log('loginDoneReservationSelectServiceController/dataCallBackServices');
+        
+        $scope.serviceChoiseData = dataArray;
+        $scope.selectedServ = dataArray[0];
+    }
     
     employeeDataFactory.getEmployees(dataCallback);
-    
-    $scope.selectServiceClicked = function(){
-        console.log('loginDoneReservationSelectServiceController/selectServiceClicked');
-        
-        employeeDataFactory.selectedService = $scope.selectedServ;
-        
-        $location.path('/ajanvaraus_sisaankirjauduttu').replace();
-    }
     
     function dataCallback(dataArray){
         console.log('loginDoneReservationSelectServiceController/dataCallback');
@@ -56,11 +58,40 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
     }
     
-    function dataCallBackServices(dataArray){
-        console.log('loginDoneReservationSelectServiceController/dataCallBackServices');
+    // kun painetaan "seuraava"-nappia
+    $scope.selectServiceClicked = function(){
+        console.log('loginDoneReservationSelectServiceController/selectServiceClicked');
         
-        $scope.serviceChoiseData = dataArray;
-        $scope.selectedServ = dataArray[0];
+        console.log('$scope.selectedServ');
+        console.log($scope.selectedServ);
+        
+        //employeeDataFactory.selectedService = $scope.selectedServ;
+        serviceDataFactory.selectedService = $scope.selectedServ;
+        
+        $location.path('/ajanvaraus_sisaankirjauduttu').replace();
+    }
+    
+    // kun valitaan työntekijä
+    $scope.selectServicesByEmployee = function(){
+        console.log('loginDoneReservationSelectServiceController/selectServicesByEmployee');
+        
+        console.log('$scope.selectedEmpl');
+        console.log($scope.selectedEmpl);
+        
+        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+        
+        if ($scope.selectedEmpl.name === 'Kuka tahansa'){
+            //employeeDataFactory.getServiceChoises(dataCallBackServices);
+            serviceChoiseDataFactory.getAll(dataCallBackServices);
+        } else {
+            console.log('$scope.selectedEmpl');
+            console.log($scope.selectedEmpl);
+            console.log('employeeDataFactory.selectedEmployee');
+            console.log(employeeDataFactory.selectedEmployee);
+            //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+            //employeeDataFactory.getServices(dataCallBackServices);
+            serviceDataFactory.getAll(employeeDataFactory.selectedEmployee, dataCallBackServices);
+        }
     }
 
 });

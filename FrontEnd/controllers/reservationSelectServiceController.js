@@ -5,6 +5,8 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
     $scope.employeeData = [];
     $scope.selectedEmployee = [];
     $scope.serviceChoiseData = [];
+    $scope.selectedServ = null;
+    $scope.selectedEmpl = null;
     $scope.user = {};
 
     $scope.navbarData = {
