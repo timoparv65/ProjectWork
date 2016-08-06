@@ -1,11 +1,6 @@
-main_module.controller('loginDoneReservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,reservationDataFactory,$timeout, Flash){
+main_module.controller('loginDoneReservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,reservationDataFactory,customerDataFactory,$timeout, Flash){
     
     console.log('loginDoneReservationSelectTimeController loaded');
-    
-    //console.log('employeeDataFactory.selectedService');
-    //console.log(employeeDataFactory.selectedService);
-    //console.log('employeeDataFactory.selectedEmployee');
-    //console.log(employeeDataFactory.selectedEmployee);
     
     $scope.navbarData = {
         
@@ -18,10 +13,12 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
     $scope.selectedService = null;
     $scope.selectedEmployee = null;
     $scope.employeeData = [];
-    //$scope.companyData = [];
+    $scope.companyData = [];
+    $scope.customerData = [];
     $scope.bookingTimes = [];
     $scope.ev = null;
     
+    customerDataFactory.getCustomer(dataCallBackCustomer);
     companyDataFactory.getInformation(dataCallbackCompany);
     employeeDataFactory.getEmployees(dataCallBackEmployees);
     
@@ -75,8 +72,6 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
     function getInformation(){
         console.log('loginDoneReservationSelectTimeController/getInformation');
         
-        //$scope.selectedService = employeeDataFactory.selectedService;
-        //console.log('employeeDataFactory.selectedService');
         $scope.selectedService = serviceDataFactory.selectedService;
         console.log('serviceDataFactory.selectedService');
         console.log($scope.selectedService);
@@ -97,9 +92,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             employeeDataFactory.getEmployeesByService(temp, dataCallBackService);
             
         } else{
-            
-            //$scope.employeeData = $scope.selectedEmployee;
-            
+
             var temp = {
                 email: $scope.selectedEmployee.email
             }
@@ -109,10 +102,17 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             console.log(temp);
             
             if ($scope.selectedService != null){
-                employeeDataFactory.getEmployee(temp, dataCallBackService);
+                employeeDataFactory.getEmployeeByEmail(temp, dataCallBackService);
             }
-            //employeeDataFactory.getEmployee(temp, dataCallBackService);
         }
+    }
+    
+    function dataCallBackCustomer(dataArray){
+        console.log('loginDoneReservationSelectTimeController/dataCallBackCustomer');
+        
+        $scope.customerData = dataArray;
+        console.log('$scope.customerData');
+        console.log($scope.customerData);
     }
     
     function dataCallBackEmployees(dataArray){
@@ -128,8 +128,8 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         console.log("dataArray[0]");
         console.log(dataArray[0]);
     
-        //$scope.companyData = dataArray;
-        //console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
+        $scope.companyData = dataArray;
+        console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
         
         createBookingTimes(dataArray[0]);
     }
@@ -146,22 +146,22 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         console.log("loginDoneReservationSelectTimeController/createBookingTimes");
         
         var stopGeneration = true;
-        //var time_hours = parseInt(companyData.openingTime.split(":")[0]);
-        //var time_minutes = parseInt(companyData.openingTime.split(":")[1]);
-        //var increment_hours = parseInt(companyData.timeRaster.split(":")[0]);
-        //var increment_minutes = parseInt(companyData.timeRaster.split(":")[1]);
+        var time_hours = parseInt(companyData.openingTime.split(":")[0]);
+        var time_minutes = parseInt(companyData.openingTime.split(":")[1]);
+        var increment_hours = parseInt(companyData.timeRaster.split(":")[0]);
+        var increment_minutes = parseInt(companyData.timeRaster.split(":")[1]);
         
-        //var closing_time_hours = parseInt(companyData.closingTime.split(":")[0]);
-        //var closing_time_minutes = parseInt(companyData.closingTime.split(":")[1]);
+        var closing_time_hours = parseInt(companyData.closingTime.split(":")[0]);
+        var closing_time_minutes = parseInt(companyData.closingTime.split(":")[1]);
         
         
-        var time_hours = 8;
-        var time_minutes = 0;
-        var increment_hours = 0;
-        var increment_minutes = 15;
+        //var time_hours = 8;
+        //var time_minutes = 0;
+        //var increment_hours = 0;
+        //var increment_minutes = 15;
         
-        var closing_time_hours = 20;
-        var closing_time_minutes = 0;
+        //var closing_time_hours = 20;
+        //var closing_time_minutes = 0;
         
         $scope.bookingTimes.push(companyData.openingTime);
         
@@ -220,14 +220,6 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         
         if (myCol > 0)
         {
-            /*
-            Flash.create('warning', 'Ole hyvä ja kirjaudu sisään', 'custom-class');
-        
-            $timeout(function(){
-                $location.path('/palvelun_valinta').replace();
-            }, 2000);
-            */
-            
             console.log('$scope.selectedDate');
             console.log($scope.selectedDate);
             console.log('$scope.selectedService');

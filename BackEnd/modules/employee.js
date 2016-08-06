@@ -44,12 +44,12 @@ router.get('/service',function(req,res){
 });
 
 /**
- * Handle POST requets for /employees/single context
+ * Handle POST requets for /employees/singleByEmail context
  * => 29.7.2016
  */
-router.get('/single',function(req,res){
-    console.log('Handle GET requets for /employees/single context');
-    query.getSingleEmployee(req,res);
+router.get('/singleByEmail',function(req,res){
+    console.log('Handle GET requets for /employees/singleByEmail context');
+    query.getSingleEmployeeByEmailAddress(req,res);
 });
 
 /**

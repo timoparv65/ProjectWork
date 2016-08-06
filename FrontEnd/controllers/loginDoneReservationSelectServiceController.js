@@ -15,9 +15,6 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         classes:['active','','']
     }
     
-    //$scope.customer = customerDataFactory.getCustomer();
-    
-    //employeeDataFactory.getServiceChoises(dataCallBackServices);
     serviceChoiseDataFactory.getAll(dataCallBackServices);
     
     function dataCallBackServices(dataArray){

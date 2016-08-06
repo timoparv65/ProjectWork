@@ -16,7 +16,6 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         classes:['','active','','']
     }
     
-    //employeeDataFactory.getServiceChoises(dataCallBackServices);
     serviceChoiseDataFactory.getAll(dataCallBackServices);
     
     function dataCallBackServices(dataArray){
@@ -86,8 +85,6 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
             console.log($scope.selectedEmpl);
             console.log('employeeDataFactory.selectedEmployee');
             console.log(employeeDataFactory.selectedEmployee);
-            //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
-            //employeeDataFactory.getServices(dataCallBackServices);
             serviceDataFactory.getAll(employeeDataFactory.selectedEmployee, dataCallBackServices);
         }
     }

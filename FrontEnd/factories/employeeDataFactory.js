@@ -100,26 +100,26 @@ main_module.factory('employeeDataFactory',function($resource){
         }
     }
     
-    factoryEmployeeData.getEmployee = function(data, callBackFunc){
+    factoryEmployeeData.getEmployeeByEmail = function(data, callBackFunc){
         
-        console.log('employeeDataFactory/getEmployee');
+        console.log('employeeDataFactory/getEmployeeByEmail');
         
         console.log('data');
         console.log(data);
         
-        //Create a resource for context '/employees/single'
-        var resource = $resource('/employees/single',{email:data.email},{'get':{method:'GET'}});
+        //Create a resource for context '/employees/singleByEmail'
+        var resource = $resource('/employees/singleByEmail',{email:data.email},{'get':{method:'GET'}});
         
         resource.query().$promise.then(function(returnData){
 
-            console.log('employeeDataFactory/getEmployee:success');
+            console.log('employeeDataFactory/getEmployeeByEmail:success');
             console.log(returnData);
 
             factoryEmployeeData.employeeArray = returnData;
             callBackFunc(factoryEmployeeData.employeeArray);
         },function(error){
 
-            console.log('employeeDataFactory/getEmployee:fail');
+            console.log('employeeDataFactory/getEmployeeByEmail:fail');
             console.log(error.message);
 
             factoryEmployeeData.employeeArray = [];

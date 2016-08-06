@@ -35,5 +35,14 @@ router.post('/register',function(req,res){
     query.registerCustomer(req,res);
 });
 
+/**
+ * Handle POST requets for /customers/singleByName context
+ * => 29.7.2016
+ */
+router.get('/singleByName',function(req,res){
+    console.log('Handle GET requets for /customers/singleByName context');
+    query.getSingleCustomerByName(req,res);
+});
+
 
 module.exports = router;

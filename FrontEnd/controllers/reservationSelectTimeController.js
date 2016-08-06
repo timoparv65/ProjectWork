@@ -1,11 +1,6 @@
-main_module.controller('reservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,reservationDataFactory,$timeout, Flash){
+main_module.controller('reservationSelectTimeController',function($scope,$location,companyDataFactory,employeeDataFactory,serviceDataFactory,$timeout, Flash){
     
     console.log('reservationSelectTimeController loaded');
-    
-    //console.log('employeeDataFactory.selectedService');
-    //console.log(employeeDataFactory.selectedService);
-    //console.log('employeeDataFactory.selectedEmployee');
-    //console.log(employeeDataFactory.selectedEmployee);
     
     $scope.navbarData = {
         
@@ -18,7 +13,7 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     $scope.selectedService = null;
     $scope.selectedEmployee = null;
     $scope.employeeData = [];
-    //$scope.companyData = [];
+    $scope.companyData = [];
     $scope.bookingTimes = [];
     $scope.ev = null;
     
@@ -27,7 +22,6 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     initialDate();
     getInformation();
-    
     
     $(document).ready(function(){
         
@@ -75,8 +69,6 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     function getInformation(){
         console.log('reservationSelectTimeController/getInformation');
         
-        //$scope.selectedService = employeeDataFactory.selectedService;
-        //console.log('employeeDataFactory.selectedService');
         $scope.selectedService = serviceDataFactory.selectedService;
         console.log('serviceDataFactory.selectedService');
         console.log($scope.selectedService);
@@ -98,8 +90,6 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
             
         } else{
             
-            //$scope.employeeData = $scope.selectedEmployee;
-            
             var temp = {
                 email: $scope.selectedEmployee.email
             }
@@ -109,9 +99,8 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
             console.log(temp);
             
             if ($scope.selectedService != null){
-                employeeDataFactory.getEmployee(temp, dataCallBackService);
+                employeeDataFactory.getEmployeeByEmail(temp, dataCallBackService);
             }
-            //employeeDataFactory.getEmployee(temp, dataCallBackService);
         }
     }
     
@@ -128,8 +117,8 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
         console.log("dataArray[0]");
         console.log(dataArray[0]);
     
-        //$scope.companyData = dataArray;
-        //console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
+        $scope.companyData = dataArray;
+        console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
         
         createBookingTimes(dataArray[0]);
     }
@@ -146,22 +135,22 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
         console.log("reservationSelectTimeController/createBookingTimes");
         
         var stopGeneration = true;
-        //var time_hours = parseInt(companyData.openingTime.split(":")[0]);
-        //var time_minutes = parseInt(companyData.openingTime.split(":")[1]);
-        //var increment_hours = parseInt(companyData.timeRaster.split(":")[0]);
-        //var increment_minutes = parseInt(companyData.timeRaster.split(":")[1]);
+        var time_hours = parseInt(companyData.openingTime.split(":")[0]);
+        var time_minutes = parseInt(companyData.openingTime.split(":")[1]);
+        var increment_hours = parseInt(companyData.timeRaster.split(":")[0]);
+        var increment_minutes = parseInt(companyData.timeRaster.split(":")[1]);
         
-        //var closing_time_hours = parseInt(companyData.closingTime.split(":")[0]);
-        //var closing_time_minutes = parseInt(companyData.closingTime.split(":")[1]);
+        var closing_time_hours = parseInt(companyData.closingTime.split(":")[0]);
+        var closing_time_minutes = parseInt(companyData.closingTime.split(":")[1]);
         
         
-        var time_hours = 8;
-        var time_minutes = 0;
-        var increment_hours = 0;
-        var increment_minutes = 15;
+        //var time_hours = 8;
+        //var time_minutes = 0;
+        //var increment_hours = 0;
+        //var increment_minutes = 15;
         
-        var closing_time_hours = 20;
-        var closing_time_minutes = 0;
+        //var closing_time_hours = 20;
+        //var closing_time_minutes = 0;
         
         $scope.bookingTimes.push(companyData.openingTime);
         
@@ -210,88 +199,21 @@ main_module.controller('reservationSelectTimeController',function($scope,$locati
     
     $scope.tableClicked = function($event){
         console.log("reservationSelectTimeController/tableClicked");
-        //console.log($event.target);
         
         var $td = $(event.target);
         var myCol = $td.index();
         var $tr = $td.closest('tr');
         var myRow = $tr.index();
-        console.log('column: ' + myCol, 'row: ' + myRow);
         
         if (myCol > 0)
         {
-            /*
-            Flash.create('warning', 'Ole hyvä ja kirjaudu sisään', 'custom-class');
+            Flash.create('warning', 'Ole hyvä ja kirjaudu sisään. Siirrytään toiselle sivulle.', 'custom-class');
         
             $timeout(function(){
                 $location.path('/palvelun_valinta').replace();
-            }, 2000);
-            */
-            
-            console.log('$scope.selectedDate');
-            console.log($scope.selectedDate);
-            console.log('$scope.selectedService');
-            console.log($scope.selectedService);
-            console.log('$scope.selectedEmployee');
-            console.log($scope.selectedEmployee);
-            
-            if ($scope.selectedEmployee.name === 'Kuka tahansa'){
-                console.log('työntekijä: ' + $scope.employeeData[myCol-1].name);
-            } else {
-                console.log('työntekijä: ' + $scope.selectedEmployee.name);
-            }
-            console.log('aika: ' + $scope.bookingTimes[myRow]);
-            
-            var r1 = $scope.selectedService.duration / 15;
-            var taysija_15min_jaksoja = Math.ceil(r1);
-            console.log('vie täysiä 15 min jaksoja: ' + taysija_15min_jaksoja);
-            
-            var timeStart = createTimeStamp($scope.selectedDate, $scope.bookingTimes[myRow]);
-            console.log('timeStart :' + timeStart);
-            
-            temp = {
-              startTime: timeStart,
-              endTime: timeStart,
-                employee: 10
-            };
-            /*
-            var waitPromise = reservationDataFactory.insertData(temp);
-            
-            waitPromise.then(function(response){
-                // queries.js/exports.saveNewReservation: palauttaa data nimisen muuttujan responsessa.
-                // Talletetaan se reservationDataFactory.array:hyn
-
-                console.log('reservationSelectTimeController/tableClicked/waitPromise:success');
-                console.log(response.data);
-
-                reservationDataFactory.array.push(response.data);
-                Flash.create('success', 'Uusi varaus lisätty', 'custom-class');
-
-                $timeout(function(){
-                    //$location.path('/tyontekija_paavalikko').replace();
-                }, 2000);
-            
-            },function(error){
-
-                console.log('reservationSelectTimeController/tableClicked/waitPromise:fail');
-                console.log(error.message);
-
-                Flash.create('warning', 'Varauksen lisäys epäonnistui!', 'custom-class');
-
-                $timeout(function(){
-                    //$location.path('/tyontekija_paavalikko').replace();
-                }, 2000);
-            });
-            */
+            }, 3000);
         }
         
-    }
-    
-    function createTimeStamp(date, time){
-        console.log("reservationSelectTimeController/createTimeStamp");
-        
-        var timeStamp = "" + date + "T" + time + ":00Z";
-        return timeStamp;
     }
                   
     

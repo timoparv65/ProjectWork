@@ -82,6 +82,32 @@ exports.registerCustomer = function(req,res){
 }
 
 /**
+ * lisätty 6.8.2016
+ */
+exports.getSingleCustomerByName = function(req,res){
+    console.log('queries/getSingleCustomerByName');
+    
+    var searchObject = {
+        name:req.query.name,
+    }
+    
+    db.Customer.find(searchObject, function(err,data){ // data:ssa palauttaa kaikki löydetyt työntekijät
+        if(err){
+            console.log('Virhe haussa');
+            //500 = Internal Server Error
+            res.status(500).send({status:err.message});
+        }
+        else{
+            console.log('Löydetyt asiakkaat');
+            console.log(data);
+            //200 = ok
+            res.status(200).send(data);
+        }
+    });
+    
+}
+
+/**
  *
  */
 exports.registerEmployee = function(req,res){
@@ -270,8 +296,8 @@ exports.getEmployeesByService = function(req,res){
 /**
  * lisätty 29.7.2016
  */
-exports.getSingleEmployee = function(req,res){
-    console.log('queries/getSingleEmployee');
+exports.getSingleEmployeeByEmailAddress = function(req,res){
+    console.log('queries/getSingleEmployeeByEmailAddress');
     
     var searchObject = {
         email:req.query.email,
@@ -293,6 +319,7 @@ exports.getSingleEmployee = function(req,res){
     });
     
 }
+
 
 /**
  *

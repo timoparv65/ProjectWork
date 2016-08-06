@@ -197,6 +197,18 @@ app.get('/reset_session_admin_id',function(req,res,next){
     res.send(200,[{status:"Ok"}]);
 });
 
+// lisätty 5.8.2016
+app.get('/get_customer_information',function(req,res,next){
+    console.log('index.js/get_customer_information');
+
+    var customerId = req.session.customerId;
+    if (customerId){
+        res.status(200).send([{customerId}]);
+    } else {
+        res.status(500).send([{status:"No customer found"}]);
+    }
+});
+
 
 app.listen(3000);
 
