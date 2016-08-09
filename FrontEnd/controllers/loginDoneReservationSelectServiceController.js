@@ -24,7 +24,7 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         $scope.selectedServ = dataArray[0];
     }
     
-    employeeDataFactory.getEmployees(dataCallback);
+    employeeDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
         console.log('loginDoneReservationSelectServiceController/dataCallback');
@@ -52,7 +52,7 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         }
         // This one preselected
         $scope.selectedEmpl = $scope.selectedEmployee[0];
-        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+        employeeDataFactory.selected = $scope.selectedEmpl;
     }
     
     // kun painetaan "seuraava"-nappia
@@ -62,8 +62,7 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         console.log('$scope.selectedServ');
         console.log($scope.selectedServ);
         
-        //employeeDataFactory.selectedService = $scope.selectedServ;
-        serviceDataFactory.selectedService = $scope.selectedServ;
+        serviceDataFactory.selected = $scope.selectedServ;
         
         $location.path('/ajanvaraus_sisaankirjauduttu').replace();
     }
@@ -75,19 +74,16 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
         console.log('$scope.selectedEmpl');
         console.log($scope.selectedEmpl);
         
-        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+        employeeDataFactory.selected = $scope.selectedEmpl;
         
         if ($scope.selectedEmpl.name === 'Kuka tahansa'){
-            //employeeDataFactory.getServiceChoises(dataCallBackServices);
             serviceChoiseDataFactory.getAll(dataCallBackServices);
         } else {
             console.log('$scope.selectedEmpl');
             console.log($scope.selectedEmpl);
-            console.log('employeeDataFactory.selectedEmployee');
-            console.log(employeeDataFactory.selectedEmployee);
-            //employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
-            //employeeDataFactory.getServices(dataCallBackServices);
-            serviceDataFactory.getAll(employeeDataFactory.selectedEmployee, dataCallBackServices);
+            console.log('employeeDataFactory.selected');
+            console.log(employeeDataFactory.selected);
+            serviceDataFactory.getAll(employeeDataFactory.selected, dataCallBackServices);
         }
     }
 

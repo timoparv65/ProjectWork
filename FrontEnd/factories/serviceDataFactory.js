@@ -6,7 +6,7 @@ main_module.factory('serviceDataFactory',function($resource){
     
     factoryServiceData.array = [];
     factoryServiceData.selected_id = null;
-    factoryServiceData.selectedService = null;
+    factoryServiceData.selected = null;
     
     factoryServiceData.insertData = function(data){
         
@@ -77,7 +77,7 @@ main_module.factory('serviceDataFactory',function($resource){
         
         for (var i = 0; i < factoryServiceData.array.length; i++){
             if (factoryServiceData.array[i]._id === factoryServiceData.selected_id){
-                factoryServiceData.selectedService = factoryServiceData.array[i];
+                factoryServiceData.selected = factoryServiceData.array[i];
                 return factoryServiceData.array[i];
             }
         }

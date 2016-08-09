@@ -1,4 +1,4 @@
-main_module.controller('loginDoneServicesAndPricesController',function($scope,employeeDataFactory){
+main_module.controller('loginDoneServicesAndPricesController',function($scope,serviceChoiseDataFactory){
     
     console.log('loginDoneServicesAndPricesController loaded');
     
@@ -11,7 +11,7 @@ main_module.controller('loginDoneServicesAndPricesController',function($scope,em
     
     $scope.serviceChoiseData = [];
     
-    employeeDataFactory.getServiceChoises(dataCallBack);
+    serviceChoiseDataFactory.getAll(dataCallBack);
     
     function dataCallBack(dataArray){
         console.log('loginDoneServicesAndPricesController/dataCallBack');

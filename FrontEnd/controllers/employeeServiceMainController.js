@@ -1,4 +1,4 @@
-main_module.controller('employeeServiceMainController',function($scope,employeeDataFactory,Flash,$location){
+main_module.controller('employeeServiceMainController',function($scope,employeeDataFactory,serviceDataFactory,Flash,$location){
     
     console.log('employeeServiceMainController loaded');
     
@@ -11,9 +11,9 @@ main_module.controller('employeeServiceMainController',function($scope,employeeD
         classes:['','','active','','']
     }
     
-    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelected();
     
-    employeeDataFactory.getServices(dataCallback);
+    serviceDataFactory.getAll(employeeDataFactory.selected, dataCallback);
     
     
     function dataCallback(dataArray){

@@ -11,7 +11,7 @@ main_module.controller('employeeListFunctionsController',function($scope,employe
         classes:['','','active','','','','']
     }
 
-    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelected();
     console.log('$scope.selectedEmployee');
     console.log($scope.selectedEmployee);
     

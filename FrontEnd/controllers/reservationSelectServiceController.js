@@ -25,7 +25,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         $scope.selectedServ = dataArray[0];
     }
     
-    employeeDataFactory.getEmployees(dataCallback);
+    employeeDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
         console.log('reservationSelectServiceController/dataCallback');
@@ -53,7 +53,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         }
         // This one preselected
         $scope.selectedEmpl = $scope.selectedEmployee[0];
-        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+        employeeDataFactory.selected = $scope.selectedEmpl;
     }
     
     // kun painetaan "seuraava"-nappia
@@ -63,7 +63,7 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         console.log('$scope.selectedServ');
         console.log($scope.selectedServ);
         
-        serviceDataFactory.selectedService = $scope.selectedServ;
+        serviceDataFactory.selected = $scope.selectedServ;
         
         $location.path('/ajanvaraus').replace();
     }
@@ -75,17 +75,16 @@ main_module.controller('reservationSelectServiceController',function($scope,$loc
         console.log('$scope.selectedEmpl');
         console.log($scope.selectedEmpl);
         
-        employeeDataFactory.selectedEmployee = $scope.selectedEmpl;
+        employeeDataFactory.selected = $scope.selectedEmpl;
         
         if ($scope.selectedEmpl.name === 'Kuka tahansa'){
-            //employeeDataFactory.getServiceChoises(dataCallBackServices);
             serviceChoiseDataFactory.getAll(dataCallBackServices);
         } else {
             console.log('$scope.selectedEmpl');
             console.log($scope.selectedEmpl);
-            console.log('employeeDataFactory.selectedEmployee');
-            console.log(employeeDataFactory.selectedEmployee);
-            serviceDataFactory.getAll(employeeDataFactory.selectedEmployee, dataCallBackServices);
+            console.log('employeeDataFactory.selected');
+            console.log(employeeDataFactory.selected);
+            serviceDataFactory.getAll(employeeDataFactory.selected, dataCallBackServices);
         }
     }
 

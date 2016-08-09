@@ -13,7 +13,7 @@ main_module.controller('employeeReservationsController',function($scope,employee
     
     employeeLoginFactory.resetSessionAdminId();
     
-    employeeDataFactory.getEmployees(dataCallback);
+    employeeDataFactory.getAll(dataCallback);
     
     
     function dataCallback(dataArray){

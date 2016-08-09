@@ -44,12 +44,12 @@ main_module.controller('employeeAddController',function($scope,Flash,employeeDat
         
         waitPromise.then(function(response){
             // queries.js/exports.saveNewEmployee: palauttaa data nimisen muuttujan responsessa.
-            // Talletetaan se employeeArray:hyn
+            // Talletetaan se employeeDataFactory.array:hyn
             
             console.log('employeeAddController/saveEmployeeClicked/waitPromise:success');
             console.log(response.data);
             
-            employeeDataFactory.employeeArray.push(response.data);
+            employeeDataFactory.array.push(response.data);
             Flash.create('success', 'Uusi työntekijä lisätty', 'custom-class');
             
             $scope.name = "";

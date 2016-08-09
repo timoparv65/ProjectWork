@@ -11,7 +11,7 @@ main_module.controller('employeeDataController',function($scope,employeeDataFact
         classes:['','','active','']
     }
     
-    employeeDataFactory.getEmployees(dataCallback);
+    employeeDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
     

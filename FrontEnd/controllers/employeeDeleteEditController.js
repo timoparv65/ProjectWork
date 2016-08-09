@@ -1,4 +1,4 @@
-main_module.controller('employeeDeleteEditController',function($scope,employeeDataFactory,$location,Flash,$timeout){
+main_module.controller('employeeDeleteEditController',function($scope,employeeDataFactory,serviceChoiseDataFactory,$location,Flash,$timeout){
     
     console.log('employeeDeleteEditController loaded');
     
@@ -16,7 +16,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
     
     $scope.deleteArray = [];
     
-    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelected();
     console.log($scope.selectedEmployee);
     
     $scope.id = $scope.selectedEmployee._id;
@@ -52,7 +52,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
         
         console.log('employeeDeleteEditController/success');
         
-        employeeDataFactory.serviceChoiseArray = [];
+        serviceChoiseDataFactory.array = [];
         $scope.name = "";
         $scope.passwd = "";
         $scope.emailaddr = "";
@@ -119,7 +119,7 @@ main_module.controller('employeeDeleteEditController',function($scope,employeeDa
             
             employeeDataFactory.deleteData(data).then(function(data){
 
-                employeeDataFactory.employeeArray = [];
+                employeeDataFactory.array = [];
                 
                 Flash.create('success','Työntekijä poistettu!', 'custom-class');
                 

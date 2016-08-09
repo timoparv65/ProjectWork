@@ -12,9 +12,8 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
     $scope.deleteArray = [];
     $scope.serviceData = [];
     
-    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelected();
     
-    //employeeDataFactory.getServices(dataCallback);
     serviceDataFactory.getAll($scope.selectedEmployee, dataCallback);
     
     function dataCallback(dataArray){
@@ -72,9 +71,7 @@ main_module.controller('employeeDeleteServiceController',function($scope,employe
             
             console.log(data);
             
-            //employeeDataFactory.deleteServiceData(data).then(function(data){
             serviceDataFactory.deleteData(data).then(function(data){
-                //employeeDataFactory.serviceArray = [];
                 serviceDataFactory.array = [];
                 
                 Flash.create('success', 'Poistettu työntekijän palvelu', 'custom-class');

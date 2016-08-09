@@ -20,7 +20,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
     
     customerDataFactory.getCustomer(dataCallBackCustomer);
     companyDataFactory.getInformation(dataCallbackCompany);
-    employeeDataFactory.getEmployees(dataCallBackEmployees);
+    employeeDataFactory.getAll(dataCallBackEmployees);
     
     initialDate();
     getInformation();
@@ -72,12 +72,12 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
     function getInformation(){
         console.log('loginDoneReservationSelectTimeController/getInformation');
         
-        $scope.selectedService = serviceDataFactory.selectedService;
-        console.log('serviceDataFactory.selectedService');
+        $scope.selectedService = serviceDataFactory.selected;
+        console.log('serviceDataFactory.selected');
         console.log($scope.selectedService);
     
-        $scope.selectedEmployee = employeeDataFactory.selectedEmployee;
-        console.log('employeeDataFactory.selectedEmployee');
+        $scope.selectedEmployee = employeeDataFactory.selected;
+        console.log('employeeDataFactory.selected');
         console.log($scope.selectedEmployee);
         
         if ($scope.selectedEmployee.name === 'Kuka tahansa'){
@@ -89,7 +89,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             console.log('temp');
             console.log(temp);
             
-            employeeDataFactory.getEmployeesByService(temp, dataCallBackService);
+            employeeDataFactory.getByService(temp, dataCallBackService);
             
         } else{
 
@@ -102,7 +102,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             console.log(temp);
             
             if ($scope.selectedService != null){
-                employeeDataFactory.getEmployeeByEmail(temp, dataCallBackService);
+                employeeDataFactory.getByEmail(temp, dataCallBackService);
             }
         }
     }

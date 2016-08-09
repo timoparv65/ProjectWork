@@ -1,4 +1,4 @@
-main_module.controller('employeeEditServiceController',function($scope,employeeDataFactory,serviceDataFactory,$location,Flash){
+main_module.controller('employeeEditServiceController',function($scope,serviceDataFactory,$location,Flash){
     
     console.log('employeeEditServiceController loaded');
     
@@ -9,7 +9,6 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
         classes:[]
     }
     
-    //var selectedService = employeeDataFactory.getSelectedService();
     var selectedService = serviceDataFactory.getSelected();
     console.log('selectedService: ' + selectedService);
     
@@ -38,12 +37,10 @@ main_module.controller('employeeEditServiceController',function($scope,employeeD
         
         console.log(temp);
         
-        //employeeDataFactory.updateServiceData(temp).then(success,error); 
         serviceDataFactory.updateData(temp).then(success,error); 
     }
     
     function success(){
-        //employeeDataFactory.serviceArray = [];
         serviceDataFactory.array = [];
         $location.path('/tyontekijan_palvelut_paavalikko').replace();
     }

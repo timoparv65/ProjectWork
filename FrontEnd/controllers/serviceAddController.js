@@ -45,7 +45,6 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
             return;
         }
         
-        //var waitPromise = employeeDataFactory.insertServiceChoiseData(temp);
         var waitPromise = serviceChoiseDataFactory.insertData(temp);
         
         waitPromise.then(function(response){
@@ -55,8 +54,7 @@ main_module.controller('serviceAddController',function($scope,employeeDataFactor
             
             
             // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
-            // Talletetaan se serviceChoiseArray:hyn
-            //employeeDataFactory.serviceChoiseArray.push(response.data);
+            // Talletetaan se serviceChoiseDataFactory.array:hyn
             serviceChoiseDataFactory.array.push(response.data);
             
             initialCategoryAndDescription();

@@ -14,11 +14,10 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
         classes:['','','active']
     }
     
-    $scope.selectedEmployee = employeeDataFactory.getSelectedEmployee();
+    $scope.selectedEmployee = employeeDataFactory.getSelected();
     console.log('selectedEmployee:');
     console.log($scope.selectedEmployee);
     
-    //employeeDataFactory.getServiceChoises(dataCallback);
     serviceChoiseDataFactory.getAll(dataCallback);
     
     function dataCallback(dataArray){
@@ -74,7 +73,6 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
                 id:$scope.selected._id
             };
             
-            //var waitPromise = employeeDataFactory.insertServiceData(temp);
             var waitPromise = serviceDataFactory.insertData(temp);
 
             waitPromise.then(function(response){
@@ -84,8 +82,7 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
 
 
                 // queries.js/exports.saveNewService: palauttaa data nimisen muuttujan responsessa.
-                // Talletetaan se serviceArray:hyn
-                //employeeDataFactory.serviceArray.push(response.data);
+                // Talletetaan se serviceDataFactory.array:hyn
                 //serviceDataFactory.array.push(response.data);
 
                 Flash.create('success', 'Lisätty uusi palvelu työntekijälle', 'custom-class');
