@@ -873,7 +873,7 @@ exports.deleteCompany = function(req,res){
 /**
  * This function saves new reservation information to our
  * reservation collection
- * => 31.7.2016
+ * => 04.10.2016
  */
 exports.saveNewReservation = function(req,res){
     console.log('queries/saveNewReservation');
@@ -888,8 +888,26 @@ exports.saveNewReservation = function(req,res){
             //500 = Internal Server Error
             res.status(500).json({message:'Fail'});
         }else{
-            //200 = ok
-            res.status(200).json({data:newData});
+            db.Employee.update({_id:req.body.employee},
+                               {$push:{'assignments':reservationTemp._id}},
+                               function(err, model){
+                if(err){
+                    //500 = Internal Server Error
+                    res.status(500).json({message:'Fail'});
+                }else{
+                    db.Customer.update({_id:req.body.customer},
+                                       {$push:{'assignments':reservationTemp._id}},
+                                       function(err, model){
+                        if(err){
+                            //500 = Internal Server Error
+                            res.status(500).json({message:'Fail'});
+                        }else{
+                            //200 = ok
+                            res.status(200).json({data:newData});
+                        }
+                    });
+                }
+            });
         }
     });
 }

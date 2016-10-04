@@ -56,7 +56,8 @@ var Reservation = mongoose.model('Reservation',{
     startTime: Date,
     endTime: Date,
     employee:{type:mongoose.Schema.Types.ObjectId,ref:'Employee'},
-    customer:{type:mongoose.Schema.Types.ObjectId,ref:'Customer'}
+    customer:{type:mongoose.Schema.Types.ObjectId,ref:'Customer'},
+    service:{type:mongoose.Schema.Types.ObjectId,ref:'ServiceChoise'}
 },'reservation');
 
 var Customer = mongoose.model('Customer',{

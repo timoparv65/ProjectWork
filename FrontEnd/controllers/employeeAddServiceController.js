@@ -45,28 +45,6 @@ main_module.controller('employeeAddServiceController',function($scope,employeeDa
             
             console.log('$scope.selected._id');
             console.log($scope.selected._id);
-/*
-            // temp muuttujien nimet oltava samat kuin Employee määrittelyssä database.js:ssä
-            var temp = {
-                name:$scope.selectedEmployee.name,
-                id:$scope.selected._id,
-                category:$scope.selected.category,
-                categoryextrainfo:$scope.selected.categoryextrainfo,
-                description:$scope.selected.description,
-                extrainfo:$scope.selected.extrainfo,
-                duration:$scope.selected.duration,
-                price:$scope.selected.price
-            };
-
-            console.log(temp);
-
-            if (temp.category.length === 0 ||
-                temp.name.length === 0){
-
-                alert('Jokin kenttä tyhjä!');
-                return;
-            }
-*/
             
             var temp = {
                 name:$scope.selectedEmployee.name,

@@ -16,11 +16,41 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
     $scope.companyData = [];
     $scope.customerData = [];
     $scope.bookingTimes = [];
-    $scope.ev = null;
+    //$scope.ev = null;
+    $scope.numberOfBookingTimes = null;
     
     customerDataFactory.getCustomer(dataCallBackCustomer);
+    
+    function dataCallBackCustomer(dataArray){
+        console.log('loginDoneReservationSelectTimeController/dataCallBackCustomer');
+        
+        $scope.customerData = dataArray;
+        console.log('$scope.customerData');
+        console.log($scope.customerData);
+    }
+    
     companyDataFactory.getInformation(dataCallbackCompany);
-    employeeDataFactory.getAll(dataCallBackEmployees);
+    
+    function dataCallbackCompany(dataArray){
+        console.log('loginDoneReservationSelectTimeController/dataCallbackCompany');
+        console.log("dataArray[0]");
+        console.log(dataArray[0]);
+    
+        $scope.companyData = dataArray;
+        console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
+        
+        createBookingTimes(dataArray[0]);
+    }
+    
+    //employeeDataFactory.getAll(dataCallBackEmployees); // EI TARVITSE !!!
+    
+    function dataCallBackEmployees(dataArray){
+        console.log('loginDoneReservationSelectTimeController/dataCallBackEmployees');
+        console.log("dataArray");
+        console.log(dataArray);
+    
+        //$scope.employeeData = dataArray;
+    }
     
     initialDate();
     getInformation();
@@ -54,10 +84,10 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         $location.path('/palvelun_valinta_sisaankirjauduttu').replace();
     }
     
-    function datePickerValue(arvo){
+    function datePickerValue(dateAsString){
         console.log('loginDoneReservationSelectTimeController/datePickerValue');
         
-        $scope.selectedDate = arvo;
+        $scope.selectedDate = dateAsString;
         console.log($scope.selectedDate);
     }
     
@@ -107,32 +137,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         }
     }
     
-    function dataCallBackCustomer(dataArray){
-        console.log('loginDoneReservationSelectTimeController/dataCallBackCustomer');
-        
-        $scope.customerData = dataArray;
-        console.log('$scope.customerData');
-        console.log($scope.customerData);
-    }
     
-    function dataCallBackEmployees(dataArray){
-        console.log('loginDoneReservationSelectTimeController/dataCallBackEmployees');
-        console.log("dataArray");
-        console.log(dataArray);
-    
-        //$scope.employeeData = dataArray;
-    }
-    
-    function dataCallbackCompany(dataArray){
-        console.log('loginDoneReservationSelectTimeController/dataCallbackCompany');
-        console.log("dataArray[0]");
-        console.log(dataArray[0]);
-    
-        $scope.companyData = dataArray;
-        console.log("$scope.companyData[0].timeRaster: " + $scope.companyData[0].timeRaster);
-        
-        createBookingTimes(dataArray[0]);
-    }
     
     function dataCallBackService(dataArray){
         console.log('loginDoneReservationSelectTimeController/dataCallBackService');
@@ -163,7 +168,10 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
         //var closing_time_hours = 20;
         //var closing_time_minutes = 0;
         
+        $scope.numberOfBookingTimes = 0;
+        
         $scope.bookingTimes.push(companyData.openingTime);
+        $scope.numberOfBookingTimes += 1;
         
         do{
             time_hours += increment_hours;
@@ -195,8 +203,10 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             var rule_minutes = time_minutes <= closing_time_minutes;
             if (time_hours < closing_time_hours){
                 $scope.bookingTimes.push(newTime);
+                $scope.numberOfBookingTimes += 1;
             } else if (rule_hours && rule_minutes) {
                 $scope.bookingTimes.push(newTime);
+                $scope.numberOfBookingTimes += 1;
             } else {
                 stopGeneration = false;
             }
@@ -238,15 +248,31 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
             var taysija_15min_jaksoja = Math.ceil(r1);
             console.log('vie täysiä 15 min jaksoja: ' + taysija_15min_jaksoja);
             
-            var timeStart = createTimeStamp($scope.selectedDate, $scope.bookingTimes[myRow]);
-            console.log('timeStart :' + timeStart);
+            console.log('$scope.numberOfBookingTimes');
+            console.log($scope.numberOfBookingTimes);
+            
+            var timeStart2 = createStartTimeStamp2($scope.selectedDate, myRow, taysija_15min_jaksoja);
+            console.log('timeStart2 :' + timeStart2);
+            
+            var timeEnd2 = createEndTimeStamp2($scope.selectedDate, myRow, taysija_15min_jaksoja);
+            console.log('timeEnd2 :' + timeEnd2);
+            
+            console.log('myCol: ' + myCol);
+            console.log('$scope.employeeData[myCol-1]: ');
+            console.log($scope.employeeData[myCol-1]);
             
             temp = {
-              startTime: timeStart,
-              endTime: timeStart,
-                employee: 10
+              startTime: timeStart2,
+              endTime: timeEnd2,
+              employee: $scope.employeeData[myCol-1]._id,
+              customer: $scope.customerData[0]._id,
+              service: $scope.selectedService._id
             };
-            /*
+            
+            console.log('temp');
+            console.log(temp);
+            
+            
             var waitPromise = reservationDataFactory.insertData(temp);
             
             waitPromise.then(function(response){
@@ -260,7 +286,7 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
                 Flash.create('success', 'Uusi varaus lisätty', 'custom-class');
 
                 $timeout(function(){
-                    //$location.path('/tyontekija_paavalikko').replace();
+                    //$location.path('/palvelun_valinta_sisaankirjauduttu').replace();
                 }, 2000);
             
             },function(error){
@@ -271,18 +297,45 @@ main_module.controller('loginDoneReservationSelectTimeController',function($scop
                 Flash.create('warning', 'Varauksen lisäys epäonnistui!', 'custom-class');
 
                 $timeout(function(){
-                    //$location.path('/tyontekija_paavalikko').replace();
+                    //$location.path('/palvelun_valinta_sisaankirjauduttu').replace();
                 }, 2000);
             });
-            */
+            
         }
         
     }
     
-    function createTimeStamp(date, time){
-        console.log("loginDoneReservationSelectTimeController/createTimeStamp");
+    function createStartTimeStamp2(date, bookingTableStartIndex, numberOf15minTimeSlots){
+        console.log("loginDoneReservationSelectTimeController/createStartTimeStamp2");
         
-        var timeStamp = "" + date + "T" + time + ":00Z";
+        var endIndex = bookingTableStartIndex + numberOf15minTimeSlots;
+        console.log('endIndex: ' + endIndex);
+        var timeStamp = "0000-00-00T00:00:00Z";
+        
+        if (endIndex > $scope.numberOfBookingTimes - 1){
+            Flash.create('danger','Pyydetty palvelu vie niin kauan, että yrityksen sulkemisaika tulee vastaan!', 'custom-class'); 
+        } else {
+            var time = $scope.bookingTimes[bookingTableStartIndex];
+            timeStamp = "" + date + "T" + time + ":00Z";
+        }
+        
+        return timeStamp;
+    }
+    
+    function createEndTimeStamp2(date, bookingTableStartIndex, numberOf15minTimeSlots){
+        console.log("loginDoneReservationSelectTimeController/createEndTimeStamp2");
+        
+        var endIndex = bookingTableStartIndex + numberOf15minTimeSlots;
+        console.log('endIndex: ' + endIndex);
+        var timeStamp = "0000-00-00T00:00:00Z";
+        
+        if (endIndex > $scope.numberOfBookingTimes - 1){
+            Flash.create('danger','Pyydetty palvelu vie niin kauan, että yrityksen sulkemisaika tulee vastaan!', 'custom-class'); 
+        } else {
+            var time = $scope.bookingTimes[endIndex];
+            timeStamp = "" + date + "T" + time + ":00Z";
+        }
+        
         return timeStamp;
     }
                   
