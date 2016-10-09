@@ -8,7 +8,8 @@
             <tr>
                 <th>Kategoria</th>
                 <th>Kuvaus</th>
-                <th>Kesto</th>
+                <th>Kesto / min</th>
+                <th>Hinta / €</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <td>{{palvelu.category}}</td>
                 <td>{{palvelu.description}}</td>
                 <td>{{palvelu.duration}}</td>
+                <td>{{palvelu.price}}</td>
                 <td><input type="checkbox" ng-click='addToDelete($event,$index,palvelu._id)'></td>
             </tr>
         </tbody>

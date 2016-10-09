@@ -79,7 +79,7 @@ function loginRequiredToCustomerPrivatePages($q,$resource,$location,$http){
         //Mark promise to be failed
         deferred.reject();
         // Go back to root context
-        $location.path('/palvelun_valinta');
+        $location.path('/');
         return deferred;
     });
 }
@@ -123,8 +123,27 @@ main_module.config(function($routeProvider){
     }).when('/ajanvaraus_sisaankirjauduttu',{
         
         templateUrl:'partial_loginDoneReservationSelectTimeView.html',
-        controller:'loginDoneReservationSelectTimeController'
+        controller:'loginDoneReservationSelectTimeController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
     
+    }).when('/asiakas_tiedot_sisaankirjauduttu',{
+        
+        templateUrl:'partial_loginDoneShowCustomerInformationView.html',
+        controller:'loginDoneShowCustomerInformationController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
+        
+    }).when('/asiakas_muokkaa_tietoja_sisaankirjauduttu',{
+        
+        templateUrl:'partial_loginDoneChangeCustomerInformationView.html',
+        controller:'loginDoneChangeCustomerInformationController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
+        
+    }).when('/asiakas_nayta_varaukset_sisaankirjauduttu',{
+        
+        templateUrl:'partial_loginDoneShowCustomerReservationsView.html',
+        controller:'loginDoneShowCustomerReservationsController',
+        resolve:{loginRequiredToCustomerPrivatePages:loginRequiredToCustomerPrivatePages}
+        
     }).when('/palvelut_ja_hinnasto',{
         
         templateUrl:'partial_servicesAndPricesView.html',

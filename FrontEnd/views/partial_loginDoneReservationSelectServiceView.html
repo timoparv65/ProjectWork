@@ -2,10 +2,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-md-3">
-            <div><h4 style="color:deeppink">Olet sisäänkirjautunut !</h4></div>
+            <div><h4 style="color:deeppink" ng-model='customer'>Tervetuloa {{customer.name}} !</h4></div>
             <nav>
-                <a href="#/asiakas_nayta_varaukset"><h6 style="color:deeppink">Näytä omat varaukset</h6></a>
-                <a href="#/asiakas_tiedot"><h6 style="color:deeppink">Omat tiedot</h6></a>
+                <a href="#/asiakas_nayta_varaukset_sisaankirjauduttu"><h6 style="color:deeppink">Näytä omat varaukset</h6></a>
+                <a href="#/asiakas_tiedot_sisaankirjauduttu"><h6 style="color:deeppink">Omat tiedot</h6></a>
                 <a href="/logout"><h6 style="color:deeppink">Kirjaudu ulos</h6></a>
             </nav><br><br>
             <div id="ajanvarauksen_vaiheet">
@@ -31,7 +31,9 @@
                 <!-- Tänne jotain !!! -->
             </div>
         </div>
-        <div class="col-sm-3 col-md-3"></div>
+        <div class="col-sm-3 col-md-3">
+        
+        </div>
     </div>
     <!--
     <div>

@@ -7,12 +7,21 @@ main_module.controller('loginDoneReservationSelectServiceController',function($s
     $scope.serviceChoiseData = [];
     $scope.selectedServ = null;
     $scope.selectedEmpl = null;
+    $scope.customer = null;
     
     $scope.navbarData = {
         
         urls:['#/palvelun_valinta_sisaankirjauduttu',"#/palvelut_ja_hinnasto_sisaankirjauduttu",'#/yhteystiedot_sisaankirjauduttu'],
         texts:['Palvelun valinta','Palvelut ja hinnasto','Yhteystiedot'],
         classes:['active','','']
+    }
+    
+    customerDataFactory.getCustomer(dataCallbackCustomer);
+    
+    function dataCallbackCustomer(dataArray){
+        console.log('loginDoneReservationSelectServiceController/dataCallbackCustomer');
+        
+        $scope.customer = dataArray[0];
     }
     
     serviceChoiseDataFactory.getAll(dataCallBackServices);
